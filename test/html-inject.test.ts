@@ -8,6 +8,7 @@ import { TOOL_VERSION } from '../src/constants';
 import { CHROME, runChrome } from './helpers/chrome';
 import { loadSample } from './helpers/nav-view';
 import { makeRepo } from './helpers/planEditHarness';
+import { privatePlanDir } from './helpers/privateRepo';
 import { runViewerScripts } from './helpers/viewer-harness';
 
 // P13-BUG-html-inject: scanned source text that contains the template's own placeholders
@@ -306,7 +307,9 @@ describe('C4PM scanning itself', () => {
     const { html } = buildView({ repo: path.resolve(__dirname, '..') });
     const m = html.match(DATA_SCRIPT)!;
     expect(() => JSON.parse(m[1])).not.toThrow();
-    expect(m[1]).toContain('C4PM_SCRIPTS');
+    // The placeholder text reaches the data as the code of renderPage (src/page/html.ts), shown only when the private ../.c4mp
+    // plan claims it. The public tree has no plan of its own: that file is reached by tests only, so the map leaves it out (b985).
+    if (privatePlanDir()) expect(m[1]).toContain('C4PM_SCRIPTS');
     const r = runInChrome(html, 'self.html');
     expect(r.errs).toEqual([]);
     expect(r.rows).toBeGreaterThan(0);

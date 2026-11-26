@@ -4,6 +4,7 @@ import * as path from 'path';
 import { buildView } from '../src/page/html';
 import { chromeInstalled, runChrome } from './helpers/chrome';
 import { makeRepo } from './helpers/planEditHarness';
+import { privatePlanDir } from './helpers/privateRepo';
 
 // Real Chrome, Shop fixture (test/fixtures/io-shop): at Fit in #io the four frames are drawn (the --screen stroke is on each
 // frame edge) and a double-click on the Products screen flies the camera so that screen fills most of the map.
@@ -109,7 +110,7 @@ setTimeout(function(){ try {
 } catch (e) { out.err = String(e && e.stack || e); } finish(); }, 1500);
 })();`;
 
-const PLAN = path.resolve(__dirname, '..', '..', '.c4mp', 'projects', 'c4mp', 'plan');   // C4PM's own plan
+const PLAN = privatePlanDir() ?? '';   // C4PM's own plan; none in the public tree, where its block below skips (b985)
 const WFX = path.resolve(__dirname, 'fixtures', 'io-wireframe');
 const MAP = 'c4mp.c4mp.map_page', IOV = 'c4mp.c4mp.io_view', OWN = 'c4mp.c4mp.own_window';
 
@@ -163,7 +164,8 @@ describe('IO view in real Chrome (Shop fixture)', () => {
   }, 120000);
 });
 
-describe('IO view in real Chrome (C4PM plan, W15 b311)', () => {
+// Private plan only: the public tree has no ../.c4mp, so the block is skipped there (b963, b985).
+(PLAN ? describe : describe.skip)('IO view in real Chrome (C4PM plan, W15 b311)', () => {
   chromeIt('every box of the Map page golden (1280x800) is at frame + (TB + box x WORLD_PER_PX) x the row scale; columns; all three screens drawn', () => {
     // the wireframe files of the plan are the golden's sources, byte for byte
     expect(fs.readFileSync(path.join(PLAN, 'io', `${MAP}.html`)).equals(fs.readFileSync(path.join(WFX, 'map_page.html')))).toBe(true);

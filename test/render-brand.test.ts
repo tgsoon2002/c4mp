@@ -10,7 +10,7 @@ const rb = require('../scripts/render-brand.js') as {
 
 describe('parseBrandArgs', () => {
   it('defaults to Brand/png and takes --out as an absolute path', () => {
-    expect(rb.parseBrandArgs([]).out).toMatch(/Brand[\\/]png$/);
+    expect(rb.parseBrandArgs([]).out).toMatch(/[Bb]rand[\\/]png$/);   // private repo: ../Brand/png; public tree: brand/png (b985)
     expect(rb.parseBrandArgs(['--out', 'x/y']).out).toBe(path.resolve('x/y'));
   });
   it.each([[['--out']], [['--out', '--x']], [['--bogus']]])('rejects %j', argv => {

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>C4MP: your crew, your map, your plan</title>
+<meta name="description" content="C4MP: your crew, your map, your plan, in one camp. A zoomable map of your code that tracks how it drifts from your plan, with a board, simulations and views for architecture, input/output and storage.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="assets/favicon.ico">
+<meta property="og:type" content="website">
+<meta property="og:title" content="C4MP">
+<meta property="og:description" content="C4MP: your crew, your map, your plan, in one camp.">
+<meta property="og:image" content="assets/social-preview.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="assets/social-preview.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap">
+<style>
+:root { --bg: #F6FAF8; --card: #FFFFFF; --text: #17261F; --muted: #3F5650; --accent: #1F6F5C; --on-accent: #FFFFFF; --edge: #C9621F; --line: #D3E2DC; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #0F1D19; --card: #16282F; --text: #E8F3EF; --muted: #B5CCC4; --accent: #8FD9C2; --on-accent: #0F1D19; --edge: #E98B4B; --line: #2B4540; }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 17px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 760px; margin: 0 auto; padding: 32px 16px 56px; }
+h1, h2 { font-family: "Space Grotesk", system-ui, sans-serif; line-height: 1.2; }
+h1 { font-size: clamp(1.7rem, 5vw, 2.4rem); margin: 20px 0 8px; }
+h2 { font-size: 1.25rem; margin: 36px 0 10px; }
+a { color: var(--accent); }
+.logo img { height: 56px; width: auto; display: block; }
+.about { color: var(--muted); margin: 0 0 24px; }
+.cta { display: inline-block; background: var(--accent); color: var(--on-accent); font-family: "Space Grotesk", system-ui, sans-serif; font-weight: 700; font-size: 1.25rem; text-decoration: none; padding: 14px 28px; border-radius: 10px; border-bottom: 4px solid var(--edge); }
+.cta:hover, .cta:focus { filter: brightness(1.08); outline: 3px solid var(--edge); outline-offset: 2px; }
+.hero img { max-width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--line); display: block; margin-top: 28px; }
+pre { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; overflow-x: auto; font-size: 0.9rem; }
+code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+ul.links { padding-left: 20px; }
+footer { margin-top: 40px; color: var(--muted); font-size: 0.9rem; }
+</style>
+</head>
+<body>
+<main>
+<a class="logo" href="./"><picture><source srcset="assets/c4mp-logo-dark@2x.png" media="(prefers-color-scheme: dark)"><img src="assets/c4mp-logo-light@2x.png" alt="C4MP logo"></picture></a>
+<h1>C4MP: your crew, your map, your plan, in one camp.</h1>
+<p class="about">A zoomable map of your code that tracks how it drifts from your plan, with a board, simulations and views for architecture, input/output and storage.</p>
+<p><a class="cta" href="demo/">Try the demo</a></p>
+<p class="about">The demo is a made-up online shop, running in your browser with no install.</p>
+<div class="hero"><picture><source srcset="assets/hero-dark.gif" media="(prefers-color-scheme: dark)"><img src="assets/hero.gif" alt="A short tour of the C4MP map, board and views" width="1280" height="720"></picture></div>
+<h2>Install</h2>
+<p>With Homebrew:</p>
+<pre><code>brew install tgsoon2002/c4mp/c4mp</code></pre>
+<p>Or with the install script:</p>
+<pre><code>curl -fsSL https://github.com/tgsoon2002/c4mp-releases/releases/latest/download/install.sh | sh</code></pre>
+<h2>Links</h2>
+<ul class="links">
+<li><a href="https://github.com/tgsoon2002/c4mp">Source code</a></li>
+<li><a href="https://github.com/tgsoon2002/c4mp-releases/releases">Releases and downloads</a></li>
+</ul>
+<footer>C4MP 0.11.0</footer>
+</main>
+</body>
+</html>

@@ -1,0 +1,901 @@
+// sim-demo-shop (Phase 25 UI0, b750): the made-up Shop of Document/v0.9-simulations-demo.html as a real plan.
+// Architecture = demo ARCH/OUT/AEDGES/PEDGES; IO = the Shop IO plan the demo's IO view runs (screens, CLI, API, MCP);
+// Storage = demo STORES. The simulations s-1 and s-2 in ../sim/ target these elements by uid (the planned-code
+// functions have none: by fqn). Project id 'shop' = package.json name 'Shop' (also the system title on the map).
+// Code in api/, web/, mobile/ (a package.json each) so the scanned containers merge with these containers by id.
+// Payments is planned and has no code: s-1 step 8 (placeOrder -> charge) stays unverified.
+model {
+  customer = person 'Customer' {
+    metadata {
+      uid 'ddea502b-030e-47ce-b5c1-0d9c6852b44a'
+    }
+  }
+  staff = person 'Staff' {
+    metadata {
+      uid '6d89d84f-2e10-4ef0-abf0-088e1b683221'
+    }
+  }
+  payment_gateway = external 'Payment gateway' {
+    technology 'Card processor'
+    metadata {
+      uid '9a73f92c-6cb5-4989-8f91-21d3481bd5d3'
+    }
+  }
+
+  shop = system 'Shop' {
+
+    // ---------------------------------------------------------------- web app: architecture + IO screens
+    web = container 'Web app' {
+      technology 'React'
+      router = component 'Router' {
+        link ../../../../web/src/router.ts
+        metadata {
+          status 'done'
+          owner 'Kien'
+          uid '423f3090-489c-44ba-b9f1-b7e9c54dd630'
+        }
+      }
+      cart_store = component 'Cart store' {
+        link ../../../../web/src/cartStore.ts
+        metadata {
+          status 'in-progress'
+          owner 'Jay'
+          uid '15e1bcfb-ca64-49d5-9717-f1317dec6fb7'
+        }
+      }
+      login = screen 'Login' {
+        header = region 'Header' {
+          logo = control 'Logo' {
+            metadata {
+              uid '875acb40-a687-43fc-9a07-4b8804e73389'
+            }
+          }
+          metadata {
+            uid '02bd4e40-96d2-42ab-920f-6751b256c284'
+          }
+        }
+        form = region 'Sign-in form' {
+          email = control 'Email input' {
+            metadata {
+              uid '9f06b9dd-5583-44bd-b616-8ac9f5de94af'
+            }
+          }
+          password = control 'Password input' {
+            metadata {
+              uid 'edadc0d2-74c9-406b-80f0-758d518b82e1'
+            }
+          }
+          submit = control 'Sign in button' {
+            -> shop.web.home 'Sign in'
+            loading = state 'Loading' {
+              metadata {
+                uid 'c1d28bea-9d01-4610-b00e-3b3a8016672f'
+              }
+            }
+            metadata {
+              uid '1480eb7c-6b42-46af-b443-7252b71555ae'
+            }
+          }
+          metadata {
+            uid '2936cb3a-bc9e-4f1a-b4e6-83fcc445dd4a'
+          }
+        }
+        footer = region 'Footer' {
+          footer_nav = control 'Footer links' {
+            metadata {
+              uid '5d7b15e0-6c5d-4362-a1a2-b0825ca6a548'
+            }
+          }
+          metadata {
+            uid '7a122294-2d7d-4603-9259-9b13beb3e711'
+          }
+        }
+        err = state 'Error: wrong password' {
+          metadata {
+            uid '7765d1dd-425e-41e9-9f5e-6eb5e9a9252c'
+          }
+        }
+        metadata {
+          uid 'e4bce103-7a00-46f3-a659-fc885823ce46'
+        }
+      }
+      home = screen 'Home' {
+        header = region 'Header' {
+          logo = control 'Logo' {
+            metadata {
+              uid '3ff779fd-b2f2-4ef4-88f6-983899484e50'
+            }
+          }
+          search = control 'Search box' {
+            metadata {
+              uid 'ee18cfd8-0636-410c-9640-48dc441383de'
+            }
+          }
+          metadata {
+            uid '5797fa70-7ee6-4486-8e05-5826344ab545'
+          }
+        }
+        hero = region 'Hero banner' {
+          shop_now = control 'Shop now button' {
+            -> shop.web.products 'Shop now'
+            metadata {
+              uid '60163f0d-25d1-44d9-bffb-f7436076b73c'
+            }
+          }
+          metadata {
+            uid 'c83ed32a-7cf4-41e9-8350-ddfe084cfe4f'
+          }
+        }
+        featured = region 'Featured products' {
+          cards = control 'Product cards' {
+            metadata {
+              uid '5aecaedb-6b56-42d5-89e5-808af5b57069'
+            }
+          }
+          metadata {
+            uid '32d3a802-96be-4724-9f20-3087a99f808d'
+          }
+        }
+        footer = region 'Footer' {
+          footer_nav = control 'Footer links' {
+            metadata {
+              uid '00c139e2-e7ad-4b85-93c8-b2520aac8323'
+            }
+          }
+          metadata {
+            uid 'bd1de82c-95bd-40b9-9644-2a5a73754529'
+          }
+        }
+        loading = state 'Loading' {
+          metadata {
+            uid '603d45da-07f5-411b-abe7-6f39da7a2059'
+          }
+        }
+        metadata {
+          uid '012dcfe4-0102-4348-a0b9-5a4c6ab99a95'
+        }
+      }
+      products = screen 'Products' {
+        header = region 'Header' {
+          logo = control 'Logo' {
+            metadata {
+              uid 'd3dc13a1-6cdb-42e8-9ff7-1e82f1b81c46'
+            }
+          }
+          search = control 'Search box' {
+            metadata {
+              uid '92e02fe8-0a38-4e69-bfa1-8ababae56605'
+            }
+          }
+          metadata {
+            uid '833d52e5-8f73-44aa-98dd-79c631a0de92'
+          }
+        }
+        filters = region 'Filters' {
+          category = control 'Category list' {
+            metadata {
+              uid '48225452-963d-4d9a-86b2-96cf93314036'
+            }
+          }
+          price = control 'Price slider' {
+            metadata {
+              uid '3a9d7595-8475-4abd-9c33-828a1886427c'
+            }
+          }
+          metadata {
+            uid '39c41e52-74e2-4159-b634-fea2bcf78477'
+          }
+        }
+        results = region 'Results' {
+          grid = control 'Product grid' {
+            -> shop.web.product 'Open'
+            metadata {
+              uid '1c5a4249-1ddc-42e0-ba1b-5f5b334308e7'
+            }
+          }
+          pager = control 'Pager' {
+            metadata {
+              uid '00038c2c-e46f-4d3e-a77d-9b31d55c97bf'
+            }
+          }
+          metadata {
+            uid '3869ef68-e9f6-4b33-a22d-027ee05ac428'
+          }
+        }
+        footer = region 'Footer' {
+          footer_nav = control 'Footer links' {
+            metadata {
+              uid '1f5af6f9-fe39-4d64-b8f4-a5c134cd43a7'
+            }
+          }
+          metadata {
+            uid '056d99a6-4178-4a68-80b9-df7d21ef42b1'
+          }
+        }
+        empty = state 'Empty: no products match' {
+          metadata {
+            uid '611ecd53-9f6d-4d90-a81e-8d138345feb0'
+          }
+        }
+        loading = state 'Loading' {
+          metadata {
+            uid 'e70b7041-fdc5-4f83-a6a1-b9beb8208204'
+          }
+        }
+        err = state 'Error: catalog is down' {
+          metadata {
+            uid '8ff790b0-75c3-468b-969e-28978c71325b'
+          }
+        }
+        metadata {
+          uid 'c0edb273-0b90-4186-b458-2f7e81fe6e80'
+        }
+      }
+      product = screen 'Product page' {
+        header = region 'Header' {
+          logo = control 'Logo' {
+            metadata {
+              uid '769bfc5c-11db-477d-90d0-d4084b231ca8'
+            }
+          }
+          search = control 'Search box' {
+            metadata {
+              uid '1ac4c156-23b8-48a4-bd97-1f2659ebb728'
+            }
+          }
+          metadata {
+            uid 'f67b1721-5f83-499c-9216-13169d055104'
+          }
+        }
+        info = region 'Product info' {
+          photo = control 'Photo' {
+            metadata {
+              uid '4e6c491d-b689-4b13-813d-aa3d3c81eb18'
+            }
+          }
+          price = control 'Price' {
+            metadata {
+              uid '3ce2a5d6-b54c-4f66-bc25-f837bf594189'
+            }
+          }
+          add = control 'Add to cart button' {
+            -> shop.web.cart 'Add to cart'
+            loading = state 'Loading' {
+              metadata {
+                uid '09beb841-fc95-4d3d-af84-7d4448048294'
+              }
+            }
+            metadata {
+              uid '061fbf7b-3657-4dbc-8fd5-d919d0034768'
+            }
+          }
+          metadata {
+            uid 'b864e1aa-14e3-4959-9c64-c1fdec1f57bc'
+          }
+        }
+        reviews = region 'Reviews' {
+          review_list = control 'Review list' {
+            metadata {
+              uid '470978fd-be17-475d-8288-c657c6fe2388'
+            }
+          }
+          metadata {
+            uid '7a9a0b0b-22dc-4a10-bb49-1fa7e1527ebc'
+          }
+        }
+        footer = region 'Footer' {
+          footer_nav = control 'Footer links' {
+            metadata {
+              uid 'd7e13882-10c3-4c49-841e-53f1a532d15c'
+            }
+          }
+          metadata {
+            uid '0f0fc1e7-c727-48c5-a667-50ef4e476ba8'
+          }
+        }
+        not_found = state 'Error: product not found' {
+          metadata {
+            uid 'd9ba8e0b-1bf4-4b2b-af4f-d11bad1a4d95'
+          }
+        }
+        metadata {
+          uid 'b05d90b4-72c6-4463-bcf4-570c14739018'
+        }
+      }
+      cart = screen 'Cart' {
+        header = region 'Header' {
+          logo = control 'Logo' {
+            metadata {
+              uid '7134d938-f8de-4233-b763-33cdb912af32'
+            }
+          }
+          search = control 'Search box' {
+            metadata {
+              uid 'cc7a0eaf-e452-4b8f-8f36-1f3657ce6253'
+            }
+          }
+          metadata {
+            uid '1b044723-9b11-4152-b127-0a0a85a69eb1'
+          }
+        }
+        items = region 'Items' {
+          item_list = control 'Item list' {
+            metadata {
+              uid 'e029f3b5-e612-4815-911f-ff447687ce07'
+            }
+          }
+          qty = control 'Quantity stepper' {
+            metadata {
+              uid 'b8091ff7-2d1e-4b3e-8fb3-c4c2b2d07437'
+            }
+          }
+          remove = control 'Remove button' {
+            metadata {
+              uid '016d1698-2bd4-4ef6-a7b9-3efec2165024'
+            }
+          }
+          metadata {
+            uid 'cee53c9f-696c-49a6-8ce6-9424245b940a'
+          }
+        }
+        summary = region 'Summary' {
+          total = control 'Total' {
+            metadata {
+              uid '0a85b379-03f4-4280-94a3-96da05c12c47'
+            }
+          }
+          checkout_btn = control 'Checkout button' {
+            -> shop.web.checkout 'Checkout'
+            disabled = state 'Disabled while the cart is empty' {
+              metadata {
+                uid '44b8f949-ea97-48f3-a129-7243d2daa529'
+              }
+            }
+            metadata {
+              uid '127aa90a-d87a-45d7-8fc3-546043fc23c4'
+            }
+          }
+          keep = control 'Keep shopping link' {
+            -> shop.web.products 'Keep shopping'
+            metadata {
+              uid 'ac1d5195-1a39-4111-99b4-ca76b57f4cd7'
+            }
+          }
+          metadata {
+            uid '503064f8-c2e4-450e-ab45-b700fc072dfb'
+          }
+        }
+        footer = region 'Footer' {
+          footer_nav = control 'Footer links' {
+            metadata {
+              uid 'b715902b-d453-4b7c-864a-73247b3783c5'
+            }
+          }
+          metadata {
+            uid '81b023a6-5c85-4802-b332-5c82e76f0ce8'
+          }
+        }
+        empty = state 'Empty: cart is empty' {
+          metadata {
+            uid '6955ca28-3799-4caa-b826-d6a2891d4480'
+          }
+        }
+        loading = state 'Loading' {
+          metadata {
+            uid '1bc22523-eef0-431f-b417-d8eaf8471da4'
+          }
+        }
+        metadata {
+          uid '78935ab4-3f6b-495a-ac38-fa708194471f'
+        }
+      }
+      checkout = screen 'Checkout' {
+        header = region 'Header' {
+          logo = control 'Logo' {
+            metadata {
+              uid '46b654ed-5798-46a6-a7b2-03ba3c72c503'
+            }
+          }
+          search = control 'Search box' {
+            metadata {
+              uid '39948d29-420f-45c8-beea-5dbffd71fa23'
+            }
+          }
+          metadata {
+            uid 'fade45be-b913-4e80-a2cd-066d00aa4fc5'
+          }
+        }
+        address = region 'Address form' {
+          name = control 'Name input' {
+            metadata {
+              uid '0ba37f21-1d8f-4853-906e-49aa06b3b305'
+            }
+          }
+          street = control 'Street input' {
+            metadata {
+              uid '335f9d2a-0bb6-44e8-bfc0-954ee9020dbe'
+            }
+          }
+          metadata {
+            uid '65c84c22-bd02-45a8-85d4-b813eeed12ac'
+          }
+        }
+        pay = region 'Payment' {
+          card = control 'Card input' {
+            metadata {
+              uid '8ee231db-9193-4f8d-82f4-c4a56d6f7f3b'
+            }
+          }
+          place = control 'Place order button' {
+            -> shop.web.confirmation 'Place order'
+            declined = state 'Error: card declined' {
+              metadata {
+                uid 'bc4c17f0-27d5-4f64-8d85-16aa0ae30e60'
+              }
+            }
+            metadata {
+              uid 'faaa8fcd-d95c-4cf6-870d-7bc597e3a6c5'
+            }
+          }
+          metadata {
+            uid '63d09588-cfa3-43f7-b93f-7b74cb2e1616'
+          }
+        }
+        footer = region 'Footer' {
+          footer_nav = control 'Footer links' {
+            metadata {
+              uid '984c7f85-60ec-4b70-8d8c-3ac9363ae701'
+            }
+          }
+          metadata {
+            uid '8ac74dff-0044-40d4-b995-dbf86274eea8'
+          }
+        }
+        loading = state 'Loading' {
+          metadata {
+            uid 'd2516944-49de-4fa5-822f-d896b21eed4b'
+          }
+        }
+        metadata {
+          uid '17e2bf76-e4d7-41b4-b9fe-c2e4b6c3cb13'
+        }
+      }
+      confirmation = screen 'Order confirmation' {
+        header = region 'Header' {
+          logo = control 'Logo' {
+            metadata {
+              uid 'a0937fed-8ef6-4b41-a848-70d9d8ad140f'
+            }
+          }
+          search = control 'Search box' {
+            metadata {
+              uid 'd12d4b0d-b58f-42c1-b012-82b23f8de167'
+            }
+          }
+          metadata {
+            uid 'd20f74bf-fe08-4f42-9ee3-298ae9aa3904'
+          }
+        }
+        summary = region 'Summary' {
+          order_no = control 'Order number' {
+            metadata {
+              uid 'd9ede941-715e-4861-815d-e12a932b0452'
+            }
+          }
+          continue = control 'Continue shopping link' {
+            -> shop.web.home 'Continue'
+            metadata {
+              uid '280f781c-0067-4acf-a38d-41e73ba0595d'
+            }
+          }
+          metadata {
+            uid '760e1e22-0b8e-4ba4-a1d0-d89603b97ebe'
+          }
+        }
+        footer = region 'Footer' {
+          footer_nav = control 'Footer links' {
+            metadata {
+              uid '08a6e48d-692a-4c83-9ff6-cf3ac8da55be'
+            }
+          }
+          metadata {
+            uid '784cb15b-f7f3-4330-a8e8-98414f3348d0'
+          }
+        }
+        metadata {
+          uid '90a4e906-18ab-4753-9dae-b9976d03af83'
+        }
+      }
+      metadata {
+        uid 'a07fa683-4d65-40f4-8f80-7d0ce807503a'
+      }
+    }
+
+    // ---------------------------------------------------------------- mobile app
+    mobile = container 'Shop mobile app' {
+      technology 'iOS / Android'
+      app_shell = component 'App shell' {
+        link ../../../../mobile/src/appShell.ts
+        metadata {
+          status 'in-progress'
+          owner 'Mai'
+          uid '98f15a34-b6ec-4fa6-a211-2c2f81012e97'
+        }
+      }
+      metadata {
+        uid '23383cfb-a91a-4888-947b-9b4ed1009f72'
+      }
+    }
+
+    // ---------------------------------------------------------------- CLI: shop-admin commands
+    cli = container 'shop-admin' {
+      technology 'Command line tool (CLI)'
+      import = command 'import' {
+        description 'Load products from a file'
+        options = options 'Options' {
+          file = flag '--file' {
+            metadata {
+              type 'path'
+              uid 'bed17c6e-d76e-41c3-9acf-62f9fe71b01f'
+            }
+          }
+          dry_run = flag '--dry-run' {
+            metadata {
+              type 'switch'
+              uid 'ff891a50-84bb-4fd2-8314-748247c58b9b'
+            }
+          }
+          metadata {
+            uid 'e8df87a4-dc3d-4b2a-a0aa-536db2252ced'
+          }
+        }
+        metadata {
+          uid '527b205c-c0bd-4c7a-bb09-09aa3cb3390c'
+        }
+      }
+      report = command 'report' {
+        description 'Print a sales report'
+        options = options 'Options' {
+          file = flag '--file' {
+            metadata {
+              type 'path'
+              uid '91524ba7-bfe6-4f0e-ad3b-59c314cc3e3f'
+            }
+          }
+          dry_run = flag '--dry-run' {
+            metadata {
+              type 'switch'
+              uid 'cbba3210-cb08-4bde-903d-abc002946c34'
+            }
+          }
+          metadata {
+            uid '58eab903-10c5-43a0-bf61-01db4695c28b'
+          }
+        }
+        metadata {
+          uid '1f63d908-a83a-4f80-b4f4-152b95f5630b'
+        }
+      }
+      metadata {
+        uid 'a3f2f9a6-7ded-4f74-9e02-375f1090daf7'
+      }
+    }
+
+    // ---------------------------------------------------------------- API: components, functions, routes
+    api = container 'API' {
+      technology 'Node.js (REST)'
+      auth = component 'Auth' {
+        link ../../../../api/src/auth.ts
+        metadata {
+          status 'done'
+          owner 'Kien'
+          uid '59b487a2-27e2-41da-8feb-989a4c171d89'
+        }
+      }
+      catalog = component 'Catalog' {
+        link ../../../../api/src/catalog.ts#getPrice
+        link ../../../../api/src/catalog.ts#search
+        metadata {
+          status 'done'
+          owner 'Kien'
+          uid '2b98a4d9-b0c0-4639-8252-e893388f4d7c'
+        }
+        getPrice = function 'getPrice' {
+          link ../../../../api/src/catalog.ts#getPrice
+        }
+        search = function 'search' {
+          link ../../../../api/src/catalog.ts#search
+        }
+      }
+      cart = component 'Cart' {
+        link ../../../../api/src/cart.ts
+        metadata {
+          status 'in-progress'
+          owner 'Jay'
+          uid 'e400c70c-e0cf-4475-ad94-5f9e34da83d3'
+        }
+        addItem = function 'addItem' {
+          link ../../../../api/src/cart.ts#addItem
+        }
+        getCart = function 'getCart' {
+          link ../../../../api/src/cart.ts#getCart
+        }
+      }
+      orders = component 'Orders' {
+        link ../../../../api/src/orders.ts
+        metadata {
+          status 'in-progress'
+          owner 'Mai'
+          uid '6de5dd2a-0f8a-4cd7-aaab-cd14ad60d222'
+        }
+        placeOrder = function 'placeOrder' {
+          link ../../../../api/src/orders.ts#placeOrder
+        }
+        listOrders = function 'listOrders' {
+          link ../../../../api/src/orders.ts#listOrders
+        }
+      }
+      payments = component 'Payments' {
+        metadata {
+          status 'planned'
+          owner 'Mai'
+          uid '5a33ce59-11d8-4893-887c-56b4f7ae3a93'
+        }
+        charge = function 'charge' {
+          metadata {
+            status 'planned'
+            signature 'charge(orderId: string, amount: number): boolean'
+          }
+        }
+      }
+      get_products = route 'GET /products' {
+        description 'List products'
+        category = param 'category' {
+          metadata {
+            type 'string'
+            uid '1b9de28e-abb6-4db4-a844-392a783462d8'
+          }
+        }
+        limit = param 'limit' {
+          metadata {
+            type 'int'
+            uid '2842741b-94aa-4f78-91c5-d25d868f845e'
+          }
+        }
+        body = body 'Body' {
+          sku = param 'sku' {
+            metadata {
+              type 'string'
+              uid '6bb7f921-0465-4488-a2dd-22894dad2835'
+            }
+          }
+          price = param 'price' {
+            metadata {
+              type 'decimal'
+              uid '1c9863ce-ac4c-4d17-8123-cd385b77c22c'
+            }
+          }
+          metadata {
+            uid '44849206-443c-4e6f-80bb-832b391c1925'
+          }
+        }
+        metadata {
+          uid '4e2712ca-786d-489d-8454-7f58ff756c24'
+        }
+      }
+      post_orders = route 'POST /orders' {
+        description 'Create an order'
+        idempotency_key = param 'idempotency_key' {
+          metadata {
+            type 'string'
+            uid '9def15cb-08c1-4a25-acdd-d0d86826c40c'
+          }
+        }
+        body = body 'Body' {
+          sku = param 'sku' {
+            metadata {
+              type 'string'
+              uid 'e3c5772e-c413-43dd-9908-dcb88671529c'
+            }
+          }
+          qty = param 'qty' {
+            metadata {
+              type 'int'
+              uid '0b748ac4-a694-443c-bdd5-c12505997877'
+            }
+          }
+          metadata {
+            uid 'e83600c1-6f37-4e75-bccd-ae078a66b8d5'
+          }
+        }
+        metadata {
+          uid '4f4c679e-864c-4f9d-8c5b-abaa8dcf269d'
+        }
+      }
+      metadata {
+        uid 'f5c769a8-cd3f-4a54-88b0-9b87cb06d3c0'
+      }
+    }
+
+    // ---------------------------------------------------------------- Shop DB: Postgres, read from db/migrations
+    db = container 'Shop DB' {
+      technology 'Postgres'
+      main = store 'Shop DB' {
+        technology 'postgres'
+        metadata {
+          reader 'sql-migrations'
+          source 'db/migrations'
+          uid '5e015a46-e275-40f4-a0ca-6adccea53a11'
+        }
+        customers = record 'customers' {
+          metadata {
+            index.customers_email 'unique email'
+            uid '5b9f2a0f-65d3-47ef-952b-24164fb4bd2f'
+          }
+          id = field 'id' { metadata { type 'uuid' pk 'true' uid 'd0da4ae7-f6ca-4114-a31f-39a29fb7a407' } }
+          email = field 'email' { metadata { type 'text' uid '925fdee0-e10c-4dd2-967e-81aa85de816d' } }
+          referred_by = field 'referred_by' { metadata { type 'uuid' nullable 'true' fk 'customers.id' onDelete 'set null' uid '0c95157b-cf4c-4b64-bb14-34a001bbae44' } }
+        }
+        products = record 'products' {
+          metadata {
+            check.price_pos 'price >= 0'
+            index.products_sku 'unique sku'
+            uid 'ca091dda-c09f-43be-8693-928d34ded9fe'
+          }
+          id = field 'id' { metadata { type 'uuid' pk 'true' uid '5574bb8b-c34a-4c87-901c-52d919c26a1d' } }
+          sku = field 'sku' { metadata { type 'text' uid 'b628aaf2-5f45-48ef-9907-987ca00563ce' } }
+          price = field 'price' { metadata { type 'numeric' uid 'fed76ac4-91dd-4426-a711-b99360e20062' } }
+        }
+        orders = record 'orders' {
+          metadata {
+            index.orders_status "status where status <> 'done'"
+            uid 'b2bac1d4-e515-46fd-9afb-1df410779fe5'
+          }
+          id = field 'id' { metadata { type 'uuid' pk 'true' uid '42c814eb-7671-43ad-92d4-d4766017c916' } }
+          customer_id = field 'customer_id' { metadata { type 'uuid' fk 'customers.id' onDelete 'cascade' uid '1d56beb1-707f-4ef3-a959-189590a3d89a' } }
+          status = field 'status' { metadata { type 'text' uid '907f9a67-8cf4-4f56-ad2c-5f4fec62cce2' } }
+        }
+        order_items = record 'order_items' {
+          metadata {
+            check.qty_pos 'qty > 0'
+            uid 'bd3ca7be-80d4-463e-8a44-1f01b8c17631'
+          }
+          order_id = field 'order_id' { metadata { type 'uuid' pk 'true' fk 'orders.id' onDelete 'cascade' uid '7efe11ea-cec3-4354-9e7d-41e4d5759a8c' } }
+          product_id = field 'product_id' { metadata { type 'uuid' pk 'true' fk 'products.id' onDelete 'restrict' uid 'a17a2d43-0257-4145-93fd-65bb1dbc06b7' } }
+          qty = field 'qty' { metadata { type 'int' uid '80fa5713-6598-4516-9cd2-18e4eee4a5dd' } }
+        }
+        payments = record 'payments' {
+          id = field 'id' { metadata { type 'uuid' pk 'true' uid '12e01476-53af-4d03-a149-a87163f8c474' } }
+          order_id = field 'order_id' { metadata { type 'uuid' fk 'orders.id' onDelete 'restrict' uid '3b926d1d-1106-4a34-9dcf-26eacfa79383' } }
+          metadata {
+            uid 'aacf8cab-e368-4a3d-bb82-5938b6d85ffe'
+          }
+        }
+        addresses = record 'addresses' {
+          id = field 'id' { metadata { type 'uuid' pk 'true' uid 'e170b2d9-d41e-4af5-94e6-4afa4368311a' } }
+          customer_id = field 'customer_id' { metadata { type 'uuid' fk 'customers.id' onDelete 'cascade' uid '86c8cf17-c52b-4c52-a4db-94161215a0ee' } }
+          metadata {
+            uid 'c2e0248e-6190-4c94-bf4d-4dd636029161'
+          }
+        }
+        categories = record 'categories' {
+          id = field 'id' { metadata { type 'uuid' pk 'true' uid '0091a83e-e2c3-4a92-a275-21e476548133' } }
+          parent_id = field 'parent_id' { metadata { type 'uuid' nullable 'true' fk 'categories.id' onDelete 'set null' uid '4b433c05-6023-4f5a-97fe-981985f95a27' } }
+          metadata {
+            uid 'c6d35d85-0bb6-4a93-b733-c8ba6c2d91d3'
+          }
+        }
+      }
+      metadata {
+        uid '7ecadf2d-b54e-4a53-aab6-4ab2b36d86f3'
+      }
+    }
+
+    // ---------------------------------------------------------------- Events: MongoDB (plan only, no reader)
+    docs = container 'Events' {
+      technology 'MongoDB collection'
+      events = store 'Shop events' {
+        technology 'mongodb'
+        events = record 'events' {
+          metadata {
+            index.events_type 'type'
+            uid 'acf8ff6c-859e-4c60-9d27-a8a0a33edb23'
+          }
+          id = field 'id' { metadata { type 'objectId' pk 'true' uid 'de30533e-b978-41c6-9af0-ce720b05c8ff' } }
+          type = field 'type' { metadata { type 'string' uid 'eee5acf7-67ea-4206-a27e-f4695b8f7732' } }
+          payload = field 'payload' {
+            metadata { type 'object' uid '48ec3a5e-cf92-48dd-b54a-d8b3ad3d5173' }
+            sku = field 'sku' { metadata { type 'string' uid '26fa3d89-24e9-405c-9229-1ab6127fc03b' } }
+            qty = field 'qty' { metadata { type 'int' nullable 'true' uid '72d1a54c-5c63-4a26-9cc9-d7b3aacb378b' } }
+            meta = field 'meta' {
+              metadata { type 'object' nullable 'true' uid 'c806aaa2-254e-4f9d-9235-ccd0eeda4a87' }
+              ip = field 'ip' { metadata { type 'string' nullable 'true' uid 'ece05269-6172-492c-81e2-39350fc2789b' } }
+              ua = field 'ua' { metadata { type 'string' nullable 'true' uid 'c7e06b1d-effe-4c08-b7f6-22435cb3ba17' } }
+            }
+          }
+        }
+        metadata {
+          uid 'b0436d9e-4f8b-4e14-bb95-05fc9b23e6b8'
+        }
+      }
+      metadata {
+        uid 'ecea4107-b22e-4e80-8459-e04ebc5eb83a'
+      }
+    }
+
+    // ---------------------------------------------------------------- Config: JSON file (plan only, no reader)
+    files = container 'Config' {
+      technology 'JSON file'
+      config = store 'Shop files' {
+        technology 'json'
+        config_json = record 'config.json' {
+          metadata {
+            schema 'config v1'
+            uid 'd1d059b2-20f8-47a9-95da-ca810f7a083b'
+          }
+          limits = field 'limits' {
+            metadata { type 'object' uid '0225eca1-0f44-4bd1-a69e-065a11bc7944' }
+            max_qty = field 'max_qty' { metadata { type 'number' uid 'c8279680-8518-486e-a906-9b64a2827f8e' } }
+            timeout = field 'timeout' { metadata { type 'number' uid 'e70fa43c-0bee-437e-ad67-aac5bb14df19' } }
+          }
+        }
+        metadata {
+          uid '8aaa157b-1b69-4809-92ed-680c0292fe38'
+        }
+      }
+      metadata {
+        uid '9dd1be12-3040-4483-9a27-f00932ec9b54'
+      }
+    }
+
+    // ---------------------------------------------------------------- MCP: tools for agents (IO only; not in the demo's architecture)
+    mcp = container 'Shop MCP' {
+      technology 'MCP'
+      find_product = tool 'find_product' {
+        description 'Find products by text'
+        query = param 'query' {
+          metadata {
+            type 'string'
+            uid '158b178d-cfe2-49a7-b757-23f60572e49d'
+          }
+        }
+        limit = param 'limit' {
+          metadata {
+            type 'int'
+            uid 'e8b0dcb8-6f63-4f2f-be45-7b0dad4cb330'
+          }
+        }
+        metadata {
+          uid 'c8e83d9a-1165-43fa-b576-8db0c65e3e97'
+        }
+      }
+      metadata {
+        uid 'f2225b0e-fc20-4904-9bac-9c198460b897'
+      }
+    }
+    metadata {
+      uid '57973f1a-5e38-408e-800e-486834d118d3'
+    }
+  }
+
+  // ---------------------------------------------------------------- relations (demo PEDGES + AEDGES, with their labels)
+  customer -> shop.web 'Browses and buys'
+  customer -> shop.mobile 'Uses'
+  staff -> shop.cli 'Runs admin tasks'
+
+  shop.web.router -> shop.api.auth
+  shop.web.router -> shop.api.catalog
+  shop.web.router -> shop.api.orders
+  shop.mobile.app_shell -> shop.api.catalog
+  shop.mobile.app_shell -> shop.api.cart
+  shop.web.cart_store -> shop.api.cart.addItem
+  shop.api.cart.addItem -> shop.api.catalog.getPrice
+  shop.web.router -> shop.api.orders.placeOrder
+  shop.api.orders.placeOrder -> shop.api.cart.getCart
+  shop.api.orders -> shop.api.payments 'planned'
+  shop.web -> shop.api
+  shop.api -> shop.db 'SQL'
+  shop.api -> shop.docs 'Logs events'
+  shop.cli -> shop.db 'Reads and writes'
+  shop.api.payments -> payment_gateway 'Charges cards'
+}

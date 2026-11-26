@@ -1,0 +1,1224 @@
+{
+  "schemaVersion": 1,
+  "title": "sample-shop",
+  "subtitle": "ada0f69 · 2026-10-31",
+  "summary": "sample-shop — 3 containers, 7 components, 8 files, 13 code elements, 7 component edges, 1 unresolved import",
+  "repoPath": "/repo/shop",
+  "root": {
+    "id": "sample-shop",
+    "kind": "system",
+    "name": "sample-shop",
+    "detail": "",
+    "weight": 80,
+    "children": [
+      {
+        "id": "api",
+        "kind": "container",
+        "name": "Api",
+        "detail": "Node.js / TypeScript",
+        "weight": 76,
+        "children": [
+          {
+            "id": "api/services",
+            "kind": "component",
+            "name": "Services",
+            "detail": "api/src/services",
+            "weight": 36,
+            "children": [
+              {
+                "id": "api/src/services/orderService.ts",
+                "kind": "file",
+                "name": "orderService.ts",
+                "detail": "36 lines",
+                "weight": 36,
+                "children": [
+                  {
+                    "id": "api/src/services/orderService.ts#OrderService",
+                    "kind": "class",
+                    "name": "OrderService",
+                    "detail": "class · 33 lines",
+                    "weight": 33,
+                    "children": [
+                      {
+                        "id": "api/src/services/orderService.ts#OrderService.bulkCreate",
+                        "kind": "method",
+                        "name": "bulkCreate",
+                        "detail": "method · 13 lines",
+                        "weight": 13,
+                        "children": [],
+                        "x": 50.83705995290234,
+                        "y": 43.428039807965725,
+                        "w": 1.6494386969626567,
+                        "h": 0.8247193484813283,
+                        "file": "api/src/services/orderService.ts",
+                        "line": 19,
+                        "endLine": 31,
+                        "callsAvailable": false,
+                        "code": [
+                          "  bulkCreate(inputs: Partial<Order>[]): Order[] {",
+                          "    const results: Order[] = [];",
+                          "    for (const input of inputs) {",
+                          "      if (!input.id) {",
+                          "        continue;",
+                          "      }",
+                          "      results.push(this.create(input));",
+                          "    }",
+                          "    if (results.length === 0) {",
+                          "      throw new Error('no valid orders');",
+                          "    }",
+                          "    return results;",
+                          "  }"
+                        ],
+                        "scale": 0.005498128989875522,
+                        "bubble": {
+                          "x": 51.19443833724424,
+                          "y": 43.66445935453037,
+                          "w": 0.9346819282788388,
+                          "h": 0.35188025535203343
+                        }
+                      },
+                      {
+                        "id": "api/src/services/orderService.ts#OrderService.create",
+                        "kind": "method",
+                        "name": "create",
+                        "detail": "method · 7 lines",
+                        "weight": 7,
+                        "children": [],
+                        "x": 52.48649864986499,
+                        "y": 43.428039807965725,
+                        "w": 1.6494386969626567,
+                        "h": 0.8247193484813283,
+                        "file": "api/src/services/orderService.ts",
+                        "line": 7,
+                        "endLine": 13,
+                        "callsAvailable": false,
+                        "code": [
+                          "  create(input: Partial<Order>): Order {",
+                          "    function validate() {",
+                          "      return true;",
+                          "    }",
+                          "    validate();",
+                          "    return makeOrder(input);",
+                          "  }"
+                        ],
+                        "scale": 0.005498128989875522,
+                        "bubble": {
+                          "x": 52.8438770342069,
+                          "y": 43.66445935453037,
+                          "w": 0.9346819282788388,
+                          "h": 0.35188025535203343
+                        }
+                      },
+                      {
+                        "id": "api/src/services/orderService.ts#OrderService.find",
+                        "kind": "method",
+                        "name": "find",
+                        "detail": "method · 3 lines",
+                        "weight": 3,
+                        "children": [],
+                        "x": 50.83705995290234,
+                        "y": 44.25275915644705,
+                        "w": 1.6494386969626567,
+                        "h": 0.8247193484813283,
+                        "file": "api/src/services/orderService.ts",
+                        "line": 15,
+                        "endLine": 17,
+                        "callsAvailable": false,
+                        "code": [
+                          "  static find(id: string) {",
+                          "    return id;",
+                          "  }"
+                        ],
+                        "scale": 0.005498128989875522,
+                        "bubble": {
+                          "x": 51.19443833724424,
+                          "y": 44.489178703011696,
+                          "w": 0.9346819282788388,
+                          "h": 0.35188025535203343
+                        }
+                      },
+                      {
+                        "id": "api/src/services/orderService.ts#OrderService.register",
+                        "kind": "method",
+                        "name": "register",
+                        "detail": "method · 3 lines",
+                        "weight": 3,
+                        "children": [],
+                        "x": 52.48649864986499,
+                        "y": 44.25275915644705,
+                        "w": 1.6494386969626567,
+                        "h": 0.8247193484813283,
+                        "file": "api/src/services/orderService.ts",
+                        "line": 33,
+                        "endLine": 35,
+                        "callsAvailable": false,
+                        "code": [
+                          "  register(app: any) {",
+                          "    orderRoutes(app);",
+                          "  }"
+                        ],
+                        "scale": 0.005498128989875522,
+                        "bubble": {
+                          "x": 52.8438770342069,
+                          "y": 44.489178703011696,
+                          "w": 0.9346819282788388,
+                          "h": 0.35188025535203343
+                        }
+                      },
+                      {
+                        "id": "api/src/services/orderService.ts#OrderService.constructor",
+                        "kind": "method",
+                        "name": "constructor",
+                        "detail": "method · 1 line",
+                        "weight": 1,
+                        "children": [],
+                        "x": 51.66177930138367,
+                        "y": 45.07747850492838,
+                        "w": 1.6494386969626567,
+                        "h": 0.8247193484813283,
+                        "file": "api/src/services/orderService.ts",
+                        "line": 5,
+                        "endLine": 5,
+                        "callsAvailable": false,
+                        "code": [
+                          "  constructor() {}"
+                        ],
+                        "scale": 0.005498128989875522,
+                        "bubble": {
+                          "x": 52.019157685725574,
+                          "y": 45.31389805149303,
+                          "w": 0.9346819282788388,
+                          "h": 0.35188025535203343
+                        }
+                      }
+                    ],
+                    "x": 50.67211608320607,
+                    "y": 43.02117826271493,
+                    "w": 3.628765133317845,
+                    "h": 3.0459634603910395,
+                    "file": "api/src/services/orderService.ts",
+                    "line": 4,
+                    "endLine": 36,
+                    "callsAvailable": false,
+                    "scale": 0.005498128989875522,
+                    "bubble": {
+                      "x": 50.67211608320607,
+                      "y": 43.861098320756504,
+                      "w": 3.6287651333178452,
+                      "h": 1.3661233443078946
+                    },
+                    "headerH": 0.24191767555452298
+                  }
+                ],
+                "x": 48.644276743999036,
+                "y": 41.363654081943636,
+                "w": 7.684443811731907,
+                "h": 5.421802022721956,
+                "file": "api/src/services/orderService.ts",
+                "callsAvailable": false,
+                "scale": 0.021345677254810853,
+                "bubble": {
+                  "x": 48.646055550436934,
+                  "y": 42.62874122057876,
+                  "w": 7.680886198856106,
+                  "h": 2.8916277454517103
+                },
+                "headerH": 0.9392097992116776
+              }
+            ],
+            "x": 44.353795615782055,
+            "y": 37.342484248424846,
+            "w": 16.26540606816587,
+            "h": 11.476147614761475,
+            "callsAvailable": false,
+            "origin": {
+              "kind": "scanned",
+              "folder": "api/src/services"
+            },
+            "scale": 0.045181683522682974,
+            "bubble": {
+              "x": 44.357560756075614,
+              "y": 40.020252025202524,
+              "w": 16.257875787578758,
+              "h": 6.120612061206121
+            },
+            "headerH": 1.987994074998051
+          },
+          {
+            "id": "api/routes",
+            "kind": "component",
+            "name": "Routes",
+            "detail": "api/src/routes",
+            "weight": 12,
+            "children": [
+              {
+                "id": "api/src/routes/orders.ts",
+                "kind": "file",
+                "name": "orders.ts",
+                "detail": "12 lines",
+                "weight": 12,
+                "children": [
+                  {
+                    "id": "api/src/routes/orders.ts#orderRoutes",
+                    "kind": "function",
+                    "name": "orderRoutes",
+                    "detail": "function · 8 lines",
+                    "weight": 8,
+                    "children": [],
+                    "x": 77.97501609854704,
+                    "y": 42.94323419879964,
+                    "w": 6.403703176443256,
+                    "h": 3.201851588221628,
+                    "file": "api/src/routes/orders.ts",
+                    "line": 5,
+                    "endLine": 12,
+                    "callsAvailable": false,
+                    "code": [
+                      "export const orderRoutes = (app: any) => {",
+                      "  const service = new OrderService();",
+                      "  app.post('/orders', (req: any, res: any) => {",
+                      "    log('create order');",
+                      "    charge(req.body.total);",
+                      "    res.json(service.create(req.body));",
+                      "  });",
+                      "};"
+                    ],
+                    "scale": 0.021345677254810853,
+                    "bubble": {
+                      "x": 79.36248512010975,
+                      "y": 43.861098320756504,
+                      "w": 3.6287651333178452,
+                      "h": 1.3661233443078946
+                    }
+                  }
+                ],
+                "x": 77.33464578090272,
+                "y": 41.363654081943636,
+                "w": 7.684443811731907,
+                "h": 5.421802022721956,
+                "file": "api/src/routes/orders.ts",
+                "callsAvailable": false,
+                "scale": 0.021345677254810853,
+                "bubble": {
+                  "x": 77.33642458734062,
+                  "y": 42.62874122057876,
+                  "w": 7.680886198856106,
+                  "h": 2.8916277454517103
+                },
+                "headerH": 0.9392097992116776
+              }
+            ],
+            "x": 73.04416465268574,
+            "y": 37.342484248424846,
+            "w": 16.26540606816587,
+            "h": 11.476147614761475,
+            "callsAvailable": false,
+            "origin": {
+              "kind": "scanned",
+              "folder": "api/src/routes"
+            },
+            "scale": 0.045181683522682974,
+            "bubble": {
+              "x": 73.04792979297929,
+              "y": 40.020252025202524,
+              "w": 16.257875787578758,
+              "h": 6.120612061206121
+            },
+            "headerH": 1.987994074998051
+          },
+          {
+            "id": "api/_root",
+            "kind": "component",
+            "name": "Root files",
+            "detail": "api/src",
+            "weight": 9,
+            "children": [
+              {
+                "id": "api/src/server.ts",
+                "kind": "file",
+                "name": "server.ts",
+                "detail": "9 lines",
+                "weight": 9,
+                "children": [
+                  {
+                    "id": "api/src/server.ts#start",
+                    "kind": "function",
+                    "name": "start",
+                    "detail": "function · 5 lines",
+                    "weight": 5,
+                    "children": [],
+                    "x": 49.28464706164336,
+                    "y": 57.28841871725148,
+                    "w": 6.403703176443256,
+                    "h": 3.201851588221628,
+                    "file": "api/src/server.ts",
+                    "line": 5,
+                    "endLine": 9,
+                    "callsAvailable": false,
+                    "code": [
+                      "export function start(port: number) {",
+                      "  const app = express();",
+                      "  orderRoutes(app);",
+                      "  app.listen(port);",
+                      "}"
+                    ],
+                    "scale": 0.021345677254810853,
+                    "bubble": {
+                      "x": 50.67211608320607,
+                      "y": 58.20628283920835,
+                      "w": 3.6287651333178452,
+                      "h": 1.3661233443078946
+                    }
+                  }
+                ],
+                "x": 48.644276743999036,
+                "y": 55.70883860039548,
+                "w": 7.684443811731907,
+                "h": 5.421802022721956,
+                "file": "api/src/server.ts",
+                "callsAvailable": false,
+                "scale": 0.021345677254810853,
+                "bubble": {
+                  "x": 48.646055550436934,
+                  "y": 56.973925739030605,
+                  "w": 7.680886198856106,
+                  "h": 2.8916277454517103
+                },
+                "headerH": 0.9392097992116776
+              }
+            ],
+            "x": 44.353795615782055,
+            "y": 51.68766876687669,
+            "w": 16.26540606816587,
+            "h": 11.476147614761475,
+            "callsAvailable": false,
+            "origin": {
+              "kind": "scanned",
+              "folder": "api/src"
+            },
+            "scale": 0.045181683522682974,
+            "bubble": {
+              "x": 44.357560756075614,
+              "y": 54.36543654365437,
+              "w": 16.257875787578758,
+              "h": 6.120612061206121
+            },
+            "headerH": 1.987994074998051
+          },
+          {
+            "id": "api/models",
+            "kind": "component",
+            "name": "Models",
+            "detail": "api/src/models",
+            "weight": 8,
+            "children": [
+              {
+                "id": "api/src/models/order.ts",
+                "kind": "file",
+                "name": "order.ts",
+                "detail": "8 lines",
+                "weight": 8,
+                "children": [
+                  {
+                    "id": "api/src/models/order.ts#makeOrder",
+                    "kind": "function",
+                    "name": "makeOrder",
+                    "detail": "function · 4 lines",
+                    "weight": 4,
+                    "children": [],
+                    "x": 75.63184289080304,
+                    "y": 57.440118564469195,
+                    "w": 5.545024795965638,
+                    "h": 2.772512397982819,
+                    "file": "api/src/models/order.ts",
+                    "line": 5,
+                    "endLine": 8,
+                    "callsAvailable": false,
+                    "code": [
+                      "export function makeOrder(input: Partial<Order>): Order {",
+                      "  const helper = () => 'x';",
+                      "  return { id: input.id ?? helper() };",
+                      "}"
+                    ],
+                    "scale": 0.018483415986552128,
+                    "bubble": {
+                      "x": 76.83326492992893,
+                      "y": 58.23490545189094,
+                      "w": 3.142180717713862,
+                      "h": 1.1829386231393362
+                    }
+                  },
+                  {
+                    "id": "api/src/models/order.ts#Order",
+                    "kind": "type",
+                    "name": "Order",
+                    "detail": "type · 3 lines",
+                    "weight": 3,
+                    "children": [],
+                    "x": 81.17686768676867,
+                    "y": 57.440118564469195,
+                    "w": 5.545024795965638,
+                    "h": 2.772512397982819,
+                    "file": "api/src/models/order.ts",
+                    "line": 1,
+                    "endLine": 3,
+                    "callsAvailable": false,
+                    "code": [
+                      "export interface Order {",
+                      "  id: string;",
+                      "}"
+                    ],
+                    "scale": 0.018483415986552128,
+                    "bubble": {
+                      "x": 82.37828972589456,
+                      "y": 58.23490545189094,
+                      "w": 3.142180717713862,
+                      "h": 1.1829386231393362
+                    }
+                  }
+                ],
+                "x": 75.07734041120648,
+                "y": 56.072345781464335,
+                "w": 12.199054551124405,
+                "h": 4.6947876605842405,
+                "file": "api/src/models/order.ts",
+                "callsAvailable": false,
+                "scale": 0.018483415986552128,
+                "bubble": {
+                  "x": 77.33642458734063,
+                  "y": 56.9739257390306,
+                  "w": 7.680886198856106,
+                  "h": 2.8916277454517103
+                },
+                "headerH": 0.8132703034082936
+              }
+            ],
+            "x": 73.04416465268574,
+            "y": 51.68766876687669,
+            "w": 16.26540606816587,
+            "h": 11.476147614761475,
+            "callsAvailable": false,
+            "origin": {
+              "kind": "scanned",
+              "folder": "api/src/models"
+            },
+            "scale": 0.045181683522682974,
+            "bubble": {
+              "x": 73.04792979297929,
+              "y": 54.36543654365437,
+              "w": 16.257875787578758,
+              "h": 6.120612061206121
+            },
+            "headerH": 1.987994074998051
+          },
+          {
+            "id": "api/utils",
+            "kind": "component",
+            "name": "Utils",
+            "detail": "api/src/utils",
+            "weight": 6,
+            "children": [
+              {
+                "id": "api/src/utils/log.ts",
+                "kind": "file",
+                "name": "log.ts",
+                "detail": "3 lines",
+                "weight": 3,
+                "children": [
+                  {
+                    "id": "api/src/utils/log.ts#log",
+                    "kind": "function",
+                    "name": "log",
+                    "detail": "function · 3 lines",
+                    "weight": 3,
+                    "children": [],
+                    "x": 43.845501676151876,
+                    "y": 71.65201711652911,
+                    "w": 5.545024795965638,
+                    "h": 2.772512397982819,
+                    "file": "api/src/utils/log.ts",
+                    "line": 1,
+                    "endLine": 3,
+                    "callsAvailable": false,
+                    "code": [
+                      "export default function log(msg: string) {",
+                      "  console.log(msg);",
+                      "}"
+                    ],
+                    "scale": 0.018483415986552128,
+                    "bubble": {
+                      "x": 45.046923715277764,
+                      "y": 72.44680400395085,
+                      "w": 3.142180717713862,
+                      "h": 1.1829386231393362
+                    }
+                  }
+                ],
+                "x": 43.29099919655531,
+                "y": 70.28424433352426,
+                "w": 6.654029755158766,
+                "h": 4.6947876605842405,
+                "file": "api/src/utils/log.ts",
+                "callsAvailable": false,
+                "scale": 0.018483415986552128,
+                "bubble": {
+                  "x": 43.29253948122086,
+                  "y": 71.37969478766058,
+                  "w": 6.650949185827674,
+                  "h": 2.503886752311595
+                },
+                "headerH": 0.8132703034082936
+              },
+              {
+                "id": "api/src/utils/missing-user.ts",
+                "kind": "file",
+                "name": "missing-user.ts",
+                "detail": "3 lines",
+                "weight": 3,
+                "children": [],
+                "x": 52.48649864986499,
+                "y": 69.69739587595123,
+                "w": 11.7369691514606,
+                "h": 5.8684845757303,
+                "file": "api/src/utils/missing-user.ts",
+                "callsAvailable": false,
+                "scale": 0.03912323050486867,
+                "bubble": {
+                  "x": 55.029508632681456,
+                  "y": 71.37969478766058,
+                  "w": 6.650949185827674,
+                  "h": 2.503886752311595
+                }
+              }
+            ],
+            "x": 39.57583258325833,
+            "y": 66.80227681859095,
+            "w": 25.82133213321332,
+            "h": 9.937300548236642,
+            "callsAvailable": false,
+            "origin": {
+              "kind": "scanned",
+              "folder": "api/src/utils"
+            },
+            "scale": 0.03912323050486867,
+            "bubble": {
+              "x": 44.357560756075614,
+              "y": 68.71062106210621,
+              "w": 16.257875787578758,
+              "h": 6.120612061206121
+            },
+            "headerH": 1.7214221422142215
+          },
+          {
+            "id": "api/payments",
+            "kind": "component",
+            "name": "Payments",
+            "detail": "api/src/payments",
+            "weight": 5,
+            "children": [
+              {
+                "id": "api/src/payments/stripe.ts",
+                "kind": "file",
+                "name": "stripe.ts",
+                "detail": "5 lines",
+                "weight": 5,
+                "children": [
+                  {
+                    "id": "api/src/payments/stripe.ts#charge",
+                    "kind": "function",
+                    "name": "charge",
+                    "detail": "function · 3 lines",
+                    "weight": 3,
+                    "children": [],
+                    "x": 77.97501609854704,
+                    "y": 71.63360323570332,
+                    "w": 6.403703176443256,
+                    "h": 3.201851588221628,
+                    "file": "api/src/payments/stripe.ts",
+                    "line": 3,
+                    "endLine": 5,
+                    "callsAvailable": false,
+                    "code": [
+                      "export function charge(amount: number) {",
+                      "  return new Stripe('key').charges.create({ amount });",
+                      "}"
+                    ],
+                    "scale": 0.021345677254810853,
+                    "bubble": {
+                      "x": 79.36248512010975,
+                      "y": 72.55146735766019,
+                      "w": 3.6287651333178452,
+                      "h": 1.3661233443078946
+                    }
+                  }
+                ],
+                "x": 77.33464578090272,
+                "y": 70.05402311884731,
+                "w": 7.684443811731907,
+                "h": 5.421802022721956,
+                "file": "api/src/payments/stripe.ts",
+                "callsAvailable": false,
+                "scale": 0.021345677254810853,
+                "bubble": {
+                  "x": 77.33642458734062,
+                  "y": 71.31911025748244,
+                  "w": 7.680886198856106,
+                  "h": 2.8916277454517103
+                },
+                "headerH": 0.9392097992116776
+              }
+            ],
+            "x": 73.04416465268574,
+            "y": 66.03285328532853,
+            "w": 16.26540606816587,
+            "h": 11.476147614761475,
+            "callsAvailable": false,
+            "origin": {
+              "kind": "scanned",
+              "folder": "api/src/payments"
+            },
+            "scale": 0.045181683522682974,
+            "bubble": {
+              "x": 73.04792979297929,
+              "y": 68.7106210621062,
+              "w": 16.257875787578758,
+              "h": 6.120612061206121
+            },
+            "headerH": 1.987994074998051
+          }
+        ],
+        "x": 35.272277227722775,
+        "y": 28.831008100810084,
+        "w": 63.118811881188115,
+        "h": 52.98154815481548,
+        "callsAvailable": false,
+        "origin": {
+          "kind": "scanned",
+          "folder": "api",
+          "manifest": "package.json"
+        },
+        "scale": 0.09563456345634563,
+        "bubble": {
+          "x": 35.272277227722775,
+          "y": 43.44059405940594,
+          "w": 63.118811881188115,
+          "h": 23.762376237623762
+        },
+        "headerH": 4.207920792079208
+      },
+      {
+        "id": "web",
+        "kind": "container",
+        "name": "Web",
+        "detail": "Node.js",
+        "weight": 3,
+        "children": [
+          {
+            "id": "web/_root",
+            "kind": "component",
+            "name": "Root files",
+            "detail": "web/src",
+            "weight": 3,
+            "children": [
+              {
+                "id": "web/src/App.tsx",
+                "kind": "file",
+                "name": "App.tsx",
+                "detail": "3 lines",
+                "weight": 3,
+                "children": [
+                  {
+                    "id": "web/src/App.tsx#App",
+                    "kind": "function",
+                    "name": "App",
+                    "detail": "function · 3 lines",
+                    "weight": 3,
+                    "children": [],
+                    "x": 172.34504165741785,
+                    "y": 58.92895248603315,
+                    "w": 11.74556024952075,
+                    "h": 5.872780124760375,
+                    "file": "web/src/App.tsx",
+                    "line": 1,
+                    "endLine": 3,
+                    "callsAvailable": false,
+                    "code": [
+                      "export function App() {",
+                      "  return <div>cart coming soon</div>;",
+                      "}"
+                    ],
+                    "scale": 0.0391518674984025,
+                    "bubble": {
+                      "x": 174.88991304481402,
+                      "y": 60.612482788464455,
+                      "w": 6.655817474728425,
+                      "h": 2.50571951989776
+                    }
+                  }
+                ],
+                "x": 171.17048563246578,
+                "y": 56.03171429115136,
+                "w": 14.0946722994249,
+                "h": 9.944574344594235,
+                "file": "web/src/App.tsx",
+                "callsAvailable": false,
+                "scale": 0.0391518674984025,
+                "bubble": {
+                  "x": 171.17374828809065,
+                  "y": 58.35211497155668,
+                  "w": 14.088146988175167,
+                  "h": 5.303772983783592
+                },
+                "headerH": 1.72268216992971
+              }
+            ],
+            "x": 163.30096026528688,
+            "y": 48.6561549855773,
+            "w": 29.833723033782704,
+            "h": 21.04934902939113,
+            "callsAvailable": false,
+            "origin": {
+              "kind": "scanned",
+              "folder": "web/src"
+            },
+            "scale": 0.08287145287161862,
+            "bubble": {
+              "x": 163.30786621969284,
+              "y": 53.5676697591019,
+              "w": 29.819911124970766,
+              "h": 11.226319482341935
+            },
+            "headerH": 3.6463439263512196
+          }
+        ],
+        "x": 146.64379823809153,
+        "y": 33.04455445544555,
+        "w": 63.148047088173385,
+        "h": 44.554455445544555,
+        "callsAvailable": false,
+        "origin": {
+          "kind": "scanned",
+          "folder": "web",
+          "manifest": "package.json"
+        },
+        "scale": 0.17541124191159274,
+        "bubble": {
+          "x": 146.65841584158417,
+          "y": 43.440594059405946,
+          "w": 63.118811881188115,
+          "h": 23.762376237623762
+        },
+        "headerH": 7.718094644110081
+      },
+      {
+        "id": "worker",
+        "kind": "container",
+        "name": "Worker",
+        "detail": "no parsed code",
+        "weight": 1,
+        "children": [],
+        "x": 66.83168316831683,
+        "y": 83.16831683168317,
+        "w": 111.38613861386139,
+        "h": 55.693069306930695,
+        "callsAvailable": false,
+        "origin": {
+          "kind": "scanned",
+          "folder": "worker",
+          "manifest": "requirements.txt"
+        },
+        "scale": 0.3712871287128713,
+        "bubble": {
+          "x": 90.96534653465346,
+          "y": 99.13366336633663,
+          "w": 63.118811881188115,
+          "h": 23.762376237623762
+        }
+      }
+    ],
+    "x": 0,
+    "y": 0,
+    "w": 245.04950495049505,
+    "h": 150,
+    "callsAvailable": false,
+    "origin": {
+      "kind": "scanned",
+      "folder": "."
+    },
+    "scale": 0.3712871287128713,
+    "bubble": {
+      "x": 37.524752475247524,
+      "y": 43,
+      "w": 170,
+      "h": 64
+    },
+    "headerH": 16.336633663366335
+  },
+  "edges": [
+    {
+      "from": "api/_root",
+      "to": "api/routes",
+      "weight": 1
+    },
+    {
+      "from": "api/_root",
+      "to": "api/utils",
+      "weight": 1
+    },
+    {
+      "from": "api/routes",
+      "to": "api/payments",
+      "weight": 1
+    },
+    {
+      "from": "api/routes",
+      "to": "api/services",
+      "weight": 1
+    },
+    {
+      "from": "api/routes",
+      "to": "api/utils",
+      "weight": 1
+    },
+    {
+      "from": "api/services",
+      "to": "api/models",
+      "weight": 1
+    },
+    {
+      "from": "api/services",
+      "to": "api/routes",
+      "weight": 1
+    }
+  ],
+  "drift": null,
+  "planFindings": [],
+  "files": [
+    {
+      "path": "api/src/models/order.ts",
+      "kind": "source",
+      "owners": [
+        "api/models"
+      ]
+    },
+    {
+      "path": "api/src/payments/stripe.ts",
+      "kind": "source",
+      "owners": [
+        "api/payments"
+      ]
+    },
+    {
+      "path": "api/src/routes/orders.ts",
+      "kind": "source",
+      "owners": [
+        "api/routes"
+      ]
+    },
+    {
+      "path": "api/src/server.ts",
+      "kind": "source",
+      "owners": [
+        "api/_root"
+      ]
+    },
+    {
+      "path": "api/src/services/orderService.ts",
+      "kind": "source",
+      "owners": [
+        "api/services"
+      ]
+    },
+    {
+      "path": "api/src/utils/log.ts",
+      "kind": "source",
+      "owners": [
+        "api/utils"
+      ]
+    },
+    {
+      "path": "api/src/utils/missing-user.ts",
+      "kind": "source",
+      "owners": [
+        "api/utils"
+      ]
+    },
+    {
+      "path": "web/src/App.tsx",
+      "kind": "source",
+      "owners": [
+        "web/_root"
+      ]
+    }
+  ],
+  "nav": {
+    "groups": [
+      {
+        "fqn": "shop.web",
+        "title": "Web app",
+        "technology": "React",
+        "word": "App",
+        "entries": [
+          {
+            "kind": "screen",
+            "fqn": "shop.web.login",
+            "uid": "u-login",
+            "title": "Login",
+            "status": "planned",
+            "rank": 0,
+            "order": 0,
+            "parts": []
+          },
+          {
+            "kind": "screen",
+            "fqn": "shop.web.home",
+            "uid": "u-home",
+            "title": "Home",
+            "status": "done",
+            "rank": 0,
+            "order": 0,
+            "parts": []
+          },
+          {
+            "kind": "screen",
+            "fqn": "shop.web.cart",
+            "uid": "u-cart",
+            "title": "Cart",
+            "status": "planned",
+            "rank": 0,
+            "order": 0,
+            "parts": []
+          }
+        ]
+      },
+      {
+        "fqn": "shop.mobile",
+        "title": "Shop mobile app",
+        "technology": null,
+        "word": "App",
+        "entries": [
+          {
+            "kind": "screen",
+            "fqn": "shop.mobile.mhome",
+            "uid": "u-mhome",
+            "title": "MHome",
+            "status": "planned",
+            "rank": 0,
+            "order": 0,
+            "parts": []
+          }
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "from": "shop.web.login",
+        "to": "shop.web.home",
+        "label": "Sign in",
+        "labelled": true,
+        "via": null
+      },
+      {
+        "from": "shop.web.home",
+        "to": "shop.web.cart",
+        "label": null,
+        "via": null
+      },
+      {
+        "from": "shop.web.cart",
+        "to": "shop.web.home",
+        "label": "Back",
+        "labelled": true,
+        "via": null
+      },
+      {
+        "from": "shop.web.home",
+        "to": "shop.mobile.mhome",
+        "label": null,
+        "via": null,
+        "crossGroup": true
+      }
+    ]
+  },
+  "navView": {
+    "root": {
+      "id": "(io)",
+      "kind": "system",
+      "name": "IO view",
+      "detail": "",
+      "weight": 4,
+      "x": 0,
+      "y": 0,
+      "w": 300,
+      "h": 115.45454545454545,
+      "children": [
+        {
+          "id": "shop.web",
+          "kind": "container",
+          "name": "Web app",
+          "detail": "React",
+          "weight": 3,
+          "children": [
+            {
+              "id": "shop.web.login",
+              "kind": "screen",
+              "name": "Login",
+              "detail": "",
+              "weight": 1,
+              "children": [],
+              "x": 41.314131413141304,
+              "y": 50.44554455445544,
+              "w": 40.5040504050405,
+              "h": 20.25202520252025,
+              "uid": "u-login",
+              "meta": {
+                "status": "planned"
+              },
+              "scale": 0.135013501350135,
+              "bubble": {
+                "x": 50.09000900090008,
+                "y": 56.25112511251125,
+                "w": 22.952295229522953,
+                "h": 8.64086408640864
+              }
+            },
+            {
+              "id": "shop.web.home",
+              "kind": "screen",
+              "name": "Home",
+              "detail": "",
+              "weight": 1,
+              "children": [],
+              "x": 81.81818181818181,
+              "y": 50.44554455445544,
+              "w": 40.5040504050405,
+              "h": 20.25202520252025,
+              "uid": "u-home",
+              "meta": {
+                "status": "done"
+              },
+              "scale": 0.135013501350135,
+              "bubble": {
+                "x": 90.59405940594058,
+                "y": 56.25112511251125,
+                "w": 22.952295229522953,
+                "h": 8.64086408640864
+              }
+            },
+            {
+              "id": "shop.web.cart",
+              "kind": "screen",
+              "name": "Cart",
+              "detail": "",
+              "weight": 1,
+              "children": [],
+              "x": 61.566156615661555,
+              "y": 70.6975697569757,
+              "w": 40.5040504050405,
+              "h": 20.25202520252025,
+              "uid": "u-cart",
+              "meta": {
+                "status": "planned"
+              },
+              "scale": 0.135013501350135,
+              "bubble": {
+                "x": 70.34203420342033,
+                "y": 76.5031503150315,
+                "w": 22.952295229522953,
+                "h": 8.64086408640864
+              }
+            }
+          ],
+          "x": 37.26372637263725,
+          "y": 40.454545454545446,
+          "w": 89.10891089108911,
+          "h": 54.54545454545455,
+          "scale": 0.135013501350135,
+          "bubble": {
+            "x": 43.18181818181817,
+            "y": 53.18181818181817,
+            "w": 77.27272727272727,
+            "h": 29.09090909090909
+          },
+          "headerH": 5.9405940594059405,
+          "word": "App"
+        },
+        {
+          "id": "shop.mobile",
+          "kind": "container",
+          "name": "Shop mobile app",
+          "detail": "",
+          "weight": 1,
+          "children": [
+            {
+              "id": "shop.mobile.mhome",
+              "kind": "screen",
+              "name": "MHome",
+              "detail": "",
+              "weight": 1,
+              "children": [],
+              "x": 185.96993557623477,
+              "y": 56.34574087329992,
+              "w": 64.42376521116678,
+              "h": 32.21188260558339,
+              "uid": "u-mhome",
+              "meta": {
+                "status": "planned"
+              },
+              "scale": 0.2147458840372226,
+              "bubble": {
+                "x": 199.92841803865423,
+                "y": 65.5798138869005,
+                "w": 36.506800286327845,
+                "h": 13.743736578382247
+              }
+            }
+          ],
+          "x": 179.5275590551181,
+          "y": 40.454545454545446,
+          "w": 77.30851825340014,
+          "h": 54.54545454545455,
+          "scale": 0.2147458840372226,
+          "bubble": {
+            "x": 179.54545454545453,
+            "y": 53.18181818181817,
+            "w": 77.27272727272727,
+            "h": 29.09090909090909
+          },
+          "headerH": 9.448818897637794,
+          "word": "App"
+        }
+      ],
+      "scale": 0.45454545454545453,
+      "bubble": {
+        "x": 65,
+        "y": 25.727272727272727,
+        "w": 170,
+        "h": 64
+      },
+      "headerH": 20
+    },
+    "edges": [
+      {
+        "from": "shop.web.login",
+        "to": "shop.web.home",
+        "weight": 1
+      },
+      {
+        "from": "shop.web.home",
+        "to": "shop.web.cart",
+        "weight": 1
+      },
+      {
+        "from": "shop.web.cart",
+        "to": "shop.web.home",
+        "weight": 1
+      },
+      {
+        "from": "shop.web.home",
+        "to": "shop.mobile.mhome",
+        "weight": 1
+      }
+    ]
+  }
+}

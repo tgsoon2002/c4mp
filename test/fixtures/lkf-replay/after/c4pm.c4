@@ -1,0 +1,249 @@
+// C4PM's own plan (P15-T9 self test). Written by hand from the generated draft, the ROADMAP and the code.
+// Statuses are only set on parts the ROADMAP lists as not built yet. Built parts carry no status because
+// no owner is recorded anywhere (a 'done' item needs an owner).
+model {
+  extend c4pm.c4pm {
+    entry = layer 'Entry points' {
+      description 'Parses flags or a protocol, prints, sets exit codes; may import Services, Foundation and other entry points (Engines and Readers tolerated until LAY-11).'
+      cli = component 'Command line' {
+        description 'Entry point of the c4pm program: registers every command with commander (bin/cli.ts), the help texts, the built-in guides, and the find / show / outline / deps / mcp command wiring.'
+        link ../../../../Project/bin/
+        link ../../../../Project/src/cliHelp.ts
+        link ../../../../Project/src/guide.ts
+        link ../../../../Project/src/queryCli.ts
+        link ../../../../Project/src/index.ts
+        link ../../../../Project/src/guideSkill.ts
+        metadata {
+          uid 'ba328565-9915-43d0-b5f0-ba9143e9cb7c'
+        }
+      }
+      mcp = component 'MCP server' {
+        description 'Model Context Protocol server over stdio (JSON-RPC lines). Tools: find, show, outline, deps, view_path, check, status. Started by c4pm mcp.'
+        link ../../../../Project/src/mcp/
+        metadata {
+          uid '4e309f5f-ad0d-4306-8c51-34d2973a1e16'
+        }
+      }
+      plan_commands = component 'Plan editing commands' {
+        description 'Phase 18: commands that validate before writing the plan, for AI agents.'
+        link ../../../../Project/src/cli/
+        metadata {
+          status 'planned'
+          uid '5a0cf746-5a0e-4b0b-84e7-bf9fc0e0e4e7'
+        }
+      }
+      viewer = component 'Map viewer (browser)' {
+        description 'The browser side of c4pmView.html in plain JavaScript and CSS: canvas drawing, camera, tree, side panel, layout editing, controls. No build step; the files are inlined into the page.'
+        link ../../../../Project/viewer/
+        metadata {
+          uid 'f6c1d25b-419e-44de-b4cc-b43a41effc65'
+        }
+      }
+      scripts = component 'Scripts' {
+        description 'Release and screenshot shell scripts and the try-*.ts programs used to exercise one module by hand.'
+        link ../../../../Project/scripts/
+        metadata {
+          uid '437857c0-4926-464b-8206-4d0dc58e3512'
+        }
+      }
+      tests = component 'Tests' {
+        description 'Jest test suites and fixture repositories (sample, level4, phofast, ...).'
+        link ../../../../Project/test/
+        link ../../../../Project/jest.config.js
+        metadata {
+          uid '1160d483-c247-4820-aea4-d87ff3bb8ce0'
+        }
+      }
+      desktop_app = component 'Desktop app' {
+        description 'Phase 17: single-file CLI and Electron / VS Code client.'
+        metadata {
+          status 'planned'
+          uid '00dc0649-10cb-4cca-b464-3f47e670abe5'
+        }
+      }
+      metadata {
+        uid 'f5fc9343-f1d7-4e56-b9dc-66bce7f753b1'
+      }
+    }
+    services = layer 'Services' {
+      description 'Opens a project, runs engines and combines results; may import Engines, Readers and workspace, Foundation and other services.'
+      query = component 'Query layer' {
+        description 'Read-only questions about a scan: find, outline, show, deps, owner lookup, element lookup, check and status as functions with plain results. Shared by the CLI and the MCP server.'
+        link ../../../../Project/src/query/
+        metadata {
+          uid '23641992-6a94-411c-9c65-9fb297c62e47'
+        }
+      }
+      report = component 'Report' {
+        description 'Formats findings and diffs for GitHub annotations and sets the exit code for --fail-on.'
+        link ../../../../Project/src/report/
+        metadata {
+          uid '6f5bcdf2-0e05-4517-be30-68eda8ad1f7d'
+        }
+      }
+      git_hooks = component 'Git hooks' {
+        description 'install-hooks / uninstall-hooks and the code the hooks run after commit and merge (record history, rewrite the page, write last-drift.txt).'
+        link ../../../../Project/src/hooks.ts
+        link ../../../../Project/src/hookRun.ts
+        metadata {
+          uid '66d554d8-74e4-4519-b352-f9b00ebb24b8'
+        }
+      }
+      calls_tools = component 'Calls and callers tools' {
+        description 'P15-T10: query functions and MCP tools for calls and callers, in src/query/calls.ts. Waits on the call graph.'
+        metadata {
+          status 'planned'
+          uid '4acaba89-f7a8-4d90-bf9e-4e77975489f1'
+        }
+      }
+      metadata {
+        uid 'bc267ab5-9a5a-4023-8161-dd19d1acb364'
+      }
+    }
+    engines = layer 'Engines' {
+      description 'Scan, ownership, snapshot, compare, plan and board work, view model; may import Readers and workspace, Foundation and other engines.'
+      scan_pipeline = component 'Scan pipeline' {
+        description 'runSnapshot: walks the files, calls the language handlers, resolves imports, groups into containers and components and returns one Snapshot. Also the page export (writeProjectView) and watch mode.'
+        link ../../../../Project/src/pipeline.ts
+        link ../../../../Project/src/pipeline.ts#runSnapshot
+        link ../../../../Project/src/viewExport.ts
+        link ../../../../Project/src/watch.ts
+        metadata {
+          uid '251b81c8-891a-4ca5-9586-0364972d31ac'
+        }
+      }
+      grouper = component 'Grouper' {
+        description 'Turns files into C2 containers (by manifest or top folder) and C3 components (by folder), and rolls file edges up into component and container edges with weights.'
+        link ../../../../Project/src/grouper/
+        metadata {
+          uid 'e40e370d-dddc-4c8b-8987-d0708eeebbd6'
+        }
+      }
+      snapshot = component 'Snapshot' {
+        description 'Builds the Snapshot object (containers, components, files, code elements, edges) and the repo metadata (name, commit) stored with it.'
+        link ../../../../Project/src/snapshot/
+        metadata {
+          uid '1536b9c0-dada-4ad2-8282-a273c0cfee5f'
+        }
+      }
+      compare = component 'Compare' {
+        description 'Diffs two snapshots: grown, shrunk, new, removed parts and new dependencies, rename detection, cycle detection and severity classes (info, warning, critical).'
+        link ../../../../Project/src/compare/
+        metadata {
+          uid 'd020508b-e9c6-421a-b56f-ef2276c92276'
+        }
+      }
+      plan_files = component 'Plan files (.c4)' {
+        description 'Reads and writes the plan: lexer, parser, link resolution, ownership (claims), validation and check rules, draft generation, ids, remove, layout write-back and the write guard.'
+        link ../../../../Project/src/c4/
+        metadata {
+          uid 'a4141c41-9e46-4d6c-b5f9-ba1ade5a3399'
+        }
+      }
+      view_model = component 'Map model and layout' {
+        description 'Builds the data for the map page from snapshot + plan (nodes, ghost boxes, edges, status, owner), arranges boxes and writes the single HTML file.'
+        link ../../../../Project/src/view/
+        metadata {
+          uid '5dbb5ca1-8e82-46d6-b244-48a1e1930a17'
+        }
+      }
+      boards = component 'Boards' {
+        description 'Phase 16: board items (task, feature, issue, bug) linked to architecture items by uid.'
+        link ../../../../Project/src/board/
+        metadata {
+          status 'planned'
+          uid '5bc6a7f5-0f28-498b-a9ae-fd2f579edb80'
+        }
+      }
+      call_graph = component 'Call graph' {
+        description 'Phase 8: who calls this function. Needed for the calls / callers query tools (P15-T10).'
+        metadata {
+          status 'planned'
+          uid '071f02e9-2890-4741-8683-26d4ffcc7415'
+        }
+      }
+      metadata {
+        uid '50a3bf7f-929e-40bd-9921-6022d9b74d72'
+      }
+    }
+    readers = layer 'Readers and workspace' {
+      description 'Config and project folders, language handlers, file walk, plan file reader, history store; may import Foundation and other readers.'
+      languages = component 'Language handlers' {
+        description 'One handler per language: TypeScript/JavaScript, Python, Rust, PHP, C++ (outline + imports), C# (outline; imports planned b154), Swift (planned b74); which extensions it scans, how it outlines a file and how it reads and resolves imports. Sub-folders src/languages/<lang>/.'
+        link ../../../../Project/src/languages/
+        metadata {
+          uid '9cc62802-d907-419a-b882-ae1b934ae2d0'
+        }
+      }
+      parser = component 'Parser' {
+        description 'tree-sitter loading, the TypeScript outline (functions, classes, methods) and the stub detector (empty, TODO or not-implemented bodies).'
+        link ../../../../Project/src/parser/
+        metadata {
+          uid '974924fd-fca8-4741-b1c4-b4562fea6046'
+        }
+      }
+      importer = component 'Importer' {
+        description 'Finds import statements through the language handlers, resolves each specifier to a scanned file (internal), a package (external) or unresolved, and builds the file-to-file edge list.'
+        link ../../../../Project/src/importer/
+        metadata {
+          uid 'be352a07-ac49-4623-b303-2c053d3072bf'
+        }
+      }
+      history = component 'History' {
+        description 'Builds and stores one snapshot per git commit under .c4pm/projects/<id>/history, reads the git log, and lists stored snapshots.'
+        link ../../../../Project/src/history/
+        metadata {
+          uid '72b42137-6161-4e34-a167-9c7cbae4bddb'
+        }
+      }
+      metadata {
+        uid 'f8ce91fb-6ff2-4975-bfaf-a6e68c8dc531'
+      }
+    }
+    foundation = layer 'Foundation' {
+      description 'Types, constants, log, ids and names, paths, pure helpers; may import Foundation only.'
+      settings = component 'Settings and folders' {
+        description 'Reads .c4pm/config.json, environment and flags into one config; decides where the .c4pm and C4PM folders and the project id are; init; logging and shared types.'
+        link ../../../../Project/src/config.ts
+        link ../../../../Project/src/configIgnore.ts
+        link ../../../../Project/src/constants.ts
+        link ../../../../Project/src/paths.ts
+        link ../../../../Project/src/names.ts
+        link ../../../../Project/src/outputs.ts
+        link ../../../../Project/src/init.ts
+        link ../../../../Project/src/log.ts
+        link ../../../../Project/src/types.ts
+        metadata {
+          uid '24feca1a-ba65-473f-a4c9-44ceab1cd54c'
+        }
+      }
+      metadata {
+        uid '6ebe8544-73e3-4369-b7a5-ab21515eb152'
+      }
+    }
+  }
+
+  // Relations: the main flow only (the generated draft listed every import edge)
+  c4pm.c4pm.entry.cli -> c4pm.c4pm.services.query 'find, show, outline, deps'
+  c4pm.c4pm.entry.cli -> c4pm.c4pm.entry.mcp 'c4pm mcp'
+  c4pm.c4pm.entry.cli -> c4pm.c4pm.engines.scan_pipeline 'snapshot, view, generate-c4, check'
+  c4pm.c4pm.entry.cli -> c4pm.c4pm.readers.history 'history, snapshots'
+  c4pm.c4pm.entry.cli -> c4pm.c4pm.engines.compare 'diff'
+  c4pm.c4pm.entry.cli -> c4pm.c4pm.engines.plan_files 'plan, check, ids, remove, apply-layout'
+  c4pm.c4pm.entry.mcp -> c4pm.c4pm.services.query 'tool calls'
+  c4pm.c4pm.services.query -> c4pm.c4pm.engines.scan_pipeline 'one scan per context'
+  c4pm.c4pm.services.query -> c4pm.c4pm.engines.plan_files 'plan, ownership, check'
+  c4pm.c4pm.engines.scan_pipeline -> c4pm.c4pm.readers.languages 'outline, imports'
+  c4pm.c4pm.readers.languages -> c4pm.c4pm.readers.parser 'tree-sitter'
+  c4pm.c4pm.engines.scan_pipeline -> c4pm.c4pm.readers.importer 'import edges'
+  c4pm.c4pm.engines.scan_pipeline -> c4pm.c4pm.engines.grouper 'containers, components'
+  c4pm.c4pm.engines.scan_pipeline -> c4pm.c4pm.engines.snapshot 'build'
+  c4pm.c4pm.readers.history -> c4pm.c4pm.engines.snapshot 'one per commit'
+  c4pm.c4pm.engines.compare -> c4pm.c4pm.engines.snapshot 'reads two'
+  c4pm.c4pm.services.report -> c4pm.c4pm.engines.compare 'formats diffs'
+  c4pm.c4pm.services.git_hooks -> c4pm.c4pm.readers.history 'record on commit'
+  c4pm.c4pm.engines.view_model -> c4pm.c4pm.engines.plan_files 'plan + ownership'
+  c4pm.c4pm.entry.viewer -> c4pm.c4pm.engines.view_model 'reads the map model'
+  c4pm.c4pm.services.calls_tools -> c4pm.c4pm.engines.call_graph 'needs'
+  c4pm.c4pm.services.calls_tools -> c4pm.c4pm.entry.mcp 'adds tools'
+}

@@ -1,0 +1,16 @@
+// planned components for this folder
+model {
+  extend phofast.api {
+    menu = component 'Menu Service' {
+      technology 'Node / Express'
+      description 'Serves the menu and prices'
+      link ./index.ts 'Entrypoint'
+      metadata {
+        status   'done'
+        owner    'kien'
+        sprint   'S13'
+        priority 'medium'
+      }
+    }
+  }
+}

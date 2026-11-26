@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "id": "s-1",
+  "kind": "flow",
+  "title": "Buy a product",
+  "person": "buyer",
+  "steps": [
+    {
+      "target": "5a1e0000-0000-4000-8000-00000000a0dd",
+      "view": "io",
+      "state": "cart: empty",
+      "caption": "On Products the buyer presses Add to cart."
+    },
+    {
+      "target": "shop.api.cart.addItem",
+      "view": "arch",
+      "call": {
+        "from": "5a1e0000-0000-4000-8000-00000000a0dd",
+        "label": "POST /cart/items"
+      },
+      "state": "cart: 1 item"
+    },
+    {
+      "target": "5a1e0000-0000-4000-8000-0000000c0a7e",
+      "view": "storage",
+      "rows": {
+        "5a1e0000-0000-4000-8000-0000000c0a7e": [
+          {
+            "product": 42,
+            "qty": 1
+          }
+        ]
+      }
+    },
+    {
+      "target": "5a1e0000-0000-4000-8000-00000000ca27",
+      "view": "io",
+      "caption": "The Cart screen shows the line."
+    },
+    {
+      "target": "shop.web.cart.checkout",
+      "view": "io",
+      "caption": "The buyer presses Checkout."
+    },
+    {
+      "target": "src/orders.ts#createOrder",
+      "view": "arch",
+      "state": "order: pending"
+    },
+    {
+      "target": [
+        "src/payments.ts#authorise",
+        "shop.api.payments"
+      ],
+      "view": "arch",
+      "caption": "Payments takes the money."
+    },
+    {
+      "target": "shop.web.done",
+      "view": "io",
+      "call": {
+        "from": "shop.api.nope",
+        "label": "redirect"
+      },
+      "caption": "Order done."
+    }
+  ]
+}

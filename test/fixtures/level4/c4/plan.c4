@@ -1,0 +1,43 @@
+specification {
+  element component
+  element function
+  element class
+  element method
+  element type
+}
+
+model {
+  // Claim mode: a component-level #fn link.
+  billing = component 'Billing' {
+    link ../src/built.ts#buildInvoice 'Invoice builder'
+
+    plan_fn = function 'planFn' {
+      link ../src/planned.ts#planFn
+      metadata {
+        status 'planned'
+        signature 'planFn(): void'
+      }
+    }
+
+    build_invoice = function 'buildInvoice' {
+      link ../src/built.ts#buildInvoice
+      metadata {
+        status 'done'
+      }
+    }
+
+    Invoice = type 'Invoice' {
+      link ../src/types.ts#Invoice
+    }
+  }
+
+  // Folder mode: no component-level #fn link.
+  reports = component 'Reports' {
+    stub_fn = function 'stubbed' {
+      link ../src/stub.ts#stubbed
+      metadata {
+        status 'in-progress'
+      }
+    }
+  }
+}

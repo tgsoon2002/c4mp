@@ -1,0 +1,86 @@
+<!--
+  Wireframe of screen c4pm.c4pm.map_page ('Map page') for the IO view.
+  Bare HTML: only where each region and control sits and how big it is. c4pm draws it in its own style;
+  colours, fonts and text are ignored. data-c4 = id of a region or control of this screen in io.c4.
+  hidden = shown only sometimes (a popup, a state): drawn dashed. Shared layout: site.css.
+  Measured from the viewer at 1280 x 800 on 2026-11-03 (board drawer 46% of the centre).
+-->
+<link rel="stylesheet" href="site.css">
+<div class="page">
+
+  <header data-c4="top_bar" class="topbar">
+    <div class="grow"></div>   <!-- title and count chips: not in the plan -->
+    <button data-c4="view_btn" style="width: 84px; height: 31px"></button>
+    <input data-c4="search" class="search">
+    <button data-c4="details_btn" class="icon"></button>
+    <button data-c4="gear_btn" class="icon"></button>
+
+    <div data-c4="details_pop" hidden class="popup" style="right: 48px; width: 400px; height: 150px"></div>
+    <div data-c4="settings_pop" hidden class="popup col" style="width: 460px; gap: 8px; padding: 12px">
+      <div data-c4="set_theme" style="height: 28px"></div>
+      <div data-c4="set_search" style="height: 28px"></div>
+      <div data-c4="set_help" style="height: 28px"></div>
+      <div data-c4="set_open_in" style="height: 28px"></div>
+      <div data-c4="set_light" style="height: 28px"></div>
+      <div data-c4="set_link" style="height: 28px"></div>
+    </div>
+  </header>
+
+  <div class="main">
+
+    <aside data-c4="left_panel" class="left col">
+      <div class="row">
+        <button data-c4="tab_arch" class="grow" style="height: 38px"></button>
+        <button data-c4="tab_files" class="grow" style="height: 38px"></button>
+      </div>
+      <div data-c4="grip_left" class="grip"></div>
+    </aside>
+
+    <div class="col grow">
+      <div data-c4="map" class="map grow">
+        <div data-c4="hud" style="position: absolute; top: 20px; left: 12px; width: 104px; height: 25px"></div>
+        <div data-c4="hud" style="position: absolute; bottom: 10px; left: 12px; width: 268px; height: 70px"></div>
+
+        <div data-c4="camera" class="camera" style="max-width: 370px">
+          <button data-c4="up" class="btn" style="width: 52px"></button>
+          <button data-c4="fit" class="btn" style="width: 36px"></button>
+          <button data-c4="auto" class="btn" style="width: 80px"></button>
+          <button data-c4="edit" class="btn" style="width: 84px"></button>
+          <button data-c4="zoom_in" class="btn" style="width: 30px"></button>
+          <button data-c4="zoom_out" class="btn" style="width: 30px"></button>
+          <button data-c4="reset" hidden class="btn" style="width: 92px"></button>
+          <button data-c4="undo" hidden class="btn" style="width: 50px"></button>
+          <button data-c4="redo" hidden class="btn" style="width: 50px"></button>
+          <button data-c4="export" hidden class="btn" style="width: 100px"></button>
+        </div>
+
+        <div data-c4="legend" hidden style="position: absolute; right: 12px; bottom: 24px; width: 160px; height: 96px"></div>
+
+        <button data-c4="top_toggle" class="edge-top"></button>
+        <button data-c4="toggle_left" class="edge-left"></button>
+        <button data-c4="toggle_right" class="edge-right"></button>
+        <button data-c4="board_btn" class="edge-bottom"></button>
+      </div>
+
+      <section data-c4="board_drawer" hidden class="col" style="height: 46%; gap: 8px; padding: 8px 10px">
+        <div class="row">
+          <select data-c4="board_select" style="width: 275px; height: 26px"></select>
+        </div>
+        <div class="row">
+          <button data-c4="tab_timeline" class="btn" style="width: 66px"></button>
+          <button data-c4="tab_kanban" class="btn" style="width: 62px"></button>
+          <button data-c4="tab_list" class="btn" style="width: 40px"></button>
+          <button data-c4="tab_dashboard" class="btn" style="width: 82px"></button>
+          <div class="grow"></div>
+          <button data-c4="board_min" style="width: 28px; height: 28px"></button>
+          <button data-c4="board_close" style="width: 28px; height: 28px; margin-left: 6px"></button>
+        </div>
+      </section>
+    </div>
+
+    <aside data-c4="right_panel" class="right">
+      <div data-c4="grip_right" class="grip"></div>
+    </aside>
+
+  </div>
+</div>

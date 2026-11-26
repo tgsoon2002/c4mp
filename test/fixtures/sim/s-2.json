@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "s-2",
+  "kind": "journey",
+  "title": "First-time buyer",
+  "person": "customer",
+  "stages": [
+    {
+      "name": "Discover",
+      "outside": "Sees an ad",
+      "goal": "Find something worth buying",
+      "caption": "A friend shares a banner; the customer taps it."
+    },
+    {
+      "name": "Sign in",
+      "target": "u-login",
+      "goal": "Sign in",
+      "view": "io",
+      "state": "session: signed out"
+    },
+    {
+      "name": "Buy",
+      "flow": "s-1",
+      "goal": "Buy"
+    },
+    {
+      "name": "Follow-up",
+      "outside": "Gets a confirmation email",
+      "goal": "Know the order went through",
+      "from": "Newsletter tool",
+      "channel": "email",
+      "state": "email: sent"
+    }
+  ]
+}

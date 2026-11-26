@@ -1,0 +1,34 @@
+{
+  "files": [
+    {
+      "elements": [],
+      "file": "app/src/main/java/com/acme/App.java",
+      "fileOnly": true,
+      "handler": "files",
+      "imports": [],
+      "lineCount": 1,
+      "parseError": false
+    },
+    {
+      "elements": [],
+      "file": "app/src/main/java/com/acme/Util.java",
+      "fileOnly": true,
+      "handler": "files",
+      "imports": [],
+      "lineCount": 3,
+      "parseError": false
+    },
+    {
+      "elements": [],
+      "file": "lib/src/main/java/com/acme/Lib.java",
+      "fileOnly": true,
+      "handler": "files",
+      "imports": [],
+      "lineCount": 1,
+      "parseError": false
+    }
+  ],
+  "languages": [
+    "files"
+  ]
+}

@@ -1,0 +1,2578 @@
+// IO items of C4PM's own plan: the viewer screens (Map page, IO view, Own window), the CLI commands and the
+// MCP tools. Moved out of architecture.c4 on 2026-11-03 (b294); same elements, same uids. Screen wireframes
+// live next to this file in io/<screen fqn>.html.
+model {
+  extend c4pm.c4pm {
+    map_page = screen 'Map page' {
+      description 'The architecture view: the default page of the HTML viewer (no hash).'
+      metadata {
+        uid '2f5b8688-8220-49ec-906f-c700dcc1693a'
+        device 'web'
+      }
+      top_bar = region 'Top bar' {
+        description 'Header: title, chips, view button, search box, details and settings buttons.'
+        metadata {
+          uid '8bb1768e-9680-4ffc-939b-7f9ca9c982f8'
+        }
+        view_btn = control 'IO view ↗' {
+          description 'View button. Label is \'IO view ↗\' on the Map page, \'Architecture view ↗\' on the IO view; disabled when the plan has no screens.'
+          metadata {
+            uid '5d4180cd-c9b2-40c5-bc14-b29456ce2e55'
+          }
+          no_screens = state 'No screens' {
+            description 'The plan has no screen: the view button is disabled (tooltip: Nothing for the IO view in the plan yet).'
+            metadata {
+              uid '8ba2e5bc-9c0c-408e-871d-70ed7caf75d3'
+            }
+          }
+          -> c4pm.c4pm.io_view 'IO view (setting Open IO view in: This window)'
+          -> c4pm.c4pm.own_window 'open in own window (setting: New window)'
+        }
+        search = control 'Search nodes...' {
+          description 'Search box with a result popup and a Names / Content switch.'
+          metadata {
+            uid 'b5fa61b6-7bfb-439b-a504-201ff0b7f50f'
+          }
+          results_open = state 'Results open' {
+            description 'The result popup under the search box lists matches.'
+            metadata {
+              uid '7867bf4e-0100-4c14-884d-bb6b4713c454'
+            }
+          }
+          -> c4pm.c4pm.viewer 'search runs in the page (panel.js, tree.js)'
+        }
+        details_btn = control 'ⓘ' {
+          description 'Details button (tooltip: Details: commit, date, summary, drift).'
+          metadata {
+            uid '562c5fe9-8dfb-43a2-aad1-ee327d57d414'
+          }
+        }
+        gear_btn = control '⚙' {
+          description 'Settings button (aria-label Settings).'
+          metadata {
+            uid '84048dda-2a14-4152-b19a-11bd9eb07482'
+          }
+        }
+        top_toggle = control 'Top bar toggle' {
+          description 'Edge button (▲ / ▼) that hides or shows the top bar.'
+          metadata {
+            uid 'a0b24a59-adf7-4e80-a1af-0b3c8424d776'
+          }
+        }
+      }
+      left_panel = region 'Left panel' {
+        description 'Tree of the architecture (tabs Architecture and Files).'
+        metadata {
+          uid 'b42715c5-de95-4058-8747-31d1ef9952db'
+        }
+        tab_arch = control 'Architecture' {
+          description 'Left panel tab: tree of systems, containers and components.'
+          metadata {
+            uid '27c32622-af80-481d-a845-4bbd714f1260'
+          }
+        }
+        tab_files = control 'Files' {
+          description 'Left panel tab: tree of files.'
+          metadata {
+            uid 'eaf2883b-1283-4211-9053-98918285baa6'
+          }
+        }
+        grip_left = control 'Resize the left panel' {
+          description 'Drag grip between left panel and map; double-click resets the width.'
+          metadata {
+            uid 'e9c9ea34-f6d1-4a33-adef-ea41f8ea4b74'
+          }
+        }
+      }
+      map = region 'Map' {
+        description 'Zoomable canvas with HUD, camera buttons, legend and the panel toggles.'
+        metadata {
+          uid '9441a295-2742-426a-8895-a72962c228cc'
+        }
+        toggle_left = control 'Hide the left panel' {
+          description 'Side toggle on the map.'
+          metadata {
+            uid '95ce6d84-12c9-4af2-a470-0dc8e5c8503d'
+          }
+        }
+        toggle_right = control 'Hide the right panel' {
+          description 'Side toggle on the map.'
+          metadata {
+            uid 'd8c3ad06-781f-4082-b0c0-d69919d3d160'
+          }
+        }
+        board_btn = control 'Open the board' {
+          description 'Edge button under the map that opens, minimizes or restores the board.'
+          metadata {
+            uid '9f1414a8-8d4e-4fb9-8018-08d17ce6b3b2'
+          }
+          drawer_open = state 'Board drawer open' {
+            description 'The board shows under the map.'
+            metadata {
+              uid 'e5492c4c-bba7-43ff-99ee-023a2ccc242c'
+            }
+          }
+        }
+        -> c4pm.c4pm.view_model 'the map is drawn from the map model'
+      }
+      right_panel = region 'Right panel' {
+        description 'Details of the selected node.'
+        metadata {
+          uid '992970dc-c413-4b15-8428-0ffe25f5419b'
+        }
+        grip_right = control 'Resize the right panel' {
+          description 'Drag grip between map and right panel; double-click resets the width.'
+          metadata {
+            uid 'fa4a46a1-87be-403d-bce6-20e192ef3fda'
+          }
+        }
+      }
+      board_drawer = region 'Board drawer' {
+        description 'Board under the map: select, tabs Timeline / Kanban / List / Dashboard, minimize and close.'
+        metadata {
+          uid 'c1f42a83-31af-4b3b-ab84-46919feb35f5'
+        }
+        board_select = control 'Board' {
+          description 'Select box that picks the board.'
+          metadata {
+            uid '01c24a1c-c027-4105-8d0c-098855d1018b'
+          }
+        }
+        tab_timeline = control 'Timeline' {
+          description 'Board tab.'
+          metadata {
+            uid '8e8768ca-b4fc-48df-8527-66502c4f0852'
+          }
+          -> c4pm.c4pm.boards
+        }
+        tab_kanban = control 'Kanban' {
+          description 'Board tab.'
+          metadata {
+            uid '6c5fdf7d-e1f1-40e1-a93c-5f87262e21b3'
+          }
+          -> c4pm.c4pm.boards
+        }
+        tab_list = control 'List' {
+          description 'Board tab.'
+          metadata {
+            uid 'b0a90847-bbce-4935-a0b0-d133358ed875'
+          }
+          -> c4pm.c4pm.boards
+        }
+        tab_dashboard = control 'Dashboard' {
+          description 'Board tab.'
+          metadata {
+            uid '422ebdb4-7e1a-4fe0-877d-6cddc7534109'
+          }
+          -> c4pm.c4pm.boards
+        }
+        board_min = control '▾' {
+          description 'Minimize or restore the board.'
+          metadata {
+            uid '89a38998-8dd7-45d1-a7f9-7ec0bfef069e'
+          }
+        }
+        board_close = control '×' {
+          description 'Close the board.'
+          metadata {
+            uid 'ebfae19f-446a-4164-b085-41ae050d6b53'
+          }
+        }
+      }
+      settings_pop = region 'Settings popup' {
+        description 'Dialog opened by the gear button; kept in the browser (localStorage).'
+        metadata {
+          uid '18e67e82-fe7b-4f45-b259-aabd9fe00ab6'
+        }
+        set_theme = control 'Theme' {
+          description 'System / Light / Dark.'
+          metadata {
+            uid '5f463c03-311a-4756-bdc9-185f974f9a7c'
+          }
+        }
+        set_search = control 'Search starts in' {
+          description 'Names / Content.'
+          metadata {
+            uid '81c6fe0f-f655-4cbd-aa9b-f6b830691f5c'
+          }
+        }
+        set_help = control 'Help text on the map' {
+          description 'Show / Hide.'
+          metadata {
+            uid 'b30c5f03-ed3c-4a1b-abf2-4db24641b532'
+          }
+        }
+        set_open_in = control 'Open IO view in' {
+          description 'New window / This window.'
+          metadata {
+            uid 'f3df4f6b-2688-4c51-a8c1-13fd7c81be7b'
+          }
+        }
+        set_light = control 'Light implemented components' {
+          description 'On / Off: ring on components that a screen calls.'
+          metadata {
+            uid '3c15048b-81aa-4327-bb49-e65ef3da6f3e'
+          }
+        }
+        set_link = control 'Window link' {
+          description 'On / Off.'
+          metadata {
+            uid '41e9f0a5-246d-4bd0-920f-bb067ae3c8a2'
+          }
+        }
+        -> c4pm.c4pm.viewer 'settings.js'
+      }
+      details_pop = region 'Details popup' {
+        description 'Commit, date, summary and drift summary; opened by the details button.'
+        metadata {
+          uid '23f05349-dd1c-475b-ab48-29d5ffb1bd67'
+        }
+      }
+      hud = region 'HUD' {
+        description 'Level and sub-label (top left) and the help text (bottom left).'
+        metadata {
+          uid 'a5b9f6c1-088d-46f2-89b4-0935c0c75f3a'
+        }
+      }
+      camera = region 'Camera buttons' {
+        description 'Button row at the top right of the map.'
+        metadata {
+          uid 'fc4bc91f-66af-4d7e-8981-4c68d89d6745'
+        }
+        up = control '↑ Up' {
+          description 'Zoom out one level.'
+          metadata {
+            uid '9173a851-5390-4b61-888c-94a33f1d699d'
+          }
+        }
+        fit = control 'Fit' {
+          description 'Show the whole system.'
+          metadata {
+            uid 'c62db8d9-8c86-4ecc-87f6-6c2838164ceb'
+          }
+        }
+        auto = control 'Auto level' {
+          description 'Toggle: zooming opens and closes levels.'
+          metadata {
+            uid '0ac20dc0-8b4c-4178-9fe0-66f0bada3150'
+          }
+        }
+        edit = control 'Edit layout' {
+          description 'Toggle: drag shapes to move or resize them.'
+          metadata {
+            uid '22221781-d737-438b-93c2-fe1570dbba7e'
+          }
+          edit_on = state 'Edit layout on' {
+            description 'Reset layout, Undo, Redo and Export layout appear; the help text turns into the edit hint.'
+            metadata {
+              uid 'ef2477a5-f8cf-41d4-85d7-9887191a4cea'
+            }
+          }
+          -> c4pm.c4pm.viewer 'edit.js'
+        }
+        reset = control 'Reset layout' {
+          description 'Shown in Edit layout; puts every shape back.'
+          metadata {
+            uid 'e2bcacdc-1afa-4e2d-a1fe-ca6069e9904a'
+          }
+        }
+        undo = control 'Undo' {
+          description 'Shown in Edit layout; undo the last move or resize.'
+          metadata {
+            uid 'c496bace-a951-4400-ad74-59a8010eca21'
+          }
+        }
+        redo = control 'Redo' {
+          description 'Shown in Edit layout; redo.'
+          metadata {
+            uid 'cd69787e-3116-4d38-a43f-0ead4eec1090'
+          }
+        }
+        export = control 'Export layout' {
+          description 'Shown in Edit layout; downloads c4pm-layout.json.'
+          metadata {
+            uid 'b7da8874-743c-49f1-b150-e73c9e4e8b5e'
+          }
+          -> c4pm.c4pm.plan_commands 'apply-layout'
+        }
+        zoom_in = control '+' {
+          description 'Zoom in (aria-label Zoom in).'
+          metadata {
+            uid '7f6a4eb3-2bdf-418a-a39c-0a4b2fd68543'
+          }
+        }
+        zoom_out = control '−' {
+          description 'Zoom out (aria-label Zoom out).'
+          metadata {
+            uid '901b2d4d-f860-456c-af1b-319ab47caabc'
+          }
+        }
+      }
+      legend = region 'Legend' {
+        description 'Legend of the map colours and shapes.'
+        metadata {
+          uid 'b6bd487d-0fe0-4715-9dc6-9ed073a08a9e'
+        }
+      }
+    }
+    io_view = screen 'IO view' {
+      description 'The same page at #io: screens, regions, controls and states of the plan instead of the code map.'
+      metadata {
+        uid 'c31abfb2-e4f0-468e-a72e-ddb0fa77d3e1'
+        device 'web'
+      }
+      top_bar = region 'Top bar' {
+        description 'Header with the title \'IO view\' and chips with the counts of apps, screens and more.'
+        metadata {
+          uid '51e54fe7-a333-40cb-9823-7fcdf7a57b64'
+        }
+        view_btn = control 'Architecture view ↗' {
+          description 'View button back to the Map page.'
+          metadata {
+            uid 'd068b482-8f58-444e-abdd-14bb20fa95a1'
+          }
+          -> c4pm.c4pm.map_page 'Architecture view (setting: This window)'
+          -> c4pm.c4pm.own_window 'open in own window (setting: New window)'
+        }
+        search = control 'Search nodes...' {
+          description 'Search box.'
+          metadata {
+            uid '24174009-990e-4b20-adf9-e68f06a78b44'
+          }
+        }
+        gear_btn = control '⚙' {
+          description 'Settings button.'
+          metadata {
+            uid 'ff4dabe4-f1ea-4704-9de8-77d70a5e1f68'
+          }
+        }
+      }
+      map = region 'Map' {
+        description 'Screens as cards with their regions, controls and states; arrows for navigation.'
+        metadata {
+          uid '8f9410a6-93f3-495b-a13e-d5a2ded0b739'
+        }
+        fit = control 'Fit' {
+          description 'Show everything.'
+          metadata {
+            uid '5db540dc-edf2-4f4d-abe0-291d6fc0e0b6'
+          }
+        }
+        zoom_in = control '+' {
+          description 'Zoom in.'
+          metadata {
+            uid '30ca4cbe-ed91-42f9-ba10-227ece2d70dd'
+          }
+        }
+        zoom_out = control '−' {
+          description 'Zoom out.'
+          metadata {
+            uid '4d212100-365e-434f-a4d4-fbe8c11b8e6c'
+          }
+        }
+        -> c4pm.c4pm.view_model 'IO map model'
+      }
+      right_panel = region 'Right panel' {
+        description 'Details of the selected screen, region, control or state.'
+        metadata {
+          uid '4af343d0-13b4-42c8-ae03-4e0a6391d002'
+        }
+      }
+    }
+    own_window = screen 'Own window' {
+      description 'A view opened with &bare (#io&bare or #arch&bare): only the map and the camera buttons.'
+      metadata {
+        uid 'c0b41b87-ab23-4b7b-bfe9-41af0b6df085'
+        device 'web'
+      }
+      map = region 'Map' {
+        description 'Only the map; the top bar, panels and board are hidden (class bare).'
+        metadata {
+          uid '7f9c8daa-1e7f-471f-b692-98f141ab2337'
+        }
+        up = control '↑ Up' {
+          description 'Zoom out one level.'
+          metadata {
+            uid '0977864f-593d-402b-8106-334ed610044e'
+          }
+        }
+        fit = control 'Fit' {
+          description 'Show the whole map.'
+          metadata {
+            uid 'b23775c6-90d7-4c86-b8a4-df867a649452'
+          }
+        }
+        zoom_in = control '+' {
+          description 'Zoom in.'
+          metadata {
+            uid 'f9e7e12f-3211-448f-aece-5e563b5da689'
+          }
+        }
+        zoom_out = control '−' {
+          description 'Zoom out.'
+          metadata {
+            uid 'cd6dd1e7-a45e-48b9-a2df-769a57a6e400'
+          }
+        }
+      }
+    }
+    cmd_config = command 'config' {
+      description 'Create or show c4pm settings (subcommands: init, show)'
+      metadata {
+        uid '41ba0969-e7dc-4734-bd28-99aed56d9266'
+      }
+      -> c4pm.c4pm.settings 'runs'
+      init = command 'config init' {
+        description 'Write a default .c4pmrc.json into the repo folder (fails if it already exists)'
+        metadata {
+          uid 'da04db17-9205-4cd4-8ba7-6f35d44b4e77'
+        }
+        -> c4pm.c4pm.settings 'runs'
+      }
+      show = command 'config show' {
+        description 'Print the effective settings as JSON (defaults, then .c4pmrc.json, then C4PM_* env vars, then flags)'
+        metadata {
+          uid '1a206c20-6896-45ae-bc6b-15b8885ab260'
+        }
+        -> c4pm.c4pm.settings 'runs'
+        lang = flag '--lang <ids>' {
+          description 'comma-separated languages to scan: typescript, python, rust, csharp, php, cpp, swift, files (default: typescript). \'files\' lists files of other languages (java, go, ...) without reading functions; off by default; extensions: config key fileOnlyExtensions. Pass the same value to every command'
+          metadata {
+            uid '32e9e745-ea07-4520-885f-27b07822e8a6'
+          }
+        }
+        ignore = flag '--ignore <patterns>' {
+          description 'comma-separated repo-relative patterns to skip: folder prefix, file path, or glob (* ** ?), e.g. dist,src/gen.ts,**/*.test.ts (default: none). Also applies to .c4 discovery; a pattern that matches nothing is reported as a scan warning'
+          metadata {
+            uid '1891a26e-98b6-49be-a877-5d83448b7f2b'
+          }
+        }
+        store = flag '--store <dir>' {
+          description 'history store folder (default: config store, else <anchor>/.c4pm/projects)'
+          metadata {
+            uid '1bc0eb61-76d3-4ddd-9f9d-7bf733995433'
+          }
+        }
+        sprint = flag '--sprint <s>' {
+          description 'current sprint, e.g. S15; plan items from earlier sprints that are not done become "late"'
+          metadata {
+            uid '5dd7d2af-c079-48e1-89ee-310a576119c2'
+          }
+        }
+        fail_on = flag '--fail-on <level>' {
+          description 'exit 1 when a finding reaches this level: critical, warning or none (default: none)'
+          metadata {
+            uid 'f7c4746a-f76f-4218-85b6-646d64358d95'
+          }
+        }
+      }
+    }
+    cmd_init = command 'init' {
+      description 'Create the .c4pm/ project folders (works without git). Safe to repeat, never overwrites. Creates config.json, .gitignore and data/, history/, plan/ folders; prints what it created and the anchor'
+      metadata {
+        uid '2233242c-a034-4616-9fea-38151d6dd591'
+      }
+      -> c4pm.c4pm.settings 'runs'
+    }
+    cmd_status = command 'status' {
+      description 'Show snapshot, history, plan and config status. Prints four lines (snapshot size, stored history, plan findings, effective config); scans, writes nothing'
+      metadata {
+        uid 'eedd5a70-2b75-4eba-9213-c06e1983767f'
+      }
+      -> c4pm.c4pm.query 'runs'
+      lang = flag '--lang <ids>' {
+        description 'comma-separated languages to scan: typescript, python, rust, csharp, php, cpp, swift, files (default: typescript). \'files\' lists files of other languages (java, go, ...) without reading functions; off by default; extensions: config key fileOnlyExtensions. Pass the same value to every command'
+        metadata {
+          uid 'f9079cd8-e9ba-4026-950b-06ef7511bbb8'
+        }
+      }
+      ignore = flag '--ignore <patterns>' {
+        description 'comma-separated repo-relative patterns to skip: folder prefix, file path, or glob (* ** ?), e.g. dist,src/gen.ts,**/*.test.ts (default: none). Also applies to .c4 discovery; a pattern that matches nothing is reported as a scan warning'
+        metadata {
+          uid 'e4221c54-7600-4452-9e06-c42ca365af9e'
+        }
+      }
+      store = flag '--store <dir>' {
+        description 'history store folder (default: config store, else <anchor>/.c4pm/projects)'
+        metadata {
+          uid 'c208008b-8154-4f43-a56a-fb5b2bc294fd'
+        }
+      }
+      sprint = flag '--sprint <s>' {
+        description 'current sprint, e.g. S15; plan items from earlier sprints that are not done become "late"'
+        metadata {
+          uid 'a6166baf-13c0-4e37-8382-59c01e5f4563'
+        }
+      }
+    }
+    cmd_watch = command 'watch' {
+      description 'Re-scan when source files change. Prints what changed (components, files, functions, critical/warning items); runs until Ctrl+C, writes nothing'
+      metadata {
+        uid '05040c79-dc76-4c4f-85dd-fd2f375e886d'
+      }
+      -> c4pm.c4pm.scan_pipeline 'runs'
+      debounce = flag '--debounce <ms>' {
+        description 'wait this many milliseconds after the last file change before re-scanning (default: "2000")'
+        metadata {
+          uid '474341f7-e610-4cb8-b303-0c9c3872e54b'
+        }
+      }
+      lang = flag '--lang <ids>' {
+        description 'comma-separated languages to scan: typescript, python, rust, csharp, php, cpp, swift, files (default: typescript). \'files\' lists files of other languages (java, go, ...) without reading functions; off by default; extensions: config key fileOnlyExtensions. Pass the same value to every command'
+        metadata {
+          uid 'fa96abc7-7b8a-4ddd-8753-70ae74689b9c'
+        }
+      }
+      ignore = flag '--ignore <patterns>' {
+        description 'comma-separated repo-relative patterns to skip: folder prefix, file path, or glob (* ** ?), e.g. dist,src/gen.ts,**/*.test.ts (default: none). Also applies to .c4 discovery; a pattern that matches nothing is reported as a scan warning'
+        metadata {
+          uid '6b8e31b1-3556-49f6-a4d2-24016df2f35a'
+        }
+      }
+    }
+    cmd_install_hooks = command 'install-hooks' {
+      description 'Install git hooks that keep history current. The post-commit and post-merge hooks run in the background, record history and (if viewOnCommit is true, the default) rewrite c4pmView.html; they never block git. Existing hook content is kept; remove with uninstall-hooks'
+      metadata {
+        uid '70866e6b-5aca-4b1d-83b4-d95ab665d6c1'
+      }
+      -> c4pm.c4pm.git_hooks 'runs'
+      store = flag '--store <dir>' {
+        description 'history store folder (default: config store, else <anchor>/.c4pm/projects)'
+        metadata {
+          uid '34016ee5-225c-4174-ae16-a4db51da7bef'
+        }
+      }
+    }
+    cmd_uninstall_hooks = command 'uninstall-hooks' {
+      description 'Remove the c4pm git hooks. Takes the c4pm blocks out of post-commit and post-merge (other hook content is kept) and prints the hook files'
+      metadata {
+        uid 'bd7f4075-f72f-4d98-b2af-ba45dd4f6a70'
+      }
+      -> c4pm.c4pm.git_hooks 'runs'
+    }
+    cmd_snapshot = command 'snapshot' {
+      description 'Scan the code and write the data files. Writes outline, imports, components and snapshot.json into data/; with --save, also stores the snapshot in history'
+      metadata {
+        uid 'a6ff8af4-a008-458b-b2e8-5c2508288cf1'
+      }
+      -> c4pm.c4pm.snapshot 'runs'
+      out = flag '--out <dir>' {
+        description 'folder for the data files (default: <anchor>/.c4pm/projects/<repoId>/data)'
+        metadata {
+          uid '537baef6-0221-49c4-8874-482d09fc23ec'
+        }
+      }
+      save = flag '--save' {
+        description 'also store this snapshot in the history store (see --store)'
+        metadata {
+          uid '6cd6de7b-d73d-4da9-810d-66eaf00db5e8'
+        }
+      }
+      store = flag '--store <dir>' {
+        description 'history store folder (default: config store, else <anchor>/.c4pm/projects)'
+        metadata {
+          uid '616e91ed-83f4-4957-849f-21f0069d43aa'
+        }
+      }
+      lang = flag '--lang <ids>' {
+        description 'comma-separated languages to scan: typescript, python, rust, csharp, php, cpp, swift, files (default: typescript). \'files\' lists files of other languages (java, go, ...) without reading functions; off by default; extensions: config key fileOnlyExtensions. Pass the same value to every command'
+        metadata {
+          uid '0a9a00aa-9071-4564-9add-4d781e6ec2fd'
+        }
+      }
+      ignore = flag '--ignore <patterns>' {
+        description 'comma-separated repo-relative patterns to skip: folder prefix, file path, or glob (* ** ?), e.g. dist,src/gen.ts,**/*.test.ts (default: none). Also applies to .c4 discovery; a pattern that matches nothing is reported as a scan warning'
+        metadata {
+          uid '869105d7-7e37-42b4-9efc-21a17151f0b1'
+        }
+      }
+      debug = flag '--debug [tags]' {
+        description 'print debug logs: comma-separated tags, or no value for all (same as C4PM_DEBUG)'
+        metadata {
+          uid 'd98a316d-0908-4fa9-97ba-fd9a6b355b9a'
+        }
+      }
+    }
+    cmd_history = command 'history' {
+      description 'Build one snapshot per git commit. Snapshots the newest --max commits into the history store so diff can compare them; needs a git repository, prints one line per commit'
+      metadata {
+        uid '528245af-e421-4767-a9c1-2343cda27bc5'
+      }
+      -> c4pm.c4pm.history 'runs'
+      max = flag '--max <n>' {
+        description 'maximum number of commits to snapshot, newest first (default: "20")'
+        metadata {
+          uid '8cb2198c-8fbc-45b3-8a00-ae86e774c2e8'
+        }
+      }
+      since = flag '--since <date>' {
+        description 'only commits since this date (ISO 8601, e.g. 2026-01-01)'
+        metadata {
+          uid 'c6a8f662-0b73-4763-a12e-fb8a322eeec8'
+        }
+      }
+      store = flag '--store <dir>' {
+        description 'history store folder (default: config store, else <anchor>/.c4pm/projects)'
+        metadata {
+          uid '8134c997-c318-4e38-867f-bd7bb47a82a8'
+        }
+      }
+      lang = flag '--lang <ids>' {
+        description 'comma-separated languages to scan: typescript, python, rust, csharp, php, cpp, swift, files (default: typescript). \'files\' lists files of other languages (java, go, ...) without reading functions; off by default; extensions: config key fileOnlyExtensions. Pass the same value to every command'
+        metadata {
+          uid '69e0e77b-ef62-4dc1-9a89-6f042fa097e6'
+        }
+      }
+      ignore = flag '--ignore <patterns>' {
+        description 'comma-separated repo-relative patterns to skip: folder prefix, file path, or glob (* ** ?), e.g. dist,src/gen.ts,**/*.test.ts (default: none). Also applies to .c4 discovery; a pattern that matches nothing is reported as a scan warning'
+        metadata {
+          uid '778da48a-fba8-46a8-bb8f-04d68b37592d'
+        }
+      }
+    }
+    cmd_snapshots = command 'snapshots' {
+      description 'List stored snapshots. Prints id, short commit, date and counts for each, then the folder they are in'
+      metadata {
+        uid 'b9739856-09a2-4109-8c22-362765cebfef'
+      }
+      -> c4pm.c4pm.snapshot 'runs'
+      store = flag '--store <dir>' {
+        description 'history store folder (default: config store, else <anchor>/.c4pm/projects)'
+        metadata {
+          uid '9c4341c4-f767-4aa0-8570-df2505842c18'
+        }
+      }
+    }
+    cmd_diff = command 'diff' {
+      description 'Compare two snapshots (the drift). Shows parts that grew, shrank, appeared, disappeared or gained dependencies, between stored snapshots (--repo with --from/--to) or two snapshot files (--a/--b). Exits 1 if a change reaches --fail-on'
+      metadata {
+        uid 'c79742dc-bccf-4780-acdd-0fcd72ce229e'
+      }
+      -> c4pm.c4pm.compare 'runs'
+      a = flag '--a <file>' {
+        description 'first snapshot.json file (use with --b instead of --repo)'
+        metadata {
+          uid 'bf2d7546-8a36-4a72-943d-8f3e6b96577a'
+        }
+      }
+      b = flag '--b <file>' {
+        description 'second snapshot.json file (use with --a instead of --repo)'
+        metadata {
+          uid 'daa556b1-c600-44ef-b8a5-361b7f8926f5'
+        }
+      }
+      from = flag '--from <ref>' {
+        description 'older snapshot: prev, latest, oldest, a snapshot id, a commit hash prefix or YYYY-MM-DD (default: "prev")'
+        metadata {
+          uid '03f52a95-9892-48b0-892b-693a36aa55c2'
+        }
+      }
+      to = flag '--to <ref>' {
+        description 'newer snapshot, same kinds of ref as --from (default: "latest")'
+        metadata {
+          uid '22c023ae-2f5c-4518-af4d-91aa10927059'
+        }
+      }
+      store = flag '--store <dir>' {
+        description 'history store folder (default: config store, else <anchor>/.c4pm/projects)'
+        metadata {
+          uid '4c777d76-67b5-4e6e-a65b-a07be7e6cf57'
+        }
+      }
+      format = flag '--format <fmt>' {
+        description 'output format: text, markdown, github or json (default: "text")'
+        metadata {
+          uid '29efac5d-ad5f-4024-b1ec-440a288f5267'
+        }
+      }
+      min_severity = flag '--min-severity <level>' {
+        description 'hide changes below this level: info, warning or critical (default: "info")'
+        metadata {
+          uid 'ebd8d625-3cc3-4355-8c55-61eef8f10655'
+        }
+      }
+      fail_on = flag '--fail-on <level>' {
+        description 'exit 1 when a finding reaches this level: critical, warning or none (default: none)'
+        metadata {
+          uid '4892c701-ab6d-4d89-89ec-853abd058342'
+        }
+      }
+      write = flag '--write <file>' {
+        description 'write the output to this file instead of printing it'
+        metadata {
+          uid 'f631739e-a26b-4d8c-ad65-89e0c57091ed'
+        }
+      }
+    }
+    cmd_plan = command 'plan' {
+      description 'The plan: containers, components and planned code in the .c4 files. Show it, edit it, link it to code and draw it. Run c4pm plan <command> --help for details. Without a command it runs plan show'
+      metadata {
+        uid '202b258a-9582-4f33-a9e7-5eff5b6d1c42'
+      }
+      generate = command 'plan generate' {
+        description 'Generate a starter .c4 plan from the code. Writes a draft into <anchor>/.c4pm/projects/<repoId>/plan/ (or --out, or config architectureDir). Re-running keeps metadata you added and adds components for new code. Prints each file written. --view storage instead adds a store (records, fields) for every reader hit that no store covers, under the container whose components own most of its files; dry run unless --yes, existing stores are never changed'
+        metadata {
+          uid '7c60dcaf-7b7f-4de1-8484-9d7ae4ae3229'
+        }
+        -> c4pm.c4pm.plan_commands 'runs'
+        view = flag '--view <view>' {
+          description 'arch (default), io (screens, flows) or storage (stores, records, fields)'
+          metadata {
+            uid '2160e05b-3205-423f-81ca-1997bfb2891a'
+          }
+        }
+        out = flag '--out <dir>' {
+          description 'folder for the .c4 files (default: config architectureDir, else the project plan/ folder)'
+          metadata {
+            uid '7ee6c5f5-3b9b-49dc-a1e9-1fe8b616c3c5'
+          }
+        }
+        container = flag '--container <target>' {
+          description '--view storage: put the new stores under this container (needed when no component owns the files)'
+          metadata {
+            uid 'ee9fb83a-de1a-4adb-9006-30a1eb5ce835'
+          }
+        }
+        yes = flag '--yes' {
+          description '--view storage: write the change; without it only the diff is printed'
+          metadata {
+            uid 'f621ea00-90e6-4b01-8686-e16053213141'
+          }
+        }
+        force = flag '--force' {
+          description '--view storage: also write plan files outside .c4pm/ and C4PM/'
+          metadata {
+            uid 'b77136ee-e680-475e-816c-887fcae2b015'
+          }
+        }
+        lang = flag '--lang <ids>' {
+          description 'comma-separated languages to scan: typescript, python, rust, csharp, php, cpp, swift, files (default: typescript). \'files\' lists files of other languages (java, go, ...) without reading functions; off by default; extensions: config key fileOnlyExtensions. Pass the same value to every command'
+          metadata {
+            uid 'c9d755cd-b557-460d-80f9-878568b44049'
+          }
+        }
+        ignore = flag '--ignore <patterns>' {
+          description 'comma-separated repo-relative patterns to skip: folder prefix, file path, or glob (* ** ?), e.g. dist,src/gen.ts,**/*.test.ts (default: none). Also applies to .c4 discovery; a pattern that matches nothing is reported as a scan warning'
+          metadata {
+            uid 'c96d49d3-976e-4e6a-bd89-8eff82577ef8'
+          }
+        }
+      }
+      resolve_link = command 'plan resolve-link' {
+        description 'Resolve a link to a code element. Takes a repo-relative path (optionally #functionName or #Lx-Ly) and prints the element it points at as JSON; use it to test a link before writing it in a .c4 file. Writes nothing'
+        metadata {
+          uid '31192ef4-37da-4702-a2fd-d73ba0945771'
+        }
+        -> c4pm.c4pm.plan_commands 'runs'
+        target = arg '<target>' {
+          description 'repo-relative path, optionally with #functionName or #Lx-Ly'
+          metadata {
+            uid 'f14916e5-1240-4c69-beba-3737696f9927'
+          }
+        }
+        lang = flag '--lang <ids>' {
+          description 'comma-separated languages to scan: typescript, python, rust, csharp, php, cpp, swift, files (default: typescript). \'files\' lists files of other languages (java, go, ...) without reading functions; off by default; extensions: config key fileOnlyExtensions. Pass the same value to every command'
+          metadata {
+            uid '5533b129-595d-4a32-8838-685aa962845c'
+          }
+        }
+        ignore = flag '--ignore <patterns>' {
+          description 'comma-separated repo-relative patterns to skip: folder prefix, file path, or glob (* ** ?), e.g. dist,src/gen.ts,**/*.test.ts (default: none). Also applies to .c4 discovery; a pattern that matches nothing is reported as a scan warning'
+          metadata {
+            uid 'e57438b6-ebce-42fc-9956-a9b41ffa3545'
+          }
+        }
+      }
+      tree = command 'plan tree' {
+        description 'Draw the plan below one element. Level is c1 (system), c2 (container) or c3 (component) and must match the target; one level down by default, -r for all. With --view io or storage there is no level: give only the target, a container or any element of that view (c4pm plan tree <target> --view storage). Prints Mermaid (paste it in any viewer), text or JSON. Read-only: writes nothing'
+        metadata {
+          uid '931ac314-d424-488c-a5cf-f96ba82323df'
+        }
+        -> c4pm.c4pm.plan_commands 'runs'
+        level = arg '<level>' {
+          metadata {
+            uid '7b26a9a3-c6a9-4608-8488-a75482e1ad3f'
+          }
+        }
+        target = arg '[target]' {
+          metadata {
+            uid '9cea90af-235b-41df-aa5c-67c0813472c6'
+          }
+        }
+        view = flag '--view <view>' {
+          description 'arch (default), io (screens, flows) or storage (stores, records, fields)'
+          metadata {
+            uid '62b0d4f8-cfcc-4a41-b7f9-59f6c0f5796f'
+          }
+        }
+        recursive = flag '-r, --recursive' {
+          description 'show every level below the target'
+          metadata {
+            uid 'de5ac6c9-b307-42e0-8234-62ffbbd7647e'
+          }
+        }
+        depth = flag '--depth <n>' {
+          description 'show n levels below the target (not with -r)'
+          metadata {
+            uid 'd20f03bf-bd81-4a40-a14f-d847cd4c0555'
+          }
+        }
+        format = flag '--format <fmt>' {
+          description 'mermaid, text or json (default: "mermaid")'
+          metadata {
+            uid 'e88c8e27-fa60-483d-add6-29b3543c1d20'
+          }
+        }
+        direction = flag '--direction <dir>' {
+          description 'Mermaid direction: TD or LR (default: "TD")'
+          metadata {
+            uid '5c6d3928-b478-4235-b90c-e652e93d4ed6'
+          }
+        }
+        external = flag '--external' {
+          description 'draw relations that leave the view as dashed edges'
+          metadata {
+            uid '2a45ca06-170c-49e0-b8af-0836100f889e'
+          }
+        }
+        max_nodes = flag '--max-nodes <n>' {
+          description 'refuse a bigger graph (default 120)'
+          metadata {
+            uid '15bae019-38c0-41e1-a765-c584c444b464'
+          }
+        }
+        fence = flag '--fence' {
+          description 'wrap the Mermaid text in a ```mermaid block'
+          metadata {
+            uid 'b8a2903c-bf9e-4fc3-a57f-aaf3f5e4977c'
+          }
+        }
+        boards = flag '--boards' {
+          description 'also draw the board items that link to a shown element (dashed)'
+          metadata {
+            uid 'c1fcbc4d-2626-46de-960b-9e13b08f56c2'
+          }
+        }
+      }
+      unplanned = command 'plan unplanned' {
+        description 'List code that no plan element owns. Files (folder mode) or functions (claim mode) found by the scan that no component links to, with a fix hint per group; the same findings as c4pm check, filtered. --view storage lists instead the records in the code that no store lists (unplanned-record) and the records no store covers (unplanned-store); --view io has no code reader yet. Read-only: writes nothing'
+        metadata {
+          uid '8c3ca75b-fd96-4c65-8092-2ac144ed6d9a'
+        }
+        -> c4pm.c4pm.plan_commands 'runs'
+        view = flag '--view <view>' {
+          description 'arch (default), io (screens, flows) or storage (stores, records, fields)'
+          metadata {
+            uid '91708689-1a30-4214-98be-257a9782f506'
+          }
+        }
+        json = flag '--json' {
+          description 'print one JSON object instead of text'
+          metadata {
+            uid '0e08a81b-0b82-4b3f-89a1-887be0d7579f'
+          }
+        }
+        lang = flag '--lang <ids>' {
+          description 'comma-separated languages to scan: typescript, python, rust, csharp, php, cpp, swift, files (default: typescript). \'files\' lists files of other languages (java, go, ...) without reading functions; off by default; extensions: config key fileOnlyExtensions. Pass the same value to every command'
+          metadata {
+            uid '94eb3e21-6d63-4e70-87d9-ff03d09bb01e'
+          }
+        }
+        ignore = flag '--ignore <patterns>' {
+          description 'comma-separated repo-relative patterns to skip: folder prefix, file path, or glob (* ** ?), e.g. dist,src/gen.ts,**/*.test.ts (default: none). Also applies to .c4 discovery; a pattern that matches nothing is reported as a scan warning'
+          metadata {
+            uid 'a39b4ad7-e81a-4426-9fbb-c4cc5ec7394b'
+          }
+        }
+      }
+      add = command 'plan add' {
+        description 'Add an element to the plan. Kind is system, container, component, person, external, screen, region, control, state, command, options, flag, arg, route, body, param, tool, store, record, field, planned-fn, planned-class or planned-type; context <name> --as system, person or external adds a top-level element. Allowed parents: system -> none (top level); container -> system or external; component -> container; person -> none (top level); external -> none (top level); screen -> container; region -> screen; control -> screen or region; state -> screen, region or control; command -> container or command; options -> command; flag -> command or options; arg -> command; route -> container; body -> route; param -> route, body or tool; tool -> container; store -> container; record -> store; field -> record or field; planned-fn -> component; planned-class -> component; planned-type -> component. Written into the parent\'s .c4 file (a top-level element into the model block); dry run unless --yes'
+        metadata {
+          uid 'a186565a-3ea6-4e15-b820-2330dc3af857'
+        }
+        -> c4pm.c4pm.plan_commands 'runs'
+        kind = arg '<kind>' {
+          metadata {
+            uid '98e71b0a-74b8-4ce9-b731-75bb8a4a6f61'
+          }
+        }
+        name = arg '<name>' {
+          metadata {
+            uid 'f995bc1b-5b7d-4687-b3ca-513b2040700e'
+          }
+        }
+        parent = flag '--parent <target>' {
+          description 'uid, fqn, id or name of the parent element (required unless the kind is top level)'
+          metadata {
+            uid 'fa200d9f-d611-4a59-bf79-248e6f2c7523'
+          }
+        }
+        as = flag '--as <kind>' {
+          description 'with context: system, person or external (required)'
+          metadata {
+            uid '5c44f4ab-7324-460b-953b-a3e8b999bad7'
+          }
+        }
+        flag_title = flag '--title <text>' {
+          description 'title (default: the name)'
+          metadata {
+            uid '5dd2b86a-b1cc-4e31-afa5-ff9b3bb66c2a'
+          }
+        }
+        id = flag '--id <id>' {
+          description 'id (default: the name made safe for the plan)'
+          metadata {
+            uid 'd5cb5364-4012-469d-8b78-64cac9c2d0f7'
+          }
+        }
+        flag_description = flag '--description <text>' {
+          description 'description'
+          metadata {
+            uid 'f5802191-f4b9-4b8f-8dcf-ab6482dfcffc'
+          }
+        }
+        tech = flag '--tech <text>' {
+          description 'technology'
+          metadata {
+            uid '6dde8787-6302-4d3c-9b3b-72130b502150'
+          }
+        }
+        flag_link = flag '--link <path[#name]>' {
+          description 'repo-relative code link; must exist'
+          metadata {
+            uid '1bfb3b1f-2272-4106-99d2-29d3b48141b3'
+          }
+        }
+        status = flag '--status <s>' {
+          description 'planned, in-progress, done or abandoned'
+          metadata {
+            uid '4faee99f-2527-4b64-ba97-5392d0dd13c1'
+          }
+        }
+        owner = flag '--owner <name>' {
+          description 'owner (needed for done)'
+          metadata {
+            uid '4f53df38-39d2-4ce3-9a6f-d3c17f0a9875'
+          }
+        }
+        sprint = flag '--sprint <S15>' {
+          description 'sprint, like S15'
+          metadata {
+            uid '5dfa6fc4-6af9-4c40-b0bc-b53fbd4462a8'
+          }
+        }
+        priority = flag '--priority <p>' {
+          description 'high, medium or low'
+          metadata {
+            uid 'b1a8c545-058a-42ff-ba81-c0d9634141e5'
+          }
+        }
+        meta = flag '--meta <key=value>' {
+          description 'extra metadata line, repeatable (storage kinds: type=uuid, fk=customers.id) (default: [])'
+          metadata {
+            uid '9e462bfd-9e06-4576-8644-81c32fa8eeea'
+          }
+        }
+        signature = flag '--signature <text>' {
+          description 'planned code: signature'
+          metadata {
+            uid 'b15d4747-d1ee-4bbc-a7c6-98d7b3874804'
+          }
+        }
+        purpose = flag '--purpose <text>' {
+          description 'planned code: purpose'
+          metadata {
+            uid 'b6e43193-52d6-41cd-90ba-aac3d55c25f2'
+          }
+        }
+        yes = flag '--yes' {
+          description 'write the change; without it only the diff is printed'
+          metadata {
+            uid '6c46bfbf-b2c4-4dd4-bf71-0e88f4b49904'
+          }
+        }
+        force = flag '--force' {
+          description 'also write plan files outside .c4pm/ and C4PM/'
+          metadata {
+            uid '93f612e2-c8b7-4b0c-8149-f41a17df9273'
+          }
+        }
+        check = flag '--check' {
+          description 'gate with the full check (scans the code; slower)'
+          metadata {
+            uid 'fa1c372b-1768-46e1-9c75-05f495d56b25'
+          }
+        }
+        json = flag '--json' {
+          description 'print one JSON object instead of text'
+          metadata {
+            uid '209a9ce7-d598-4e28-8757-ab52b2eb7ee7'
+          }
+        }
+        lang = flag '--lang <ids>' {
+          description 'comma-separated languages to scan: typescript, python, rust, csharp, php, cpp, swift, files (default: typescript). \'files\' lists files of other languages (java, go, ...) without reading functions; off by default; extensions: config key fileOnlyExtensions. Pass the same value to every command'
+          metadata {
+            uid '352c8ef2-47a8-4403-848e-30ad35717666'
+          }
+        }
+        ignore = flag '--ignore <patterns>' {
+          description 'comma-separated repo-relative patterns to skip: folder prefix, file path, or glob (* ** ?), e.g. dist,src/gen.ts,**/*.test.ts (default: none). Also applies to .c4 discovery; a pattern that matches nothing is reported as a scan warning'
+          metadata {
+            uid 'b2a510b0-9062-4a8d-80b3-1df6f2996641'
+          }
+        }
+      }
+      set = command 'plan set' {
+        description 'Change fields of one plan element. Pairs are key=value; keys: status, owner, sprint, priority, signature, purpose, title, description, technology. Values are quoted for you (status, priority and sprint are checked); uid and layout are refused. Dry run unless --yes'
+        metadata {
+          uid 'ba02b66e-2da4-4a9e-9b1f-cc5613ed57c1'
+        }
+        -> c4pm.c4pm.plan_commands 'runs'
+        target = arg '<target>' {
+          metadata {
+            uid '72946758-f837-49de-9272-bf14c6aa5757'
+          }
+        }
+        pairs = arg '<pairs...>' {
+          metadata {
+            uid '57153c8d-77b2-4820-9820-8eb785ecf674'
+          }
+        }
+        yes = flag '--yes' {
+          description 'write the change; without it only the diff is printed'
+          metadata {
+            uid '4462d128-7ec9-402c-8b74-360e91df342a'
+          }
+        }
+        force = flag '--force' {
+          description 'also write plan files outside .c4pm/ and C4PM/'
+          metadata {
+            uid '2eb894c3-6f39-4ccc-8f9f-d17eb5807dbd'
+          }
+        }
+        check = flag '--check' {
+          description 'gate with the full check (scans the code; slower)'
+          metadata {
+            uid 'e6f056e9-1ad9-47db-af69-9fb2daf175e3'
+          }
+        }
+        json = flag '--json' {
+          description 'print one JSON object instead of text'
+          metadata {
+            uid '9eaaab70-5557-4f67-9135-933212c8037d'
+          }
+        }
+        lang = flag '--lang <ids>' {
+          description 'comma-separated languages to scan: typescript, python, rust, csharp, php, cpp, swift, files (default: typescript). \'files\' lists files of other languages (java, go, ...) without reading functions; off by default; extensions: config key fileOnlyExtensions. Pass the same value to every command'
+          metadata {
+            uid 'be3136cb-db1f-47f2-8b4e-c8e62e131f24'
+          }
+        }
+        ignore = flag '--ignore <patterns>' {
+          description 'comma-separated repo-relative patterns to skip: folder prefix, file path, or glob (* ** ?), e.g. dist,src/gen.ts,**/*.test.ts (default: none). Also applies to .c4 discovery; a pattern that matches nothing is reported as a scan warning'
+          metadata {
+            uid '031b5493-e0e6-4339-a291-e2682cd8fc46'
+          }
+        }
+      }
+      cmd_link = command 'plan link' {
+        description 'Link a plan element to code. Path is repo-relative, optionally #functionName or #Lx-Ly; a folder ends with /. The code must exist. The line is written relative to the .c4 file. Dry run unless --yes'
+        metadata {
+          uid '7bd3a811-64e0-4ad1-8632-a2eec4707262'
+        }
+        -> c4pm.c4pm.plan_commands 'runs'
+        target = arg '<target>' {
+          metadata {
+            uid 'd881b670-561f-4b94-88f1-64248b41608e'
+          }
+        }
+        path = arg '<path>' {
+          metadata {
+            uid '69e76a43-8525-411d-9161-52edfffc2af7'
+          }
+        }
+        flag_title = flag '--title <text>' {
+          description 'link title'
+          metadata {
+            uid '9058399d-7841-4dfa-9e3e-dd4adc62d65a'
+          }
+        }
+        yes = flag '--yes' {
+          description 'write the change; without it only the diff is printed'
+          metadata {
+            uid '9c8d708c-f5b3-4064-b1c5-bfb34a5c7dc3'
+          }
+        }
+        force = flag '--force' {
+          description 'also write plan files outside .c4pm/ and C4PM/'
+          metadata {
+            uid 'ce81775e-e3b2-4bb1-936a-ec817295c0e4'
+          }
+        }
+        check = flag '--check' {
+          description 'also gate with the full check (the link check always scans)'
+          metadata {
+            uid 'a498ebd6-f410-4d0d-8a25-b648a2abf80b'
+          }
+        }
+        json = flag '--json' {
+          description 'print one JSON object instead of text'
+          metadata {
+            uid '1c6c7a72-bd46-4443-8967-2856e148a594'
+          }
+        }
+        lang = flag '--lang <ids>' {
+          description 'comma-separated languages to scan: typescript, python, rust, csharp, php, cpp, swift, files (default: typescript). \'files\' lists files of other languages (java, go, ...) without reading functions; off by default; extensions: config key fileOnlyExtensions. Pass the same value to every command'
+          metadata {
+            uid 'f71ddeac-1a76-4631-bf29-536bffa46f31'
+          }
+        }
+        ignore = flag '--ignore <patterns>' {
+          description 'comma-separated repo-relative patterns to skip: folder prefix, file path, or glob (* ** ?), e.g. dist,src/gen.ts,**/*.test.ts (default: none). Also applies to .c4 discovery; a pattern that matches nothing is reported as a scan warning'
+          metadata {
+            uid '0b2d80a1-ec48-464b-970a-b58ae803ef9d'
+          }
+        }
+      }
+      relate = command 'plan relate' {
+        description 'Declare that one plan element uses another. Both are found by uid, fqn, id or name and must exist; the line is written inside <from>. The same pair twice is refused. Dry run unless --yes'
+        metadata {
+          uid '7dee5974-09a0-425c-8c4a-0bb9dce00199'
+        }
+        -> c4pm.c4pm.plan_commands 'runs'
+        from = arg '<from>' {
+          metadata {
+            uid '70ff464d-2d63-4043-8602-8b16acbff204'
+          }
+        }
+        to = arg '<to>' {
+          metadata {
+            uid '5f709e68-ada0-46c3-ad37-dfbc42f5e136'
+          }
+        }
+        label = flag '--label <text>' {
+          description 'what the relation is, shown on the arrow'
+          metadata {
+            uid '9e19c913-134b-44c5-8ed4-3df8e4f234de'
+          }
+        }
+        yes = flag '--yes' {
+          description 'write the change; without it only the diff is printed'
+          metadata {
+            uid '28e92df6-ed95-4690-bed3-3ee9ea48bb1a'
+          }
+        }
+        force = flag '--force' {
+          description 'also write plan files outside .c4pm/ and C4PM/'
+          metadata {
+            uid '65d9b989-91e0-4e8e-9011-25a70748a366'
+          }
+        }
+        check = flag '--check' {
+          description 'gate with the full check (scans the code; slower)'
+          metadata {
+            uid '585ce2e6-3cc5-4fa9-985b-580c81a26985'
+          }
+        }
+        json = flag '--json' {
+          description 'print one JSON object instead of text'
+          metadata {
+            uid '3a9b93c0-1088-43b8-839b-a031f929b3d0'
+          }
+        }
+        lang = flag '--lang <ids>' {
+          description 'comma-separated languages to scan: typescript, python, rust, csharp, php, cpp, swift, files (default: typescript). \'files\' lists files of other languages (java, go, ...) without reading functions; off by default; extensions: config key fileOnlyExtensions. Pass the same value to every command'
+          metadata {
+            uid '04bdd6c4-e8c5-45af-bc93-9c047bc1f411'
+          }
+        }
+        ignore = flag '--ignore <patterns>' {
+          description 'comma-separated repo-relative patterns to skip: folder prefix, file path, or glob (* ** ?), e.g. dist,src/gen.ts,**/*.test.ts (default: none). Also applies to .c4 discovery; a pattern that matches nothing is reported as a scan warning'
+          metadata {
+            uid '461378bd-cd23-4f08-bb67-1fe45857e441'
+          }
+        }
+      }
+      show = command 'plan show' {
+        description 'Show the plan, or one element of it. Without a target: counts of elements, relations and issues, then each element (id, kind, title, status) and each parse issue. With a target: finds the element by uid, fqn, local id or name and prints its kind, uid, fqn, parent, children, plan lines, links and status; in claim mode also its origin and claims. Writes nothing. --view arch|io|storage without a target lists only that view\'s elements; with a target it does nothing'
+        metadata {
+          uid '3d8061c0-1e14-42c9-b3af-b5a13e91eba5'
+        }
+        -> c4pm.c4pm.query 'runs'
+        target = arg '[target]' {
+          metadata {
+            uid '609f5a39-682c-4480-8d2c-41a2ae815cf2'
+          }
+        }
+        view = flag '--view <view>' {
+          description 'arch (default), io (screens, flows) or storage (stores, records, fields)'
+          metadata {
+            uid 'a6fc3fb6-da6c-4d36-b531-43b806dcba6b'
+          }
+        }
+        json = flag '--json' {
+          description 'with a target: print JSON instead of text'
+          metadata {
+            uid '1f656133-d14b-4d56-be36-312135b62b78'
+          }
+        }
+        lang = flag '--lang <ids>' {
+          description 'comma-separated languages to scan: typescript, python, rust, csharp, php, cpp, swift, files (default: typescript). \'files\' lists files of other languages (java, go, ...) without reading functions; off by default; extensions: config key fileOnlyExtensions. Pass the same value to every command'
+          metadata {
+            uid 'dc353f9a-549c-4593-b6b6-1c2055fb5da8'
+          }
+        }
+        ignore = flag '--ignore <patterns>' {
+          description 'comma-separated repo-relative patterns to skip: folder prefix, file path, or glob (* ** ?), e.g. dist,src/gen.ts,**/*.test.ts (default: none). Also applies to .c4 discovery; a pattern that matches nothing is reported as a scan warning'
+          metadata {
+            uid 'b4f0a222-8226-4629-ad6c-d83f262f8c9c'
+          }
+        }
+      }
+      ids = command 'plan ids' {
+        description 'Give every plan element a stable uid. Adds a random uid to each element (system, container, component, screen, ...) of the .c4 plan that has none; shows a summary and writes only with --yes'
+        metadata {
+          uid '6bfd334c-4c94-440e-a332-2c5686dc99fb'
+        }
+        -> c4pm.c4pm.plan_files 'runs'
+        yes = flag '--yes' {
+          description 'write the changes; without it only a summary is printed'
+          metadata {
+            uid 'd3e9fdae-c64c-4bf2-af06-1ff54810b90f'
+          }
+        }
+        force = flag '--force' {
+          description 'also write plan files outside .c4pm/ and C4PM/'
+          metadata {
+            uid '4a998712-9de4-4d04-827b-296e4c6977ea'
+          }
+        }
+      }
+      remove = command 'plan remove' {
+        description 'Remove one element from the .c4 plan. Finds it by uid, id or name, prints the lines that would go (dry run), and writes only with --yes. The plan is committed to git, so git can restore it'
+        metadata {
+          uid 'e5ed85c1-8f33-4e21-9a65-4bb90586b24b'
+        }
+        -> c4pm.c4pm.plan_files 'runs'
+        target = arg '<target>' {
+          metadata {
+            uid 'b85aa67c-6e2f-4356-b154-ca8c631a73ad'
+          }
+        }
+        yes = flag '--yes' {
+          description 'write the change; without it only the diff is printed'
+          metadata {
+            uid 'fa306d9d-3fff-4437-b2ed-370cfb9bc421'
+          }
+        }
+        force = flag '--force' {
+          description 'also write plan files outside .c4pm/ and C4PM/'
+          metadata {
+            uid '6e82a6ca-06ea-4023-814e-483cddf25e92'
+          }
+        }
+        relations = flag '--relations' {
+          description 'also delete the relation lines that mention the element'
+          metadata {
+            uid 'c1c478e3-e9d3-44f8-8363-bd011427716f'
+          }
+        }
+      }
+      apply_layout = command 'plan apply-layout' {
+        description 'Write an exported viewer layout into the .c4 files. Takes the layout file (version 2) saved by Export layout on the map page, usually c4pm-layout.json, and stores it as layout metadata; use --dry-run to preview'
+        metadata {
+          uid '5f714c17-b160-48e4-8485-17dbf0417992'
+        }
+        -> c4pm.c4pm.plan_files 'runs'
+        file = flag '--file <layout.json>' {
+          description '(required) layout file exported by the viewer (required)'
+          metadata {
+            uid '7440072e-4236-4efc-a8bf-f25e2bc77612'
+          }
+        }
+        dry_run = flag '--dry-run' {
+          description 'show what would change; write nothing'
+          metadata {
+            uid '633a08b0-d629-4331-a384-c8fdb6c10e60'
+          }
+        }
+      }
+    }
+    cmd_check = command 'check' {
+      description 'Check the plan against the code. Validates the .c4 plan and compares it with the code; prints findings (severity, rule, id, message). Writes nothing. Exits 1 if a finding reaches --fail-on'
+      metadata {
+        uid '1a57f14f-accb-488e-a505-4d48421ec398'
+      }
+      -> c4pm.c4pm.query 'runs'
+      lang = flag '--lang <ids>' {
+        description 'comma-separated languages to scan: typescript, python, rust, csharp, php, cpp, swift, files (default: typescript). \'files\' lists files of other languages (java, go, ...) without reading functions; off by default; extensions: config key fileOnlyExtensions. Pass the same value to every command'
+        metadata {
+          uid '4a7e9b6b-324b-4020-9555-ec942ecc213e'
+        }
+      }
+      ignore = flag '--ignore <patterns>' {
+        description 'comma-separated repo-relative patterns to skip: folder prefix, file path, or glob (* ** ?), e.g. dist,src/gen.ts,**/*.test.ts (default: none). Also applies to .c4 discovery; a pattern that matches nothing is reported as a scan warning'
+        metadata {
+          uid '1e168125-811d-47c9-90b5-9bdf956ea9f6'
+        }
+      }
+      sprint = flag '--sprint <s>' {
+        description 'current sprint, e.g. S15; plan items from earlier sprints that are not done become "late"'
+        metadata {
+          uid '3aa3ddde-a9a0-4307-a196-12e041997ca5'
+        }
+      }
+      format = flag '--format <fmt>' {
+        description 'output format: text, github or json (default: "text")'
+        metadata {
+          uid 'a7829de7-44a7-48ef-b0f6-f504075f2fa7'
+        }
+      }
+      min_severity = flag '--min-severity <level>' {
+        description 'hide findings below this level: info, warning or critical (default: "info")'
+        metadata {
+          uid 'bc26def4-c704-4e68-bf4b-7b6496f6c113'
+        }
+      }
+      fail_on = flag '--fail-on <level>' {
+        description 'exit 1 when a finding reaches this level: critical, warning or none (default: none)'
+        metadata {
+          uid '72997000-e1e9-460f-9a93-ada987267c1a'
+        }
+      }
+    }
+    cmd_stubs = command 'stubs' {
+      description 'List functions that are not implemented yet. Stubs are empty, TODO or "not implemented" bodies; prints one per line as file:line name (kind), then a count. Writes nothing'
+      metadata {
+        uid '71a2d6f0-70c1-4ebf-a631-6ad7b5f08af5'
+      }
+      lang = flag '--lang <ids>' {
+        description 'comma-separated languages to scan: typescript, python, rust, csharp, php, cpp, swift, files (default: typescript). \'files\' lists files of other languages (java, go, ...) without reading functions; off by default; extensions: config key fileOnlyExtensions. Pass the same value to every command'
+        metadata {
+          uid '838a1b22-2f09-4ed8-b8a6-7e326fa040d2'
+        }
+      }
+      ignore = flag '--ignore <patterns>' {
+        description 'comma-separated repo-relative patterns to skip: folder prefix, file path, or glob (* ** ?), e.g. dist,src/gen.ts,**/*.test.ts (default: none). Also applies to .c4 discovery; a pattern that matches nothing is reported as a scan warning'
+        metadata {
+          uid '6f9d8d4b-b717-4d53-a9a9-7e6da37fee7d'
+        }
+      }
+    }
+    cmd_view = command 'view' {
+      description 'Generate the zoomable architecture map page (c4pmView.html). Scans the code, reads the plan and writes one HTML file; prints its path. Never changes the plan'
+      metadata {
+        uid '32934691-f1a7-49a6-8012-f325e484e719'
+      }
+      -> c4pm.c4pm.view_model 'runs'
+      out = flag '--out <file>' {
+        description 'HTML file to write (default: <anchor>/C4PM/<repoId>/c4pmView.html)'
+        metadata {
+          uid '5cadd5f0-148e-4a7f-bd9d-524a26819a53'
+        }
+      }
+      from = flag '--from <ref>' {
+        description 'mark what changed since this stored snapshot: prev, latest, oldest, a snapshot id, a commit hash prefix or YYYY-MM-DD (default: no comparison)'
+        metadata {
+          uid 'eadd2d63-e1e3-4308-813f-a4d3f2713764'
+        }
+      }
+      open = flag '--open' {
+        description 'open the page in the default browser after writing it'
+        metadata {
+          uid '9b5e9270-f5f8-4ee1-a63d-443973712a89'
+        }
+      }
+      lang = flag '--lang <ids>' {
+        description 'comma-separated languages to scan: typescript, python, rust, csharp, php, cpp, swift, files (default: typescript). \'files\' lists files of other languages (java, go, ...) without reading functions; off by default; extensions: config key fileOnlyExtensions. Pass the same value to every command'
+        metadata {
+          uid 'a10ba57c-55b3-4fc6-a578-636064b22b11'
+        }
+      }
+      ignore = flag '--ignore <patterns>' {
+        description 'comma-separated repo-relative patterns to skip: folder prefix, file path, or glob (* ** ?), e.g. dist,src/gen.ts,**/*.test.ts (default: none). Also applies to .c4 discovery; a pattern that matches nothing is reported as a scan warning'
+        metadata {
+          uid 'bc76cae2-fbc3-4873-9ce5-3840aa6e49b5'
+        }
+      }
+      store = flag '--store <dir>' {
+        description 'history store folder (default: config store, else <anchor>/.c4pm/projects)'
+        metadata {
+          uid '4ab6cfef-fa8e-4d56-b762-3410b113fb0b'
+        }
+      }
+      sprint = flag '--sprint <s>' {
+        description 'current sprint, e.g. S15; plan items from earlier sprints that are not done become "late"'
+        metadata {
+          uid 'd52340e0-c4a6-4bb2-9e5f-b8f094c2b0f4'
+        }
+      }
+    }
+    cmd_guide = command 'guide' {
+      description 'Print a built-in guide (for people and AI agents). With `guide ai --skill` it makes a thin Claude Code skill file (SKILL.md) from the AI guide'
+      metadata {
+        uid 'faaa3e07-1830-4246-a93e-5598694a6e13'
+      }
+      -> c4pm.c4pm.cli 'runs'
+      topic = arg '[topic]' {
+        description 'guide topic, for example c4'
+        metadata {
+          uid '31bbef60-f55e-413e-be13-2fe3d689dd5e'
+        }
+      }
+      skill = flag '--skill' {
+        description 'with topic ai: print a short agent file made from the marked rules of the AI guide (a Claude Code SKILL.md)'
+        metadata {
+          uid '2a3356de-cfde-4b1e-b58c-1dcd0e1cb076'
+        }
+      }
+      format = flag '--format <format>' {
+        description 'with --skill: skill (SKILL.md, default) or agents (an AGENTS.md snippet)'
+        metadata {
+          uid '2b808cf8-0325-4c4a-8ac2-9aad66239613'
+        }
+      }
+      out = flag '--out <path>' {
+        description 'with --skill: write the file here (parent folders are created) instead of printing it'
+        metadata {
+          uid '9d4600f2-9e0b-4727-a1c3-8cd7f4063b48'
+        }
+      }
+      force = flag '--force' {
+        description 'with --out: overwrite an existing file that differs'
+        metadata {
+          uid 'c049ae3f-6cd0-4a3f-b2a1-d242e8f85099'
+        }
+      }
+    }
+    cmd_find = command 'find' {
+      description 'Find functions, classes, methods and files by name. Case-insensitive substring of the name or the file path; each hit shows file, lines, kind and owning component. Read-only: scans live and writes nothing. A query starting with - needs -- before it'
+      metadata {
+        uid 'a18802cb-1204-4d92-909d-71071b977c47'
+      }
+      -> c4pm.c4pm.query 'runs'
+      query = arg '<query>' {
+        metadata {
+          uid '4e0ab39f-4422-41b3-83e7-f289d0496ca1'
+        }
+      }
+      lang = flag '--lang <ids>' {
+        description 'comma-separated languages to scan: typescript, python, rust, csharp, php, cpp, swift, files (default: typescript). \'files\' lists files of other languages (java, go, ...) without reading functions; off by default; extensions: config key fileOnlyExtensions. Pass the same value to every command'
+        metadata {
+          uid '41c6dc16-b126-4202-af85-903d2dbf8881'
+        }
+      }
+      ignore = flag '--ignore <patterns>' {
+        description 'comma-separated repo-relative patterns to skip: folder prefix, file path, or glob (* ** ?), e.g. dist,src/gen.ts,**/*.test.ts (default: none). Also applies to .c4 discovery; a pattern that matches nothing is reported as a scan warning'
+        metadata {
+          uid 'f6654d84-b72e-44fc-90e2-c75a8ec5b842'
+        }
+      }
+      json = flag '--json' {
+        description 'print one JSON object instead of text'
+        metadata {
+          uid '3beede38-bdda-411d-a232-6d8463742144'
+        }
+      }
+      kind = flag '--kind <kind>' {
+        description 'only this kind: function, class, method or file'
+        metadata {
+          uid '22fcccce-cc32-4daa-9acf-eb7b455fdce2'
+        }
+      }
+      limit = flag '--limit <n>' {
+        description 'most hits to return (1-100, default 20)'
+        metadata {
+          uid 'c3be56eb-b162-4a3d-ac4b-d8aa256ba950'
+        }
+      }
+    }
+    cmd_search = command 'search' {
+      description 'Search the text of the files (source, html, css, md, json, yaml, templates ...) for an error message or a UI label. Literal and case-insensitive by default; each hit shows file, line, the line, the enclosing function and the owner. Skips binary files, files over 1 MB and ignored folders. Read-only: writes nothing. A text starting with - needs -- before it'
+      metadata {
+        uid '024a76f5-d139-4e32-b259-7a9028d04685'
+      }
+      -> c4pm.c4pm.query 'runs'
+      text = arg '<text>' {
+        metadata {
+          uid 'f8c9a6b8-aa4b-4b54-a9a7-5fc282a9554b'
+        }
+      }
+      lang = flag '--lang <ids>' {
+        description 'comma-separated languages to scan: typescript, python, rust, csharp, php, cpp, swift, files (default: typescript). \'files\' lists files of other languages (java, go, ...) without reading functions; off by default; extensions: config key fileOnlyExtensions. Pass the same value to every command'
+        metadata {
+          uid '4c397e72-4b5d-4f09-a584-b392564983c2'
+        }
+      }
+      ignore = flag '--ignore <patterns>' {
+        description 'comma-separated repo-relative patterns to skip: folder prefix, file path, or glob (* ** ?), e.g. dist,src/gen.ts,**/*.test.ts (default: none). Also applies to .c4 discovery; a pattern that matches nothing is reported as a scan warning'
+        metadata {
+          uid '101c4f09-6f21-4252-bbb6-04d2fa7c3e93'
+        }
+      }
+      json = flag '--json' {
+        description 'print one JSON object instead of text'
+        metadata {
+          uid 'fe350ae7-70de-41f5-8640-df4639e99946'
+        }
+      }
+      regex = flag '--regex' {
+        description 'treat the text as a regular expression'
+        metadata {
+          uid 'c64947a7-4510-4baf-adeb-a2cb41c6a3b3'
+        }
+      }
+      case = flag '--case' {
+        description 'case-sensitive'
+        metadata {
+          uid '162b443e-92b2-4814-9e25-d24f576e5f1f'
+        }
+      }
+      ext = flag '--ext <list>' {
+        description 'only these extensions, comma separated (e.g. .html,.css)'
+        metadata {
+          uid '4143006f-00f7-4508-b2d5-4747f0edf8ca'
+        }
+      }
+      max = flag '--max <n>' {
+        description 'most hits to return (1-1000, default 50)'
+        metadata {
+          uid 'beb0bc1d-7412-46ed-b6b7-ca257c62d020'
+        }
+      }
+      context = flag '--context <n>' {
+        description 'lines around each hit (0-10, default 0)'
+        metadata {
+          uid '92abbdb5-21e5-402d-86a4-b548e9e990cb'
+        }
+      }
+    }
+    cmd_show = command 'show' {
+      description 'Print the source of a function, a line range or a whole file. Target is path, path#name, path#Class.method, path#L10 or path#L10-L20 (same as plan links); only scanned source files inside the repo are shown. Read-only: writes nothing'
+      metadata {
+        uid '1602d98f-d8e0-4585-8135-dca58b8aa477'
+      }
+      -> c4pm.c4pm.query 'runs'
+      target = arg '<target>' {
+        metadata {
+          uid '5fc2af3f-8acf-4bb9-8d5a-33967ffa9321'
+        }
+      }
+      lang = flag '--lang <ids>' {
+        description 'comma-separated languages to scan: typescript, python, rust, csharp, php, cpp, swift, files (default: typescript). \'files\' lists files of other languages (java, go, ...) without reading functions; off by default; extensions: config key fileOnlyExtensions. Pass the same value to every command'
+        metadata {
+          uid '99f40017-7bda-412a-9200-033b0d64e073'
+        }
+      }
+      ignore = flag '--ignore <patterns>' {
+        description 'comma-separated repo-relative patterns to skip: folder prefix, file path, or glob (* ** ?), e.g. dist,src/gen.ts,**/*.test.ts (default: none). Also applies to .c4 discovery; a pattern that matches nothing is reported as a scan warning'
+        metadata {
+          uid '375812a8-53fb-403e-8b7d-64687baa9d0e'
+        }
+      }
+      json = flag '--json' {
+        description 'print one JSON object instead of text'
+        metadata {
+          uid '828ffbe1-1713-4a50-8ff1-d604d62cc3fb'
+        }
+      }
+      max_lines = flag '--max-lines <n>' {
+        description 'most lines to print (1-400, default 400)'
+        metadata {
+          uid 'fe50d0dd-11a0-488e-af5b-64c716f0e53b'
+        }
+      }
+    }
+    cmd_outline = command 'outline' {
+      description 'List every function, class and method of one file. Methods are nested under their class; each shows lines and owning component. Read-only: writes nothing'
+      metadata {
+        uid '8ab4d95d-38f3-4204-9405-77c61b69f214'
+      }
+      -> c4pm.c4pm.query 'runs'
+      file = arg '<file>' {
+        metadata {
+          uid '2fd182f5-25b5-4aa0-bd15-6a5f8493e894'
+        }
+      }
+      lang = flag '--lang <ids>' {
+        description 'comma-separated languages to scan: typescript, python, rust, csharp, php, cpp, swift, files (default: typescript). \'files\' lists files of other languages (java, go, ...) without reading functions; off by default; extensions: config key fileOnlyExtensions. Pass the same value to every command'
+        metadata {
+          uid '99b2b4fb-036b-43ab-95ee-6a12e62fd2de'
+        }
+      }
+      ignore = flag '--ignore <patterns>' {
+        description 'comma-separated repo-relative patterns to skip: folder prefix, file path, or glob (* ** ?), e.g. dist,src/gen.ts,**/*.test.ts (default: none). Also applies to .c4 discovery; a pattern that matches nothing is reported as a scan warning'
+        metadata {
+          uid 'e6b1d74c-387e-4d20-b5d2-e7b63606e960'
+        }
+      }
+      json = flag '--json' {
+        description 'print one JSON object instead of text'
+        metadata {
+          uid '07993d7f-6fe9-4fc8-a410-3a8ab52c84b8'
+        }
+      }
+    }
+    cmd_deps = command 'deps' {
+      description 'Show what a container or component uses and what uses it. Element is a uid, id, fqn, local id or title; arrows and weights are the ones in the map, plus declared plan relations. Read-only: writes nothing'
+      metadata {
+        uid 'e8e620ab-74d2-4026-be76-c6a59b092526'
+      }
+      -> c4pm.c4pm.query 'runs'
+      element = arg '<element>' {
+        metadata {
+          uid '6cb68e1e-ff1d-4f15-93c1-1a4dd1cf1276'
+        }
+      }
+      lang = flag '--lang <ids>' {
+        description 'comma-separated languages to scan: typescript, python, rust, csharp, php, cpp, swift, files (default: typescript). \'files\' lists files of other languages (java, go, ...) without reading functions; off by default; extensions: config key fileOnlyExtensions. Pass the same value to every command'
+        metadata {
+          uid '2c714329-a721-4ad9-9b6b-b150400fad07'
+        }
+      }
+      ignore = flag '--ignore <patterns>' {
+        description 'comma-separated repo-relative patterns to skip: folder prefix, file path, or glob (* ** ?), e.g. dist,src/gen.ts,**/*.test.ts (default: none). Also applies to .c4 discovery; a pattern that matches nothing is reported as a scan warning'
+        metadata {
+          uid 'fcf9b8b0-9b67-4db3-9127-a1ed4bf13d65'
+        }
+      }
+      json = flag '--json' {
+        description 'print one JSON object instead of text'
+        metadata {
+          uid '1d685894-a07d-4a93-91eb-5c0d2d914a3f'
+        }
+      }
+    }
+    cmd_calls = command 'calls' {
+      description 'List the functions a function or method calls. Function is path#name, or a name found in one file. Traced calls only (same file, imported from a repo file, method of a known class or namespace); the rest is counted as unresolved or external, never guessed. Read-only: writes nothing'
+      metadata {
+        uid '52fad7f2-96fb-4ed6-9d81-ee983879a8e6'
+      }
+      -> c4pm.c4pm.calls_tools 'runs'
+      function = arg '<function>' {
+        metadata {
+          uid 'd0a270ec-bbd1-4691-ad00-b16d8b04a884'
+        }
+      }
+      lang = flag '--lang <ids>' {
+        description 'comma-separated languages to scan: typescript, python, rust, csharp, php, cpp, swift, files (default: typescript). \'files\' lists files of other languages (java, go, ...) without reading functions; off by default; extensions: config key fileOnlyExtensions. Pass the same value to every command'
+        metadata {
+          uid 'debd63b1-a302-4b11-980d-93822efdb498'
+        }
+      }
+      ignore = flag '--ignore <patterns>' {
+        description 'comma-separated repo-relative patterns to skip: folder prefix, file path, or glob (* ** ?), e.g. dist,src/gen.ts,**/*.test.ts (default: none). Also applies to .c4 discovery; a pattern that matches nothing is reported as a scan warning'
+        metadata {
+          uid '26c0c5f7-4014-410c-9847-ce542141401b'
+        }
+      }
+      json = flag '--json' {
+        description 'print one JSON object instead of text'
+        metadata {
+          uid '540b5c40-7aed-4802-99fe-4d377bf7fcc0'
+        }
+      }
+    }
+    cmd_callers = command 'callers' {
+      description 'List the functions that call a function or method. Function is path#name, or a name found in one file. Traced calls only; "unresolved" counts untraced calls of the same name elsewhere (possible callers). Calls outside any named function belong to <module>. Read-only: writes nothing'
+      metadata {
+        uid '0f1c485c-aa51-46a0-91d3-3a5b84e39bc2'
+      }
+      -> c4pm.c4pm.calls_tools 'runs'
+      function = arg '<function>' {
+        metadata {
+          uid 'e7670931-f6c0-46dd-aecc-42e9ac18c2c3'
+        }
+      }
+      lang = flag '--lang <ids>' {
+        description 'comma-separated languages to scan: typescript, python, rust, csharp, php, cpp, swift, files (default: typescript). \'files\' lists files of other languages (java, go, ...) without reading functions; off by default; extensions: config key fileOnlyExtensions. Pass the same value to every command'
+        metadata {
+          uid 'f3def290-21bc-4623-91b2-ec997c404941'
+        }
+      }
+      ignore = flag '--ignore <patterns>' {
+        description 'comma-separated repo-relative patterns to skip: folder prefix, file path, or glob (* ** ?), e.g. dist,src/gen.ts,**/*.test.ts (default: none). Also applies to .c4 discovery; a pattern that matches nothing is reported as a scan warning'
+        metadata {
+          uid '17c9846b-7db1-4320-a9de-ab4c87d77623'
+        }
+      }
+      json = flag '--json' {
+        description 'print one JSON object instead of text'
+        metadata {
+          uid 'fab54772-ec9a-4575-b2b4-b9a26c7e1239'
+        }
+      }
+    }
+    cmd_mcp = command 'mcp' {
+      description 'Serve the code-query tools (find, show, outline, deps, calls, callers, ...) to an AI client over MCP (stdio). Read-only: writes nothing. Reads JSON-RPC lines on stdin, answers on stdout, logs on stderr; stops when stdin closes. Start it from the client config, not by hand'
+      metadata {
+        uid '493e4943-7710-4340-ac9b-5fb238b0879f'
+      }
+      -> c4pm.c4pm.mcp 'runs'
+      lang = flag '--lang <ids>' {
+        description 'comma-separated languages to scan: typescript, python, rust, csharp, php, cpp, swift, files (default: typescript). \'files\' lists files of other languages (java, go, ...) without reading functions; off by default; extensions: config key fileOnlyExtensions. Pass the same value to every command'
+        metadata {
+          uid 'dba7be00-3728-419d-8769-0e10c64c335a'
+        }
+      }
+      ignore = flag '--ignore <patterns>' {
+        description 'comma-separated repo-relative patterns to skip: folder prefix, file path, or glob (* ** ?), e.g. dist,src/gen.ts,**/*.test.ts (default: none). Also applies to .c4 discovery; a pattern that matches nothing is reported as a scan warning'
+        metadata {
+          uid 'a2958cc3-4dad-490c-bf92-950b83d43b35'
+        }
+      }
+    }
+    cmd_board = command 'board' {
+      description 'Tasks, features, issues and bugs on boards. Boards live in .c4pm/projects/<repoId>/board/board.json; items nest, depend on each other and link to plan elements by uid. Run c4pm board <command> --help for details'
+      metadata {
+        uid '801d274d-faa6-4b92-a209-18a2f9cd2940'
+      }
+      -> c4pm.c4pm.boards 'runs'
+      list = command 'board list' {
+        description 'List board items, grouped by board. Read-only: writes nothing'
+        metadata {
+          uid 'cd3bee09-070f-41f1-b08e-8561240c3bf9'
+        }
+        -> c4pm.c4pm.boards 'runs'
+        board = flag '--board <id>' {
+          description 'only this board (also shows an archived board)'
+          metadata {
+            uid 'e6e601bd-1130-4494-8d06-00c6f3705641'
+          }
+        }
+        status = flag '--status <status>' {
+          description 'only items with this status'
+          metadata {
+            uid '302c5504-784c-482a-8d74-13567932cf1c'
+          }
+        }
+        kind = flag '--kind <kind>' {
+          description 'only items of this kind: task, feature, issue, bug, decision, question'
+          metadata {
+            uid '5ba01315-15b4-4a5f-8972-d59c31b1205e'
+          }
+        }
+        tag = flag '--tag <tag>' {
+          description 'only items with this tag'
+          metadata {
+            uid 'b3e8bf1d-0c2c-4431-b32d-00edc1524757'
+          }
+        }
+        owner = flag '--owner <owner>' {
+          description 'only items with this owner'
+          metadata {
+            uid '9f79e37f-de55-4de0-9408-d34e665f7365'
+          }
+        }
+        overdue = flag '--overdue' {
+          description 'only items past their due date and not done or abandoned'
+          metadata {
+            uid '5cfd2e7f-7ec8-4b92-976d-2a78301dd4e5'
+          }
+        }
+        due_before = flag '--due-before <date>' {
+          description 'only items due before this date (YYYY-MM-DD)'
+          metadata {
+            uid 'cc063692-5ead-4f89-aa54-32e1b618103c'
+          }
+        }
+        json = flag '--json' {
+          description 'print one JSON object { boards: [...] } instead of text'
+          metadata {
+            uid '053597a7-94b8-4350-88c8-eeb345158167'
+          }
+        }
+      }
+      add = command 'board add' {
+        description 'Add an item to a board. Mints the next id (b1, b2, ...). A board name that does not exist yet creates that board. Prints the item (dry run) and writes only with --yes'
+        metadata {
+          uid 'eebf2bc4-7290-4c4e-8ab9-b73e0a48c525'
+        }
+        -> c4pm.c4pm.boards 'runs'
+        flag_title = flag '--title <text>' {
+          description 'item title (required without --from-file)'
+          metadata {
+            uid '3b491c89-ac33-4713-951e-e8123ccc67f7'
+          }
+        }
+        kind = flag '--kind <kind>' {
+          description 'task, feature, issue, bug, decision, question (required without --from-file)'
+          metadata {
+            uid '6be0343e-e44e-43f6-a44b-bd76eca50688'
+          }
+        }
+        from_file = flag '--from-file <path>' {
+          description 'create many items from a JSON file {"items": [...]}; other item options are not allowed'
+          metadata {
+            uid '0ef0a04b-a5f6-4f08-9af0-cc8e9510e4ff'
+          }
+        }
+        json = flag '--json' {
+          description 'with --from-file: print one JSON object instead of text'
+          metadata {
+            uid '827a2d61-fbb8-42c2-aabc-07ca2b3c3a94'
+          }
+        }
+        board = flag '--board <id>' {
+          description 'board to add to (required when the file has more than one; a new id creates the board)'
+          metadata {
+            uid '62a5b1da-6197-4499-9f92-8991bcd73981'
+          }
+        }
+        board_name = flag '--board-name <name>' {
+          description 'display name for a board created by --board (default: the id)'
+          metadata {
+            uid '8fe8e237-3e19-4cd3-9e90-8b268c7fc3ea'
+          }
+        }
+        status = flag '--status <status>' {
+          description 'planned, in-progress, done or abandoned (default: "planned")'
+          metadata {
+            uid '2bf3a23b-f9c5-4b8d-aa80-511ee6ec8139'
+          }
+        }
+        owner = flag '--owner <owner>' {
+          description 'who owns the item'
+          metadata {
+            uid '04bd9dc7-5857-4f05-bf6c-e46000d0c418'
+          }
+        }
+        parent = flag '--parent <id>' {
+          description 'nest under this item of the same board'
+          metadata {
+            uid '77e20f5c-b156-44bb-8cc0-af8021cc9acc'
+          }
+        }
+        depends = flag '--depends <ids>' {
+          description 'comma separated ids of items this one waits for'
+          metadata {
+            uid '97eef98a-c58c-4c33-84c9-f7a3b764bc48'
+          }
+        }
+        tag = flag '--tag <tags>' {
+          description 'comma separated tags: lower-case letters, digits and dashes'
+          metadata {
+            uid '5bb9fda5-3bbb-4a4b-9c73-1678a8c40d7b'
+          }
+        }
+        flag_link = flag '--link <uids>' {
+          description 'comma separated uids of plan elements (see c4pm plan show)'
+          metadata {
+            uid '45700a4d-570b-478e-9078-bd884077def6'
+          }
+        }
+        start = flag '--start <date>' {
+          description 'start date YYYY-MM-DD'
+          metadata {
+            uid 'b4556bdd-fb2a-4f2d-8bd4-38fe616a4223'
+          }
+        }
+        due = flag '--due <date>' {
+          description 'due date YYYY-MM-DD'
+          metadata {
+            uid 'd9f46ee3-8799-4c80-b17d-2576c6fb2253'
+          }
+        }
+        group = flag '--group <name>' {
+          description 'Kanban group of the board, by name or id'
+          metadata {
+            uid 'c6d09a73-888d-446d-be09-3357096a86e7'
+          }
+        }
+        flag_description = flag '--description <text>' {
+          description 'free text, several lines allowed, up to 8000 characters'
+          metadata {
+            uid 'f3337248-5ba8-42e5-8d5c-320914753eb5'
+          }
+        }
+        description_file = flag '--description-file <path>' {
+          description 'read the description from a UTF-8 text file (for long text)'
+          metadata {
+            uid '7a8775fb-3780-4cd5-85a1-dff079983886'
+          }
+        }
+        doc = flag '--doc <spec>' {
+          description 'a document: path:docs/x.md (repo-relative) or url:https://... ; optional label Label=path:docs/x.md ; repeat the flag or use a comma list'
+          metadata {
+            uid 'bc1e88c6-eefc-4cc3-a9b2-874b54d5fcdb'
+          }
+        }
+        outcome = flag '--outcome <text>' {
+          description 'how it ended: a commit hash or a verified-by note, up to 2000 characters'
+          metadata {
+            uid '5a0feed8-1976-44ec-951e-1893410cf7ff'
+          }
+        }
+        size = flag '--size <size>' {
+          description 'S, M, L, XL'
+          metadata {
+            uid '5630a3f1-9904-4565-8646-fc57432b1515'
+          }
+        }
+        sprint = flag '--sprint <sprint>' {
+          description 'sprint label such as S15'
+          metadata {
+            uid '5edc14d4-92e7-48c6-b866-9cccaef89a8c'
+          }
+        }
+        priority = flag '--priority <priority>' {
+          description 'high, medium, low'
+          metadata {
+            uid '18b9b260-d449-4f55-abf1-29d1e5a9b299'
+          }
+        }
+        yes = flag '--yes' {
+          description 'write the change; without it only the item is printed'
+          metadata {
+            uid '8e76044a-ec70-4bb7-b841-30120f29e6f7'
+          }
+        }
+      }
+      set = command 'board set' {
+        description 'Change fields of one item. Only the named fields change; none clears parent, depends, tag, start, due, group, owner, description, outcome, size, sprint, priority and docs. Sets updated (and closed when the status becomes done). Prints before and after (dry run) and writes only with --yes'
+        metadata {
+          uid '9415e1ff-651e-403e-a2ba-77b41277fe75'
+        }
+        -> c4pm.c4pm.boards 'runs'
+        id = arg '<id>' {
+          metadata {
+            uid 'e8b34043-d876-4a59-a938-4dc8713a3995'
+          }
+        }
+        status = flag '--status <status>' {
+          description 'planned, in-progress, done or abandoned'
+          metadata {
+            uid 'd490b252-98b7-4c5a-bdf0-103977ff46d2'
+          }
+        }
+        flag_title = flag '--title <text>' {
+          description 'new title'
+          metadata {
+            uid '15b73bfd-8a11-413c-aeaf-23d54609053c'
+          }
+        }
+        owner = flag '--owner <owner>' {
+          description 'new owner, or none'
+          metadata {
+            uid '4aa623f9-63ac-410f-a520-7ad476e8514f'
+          }
+        }
+        kind = flag '--kind <kind>' {
+          description 'task, feature, issue, bug, decision, question'
+          metadata {
+            uid '6f7d00ad-a052-485e-ac4a-a057a05368bf'
+          }
+        }
+        parent = flag '--parent <id>' {
+          description 'nest under this item of the same board, or none'
+          metadata {
+            uid '38bf578b-015d-45c5-bd0a-aaaf772a30c9'
+          }
+        }
+        depends = flag '--depends <ids>' {
+          description 'comma separated ids this item waits for, or none'
+          metadata {
+            uid '845ed42e-4d48-4f04-8529-273fad549836'
+          }
+        }
+        tag = flag '--tag <tags>' {
+          description 'comma separated tags, or none'
+          metadata {
+            uid 'd6e1633c-8759-4394-845d-ca6711fdf690'
+          }
+        }
+        start = flag '--start <date>' {
+          description 'start date YYYY-MM-DD, or none'
+          metadata {
+            uid '5b1bfe09-fddc-4371-93d1-db0e81d387c3'
+          }
+        }
+        due = flag '--due <date>' {
+          description 'due date YYYY-MM-DD, or none'
+          metadata {
+            uid '0bbbed94-c861-4a17-8372-3b839ab7705c'
+          }
+        }
+        group = flag '--group <name>' {
+          description 'Kanban group of the board, by name or id, or none'
+          metadata {
+            uid '92616d61-56c6-4495-8e2b-31d58fd1e6e5'
+          }
+        }
+        flag_description = flag '--description <text>' {
+          description 'new description (several lines allowed), or none'
+          metadata {
+            uid 'f1b0229e-ffb9-497d-9acd-74b1afd9a1e2'
+          }
+        }
+        description_file = flag '--description-file <path>' {
+          description 'read the new description from a UTF-8 text file'
+          metadata {
+            uid '19fddab8-fb92-4336-bded-5640fb216335'
+          }
+        }
+        doc = flag '--doc <spec>' {
+          description 'REPLACE the documents: path:docs/x.md or url:https://... (optional Label=); repeat or comma list; none clears'
+          metadata {
+            uid '4dcd36ed-d259-4308-801b-a14b336275ab'
+          }
+        }
+        add_doc = flag '--add-doc <spec>' {
+          description 'ADD documents to the existing ones (same syntax as --doc; a repeated path or url is kept once)'
+          metadata {
+            uid '6d2bdb9a-5f62-413c-847f-e0e6124e601f'
+          }
+        }
+        outcome = flag '--outcome <text>' {
+          description 'how it ended (commit hash, verified-by note), or none'
+          metadata {
+            uid 'c167622b-25a9-4917-91bd-a2fe5fa2d6ec'
+          }
+        }
+        size = flag '--size <size>' {
+          description 'S, M, L, XL, or none'
+          metadata {
+            uid 'bbeca3cb-88a8-496e-bd83-437602cc79e5'
+          }
+        }
+        sprint = flag '--sprint <sprint>' {
+          description 'sprint label such as S15, or none'
+          metadata {
+            uid 'c949cdee-b3da-4c50-a40b-825dcfb5f8d8'
+          }
+        }
+        priority = flag '--priority <priority>' {
+          description 'high, medium, low, or none'
+          metadata {
+            uid '1c1077ac-4ca1-46d9-b8db-18fbad93e634'
+          }
+        }
+        yes = flag '--yes' {
+          description 'write the change; without it only the change is printed'
+          metadata {
+            uid '5dca14cd-8afe-47b9-a8f6-0f595f13afae'
+          }
+        }
+      }
+      cmd_link = command 'board link' {
+        description 'Link an item to a plan element. Target is a uid, fqn, local id or name (one match needed); stores its uid; prints the change (dry run) and writes only with --yes. Never edits the plan'
+        metadata {
+          uid '3268de45-6881-467e-a494-42a1b2f66d65'
+        }
+        -> c4pm.c4pm.boards 'runs'
+        id = arg '<id>' {
+          metadata {
+            uid 'cbf80cdd-3528-417c-ac75-ee7de648e533'
+          }
+        }
+        target = arg '<target>' {
+          metadata {
+            uid '02122fd3-8644-4607-a53e-8ad11fc7a1fe'
+          }
+        }
+        yes = flag '--yes' {
+          description 'write the change; without it only the change is printed'
+          metadata {
+            uid '01fd458a-d396-4813-94f8-faecfcd695cc'
+          }
+        }
+      }
+      unlink = command 'board unlink' {
+        description 'Remove the link from an item to a plan element. Target is a uid, fqn, local id or name; prints the change (dry run) and writes only with --yes'
+        metadata {
+          uid '9cb9a65a-44ac-489f-ad91-d83b94d6c3a5'
+        }
+        -> c4pm.c4pm.boards 'runs'
+        id = arg '<id>' {
+          metadata {
+            uid '18dc7c21-4419-480c-9547-27be03241db7'
+          }
+        }
+        target = arg '<target>' {
+          metadata {
+            uid '5d216d3f-4b36-4b9e-8747-ff3728227c45'
+          }
+        }
+        yes = flag '--yes' {
+          description 'write the change; without it only the change is printed'
+          metadata {
+            uid '4c699893-dc9c-48f0-98fb-4dca7dc043cd'
+          }
+        }
+      }
+      show = command 'board show' {
+        description 'Show one item: parent, children, dependencies, who waits for it, and the plan elements it links to (kind, fqn, status, owner; a dead uid is listed as missing). Read-only: writes nothing'
+        metadata {
+          uid '8386fe26-e841-4259-b1be-c8f6ed0a66bb'
+        }
+        -> c4pm.c4pm.boards 'runs'
+        id = arg '<id>' {
+          metadata {
+            uid '8dac3bbf-da45-45c6-b8c6-5f56510ff1e0'
+          }
+        }
+        json = flag '--json' {
+          description 'print one JSON object instead of text'
+          metadata {
+            uid '63f21c15-3922-4657-ba16-eb6188db7e92'
+          }
+        }
+      }
+      tree = command 'board tree' {
+        description 'Draw items and their nesting; dependencies are arrows from the item waited for to the item that waits. With an id: that item and one level below it; without: the top-level items of a board. Prints Mermaid, text or JSON. Read-only: writes nothing'
+        metadata {
+          uid '8523c339-d325-4100-94d0-40c0f20f8c0b'
+        }
+        -> c4pm.c4pm.boards 'runs'
+        id = arg '[id]' {
+          metadata {
+            uid '88c42614-1ebe-491f-b031-b0f335913b82'
+          }
+        }
+        board = flag '--board <id>' {
+          description 'board to draw when no id is given (needed when there are 2+ open boards)'
+          metadata {
+            uid '6f2a5143-4abd-42e6-aabd-51a37e34e7c1'
+          }
+        }
+        recursive = flag '-r, --recursive' {
+          description 'show every level below'
+          metadata {
+            uid '5477954f-0a7a-4a59-a890-e0d42901b1f3'
+          }
+        }
+        format = flag '--format <fmt>' {
+          description 'mermaid, text or json (default: "mermaid")'
+          metadata {
+            uid '3cc6d090-490a-4c2e-925f-3726071c07fd'
+          }
+        }
+        direction = flag '--direction <dir>' {
+          description 'Mermaid direction: TD or LR (default: "TD")'
+          metadata {
+            uid 'e4df3f2d-285e-4a11-b131-f710fcf99e16'
+          }
+        }
+        max_nodes = flag '--max-nodes <n>' {
+          description 'refuse a bigger graph (default 120)'
+          metadata {
+            uid '71f5a59a-ae14-4411-8f73-6edc2267e716'
+          }
+        }
+        fence = flag '--fence' {
+          description 'wrap the Mermaid text in a ```mermaid block'
+          metadata {
+            uid 'f6b36209-3509-4aaf-8d15-612735204dd0'
+          }
+        }
+      }
+      for = command 'board for' {
+        description 'List every item (any board) that links to a plan element. Target is a uid, fqn, local id or name (one match needed; the element needs a uid). Read-only: writes nothing'
+        metadata {
+          uid '9956e6b3-8b20-4339-acd5-37370711a7df'
+        }
+        -> c4pm.c4pm.boards 'runs'
+        target = arg '<target>' {
+          metadata {
+            uid '2ad99f20-64b2-436e-b547-4e23d1fea7f8'
+          }
+        }
+        json = flag '--json' {
+          description 'print one JSON object instead of text'
+          metadata {
+            uid 'f028d590-d352-486a-aac3-16b19cd384c7'
+          }
+        }
+      }
+      remove = command 'board remove' {
+        description 'Remove one item. Refused while another item depends on it or is nested under it (they are listed); nothing is removed with it. Prints the change (dry run) and writes only with --yes'
+        metadata {
+          uid '400d6314-38b1-479f-80fe-4b3701ff7a0f'
+        }
+        -> c4pm.c4pm.boards 'runs'
+        id = arg '<id>' {
+          metadata {
+            uid 'ac7de396-7451-4259-8d2f-969cb19fea44'
+          }
+        }
+        yes = flag '--yes' {
+          description 'write the change; without it only the change is printed'
+          metadata {
+            uid 'cdc645c6-3360-457b-9570-b3842ef1cf3c'
+          }
+        }
+        json = flag '--json' {
+          description 'print one JSON object instead of text'
+          metadata {
+            uid 'a492338e-4b7b-4b6a-b0ce-ae70682f8192'
+          }
+        }
+      }
+      move = command 'board move' {
+        description 'Move an item and everything nested under it to another board; ids stay. Refused for an item that has a parent, or for a missing or archived board. Sets updated. Prints the change (dry run) and writes only with --yes'
+        metadata {
+          uid 'debc246f-b26d-4e80-acbd-b21855118f0d'
+        }
+        -> c4pm.c4pm.boards 'runs'
+        id = arg '<id>' {
+          metadata {
+            uid 'cc06c873-e747-4f44-8d1d-8881a2389652'
+          }
+        }
+        board = flag '--board <id>' {
+          description '(required) the board to move to (required)'
+          metadata {
+            uid 'a274f4a2-1222-4780-96dc-6b8085da6fed'
+          }
+        }
+        yes = flag '--yes' {
+          description 'write the change; without it only the change is printed'
+          metadata {
+            uid '7125d3b9-335e-42c4-b817-9d419e9411ac'
+          }
+        }
+        json = flag '--json' {
+          description 'print one JSON object instead of text'
+          metadata {
+            uid 'e1d68d99-5f7f-4183-8f63-c586d44700c6'
+          }
+        }
+      }
+      group = command 'board group' {
+        description 'Kanban groups of a board: add, remove or order them. Run c4pm board group <command> --help for details'
+        metadata {
+          uid '08b370d4-a4b4-4102-a597-dd34cc57ff1d'
+        }
+        -> c4pm.c4pm.boards 'runs'
+        add = command 'board group add' {
+          description 'Add a custom group (no status). The id is made from the name. Refused for a duplicate name or id. Prints the change (dry run) and writes only with --yes'
+          metadata {
+            uid 'e0743b4a-e15b-41d3-a614-1b382a23e6a8'
+          }
+          -> c4pm.c4pm.boards 'runs'
+          name = arg '<name>' {
+            metadata {
+              uid 'b8b29837-e278-4cbe-912c-e6b3ead31b3a'
+            }
+          }
+          board = flag '--board <id>' {
+            description 'board of the group (default: the only open board)'
+            metadata {
+              uid '1c7eb38b-65b1-4658-9ec2-a9e56b802673'
+            }
+          }
+          yes = flag '--yes' {
+            description 'write the change; without it only the change is printed'
+            metadata {
+              uid '9b0339ff-7f5e-4868-9a4f-bc485057b6ea'
+            }
+          }
+          json = flag '--json' {
+            description 'print one JSON object instead of text'
+            metadata {
+              uid '53da7a85-897b-4e3a-802f-148360ccbb58'
+            }
+          }
+        }
+        remove = command 'board group remove' {
+          description 'Remove a custom group, by name or id. Refused while an item is in it, and for a group that follows a status. Prints the change (dry run) and writes only with --yes'
+          metadata {
+            uid 'd85169cc-1210-4c06-81c7-c4ee15ada2ba'
+          }
+          -> c4pm.c4pm.boards 'runs'
+          name = arg '<name>' {
+            metadata {
+              uid '58d7f42c-3737-42b7-9b8c-ed7149a27503'
+            }
+          }
+          board = flag '--board <id>' {
+            description 'board of the group (default: the only open board)'
+            metadata {
+              uid '3a683439-ab24-4fc5-b0b3-e7ddcee99a06'
+            }
+          }
+          yes = flag '--yes' {
+            description 'write the change; without it only the change is printed'
+            metadata {
+              uid 'ab11028d-ce2b-4879-85dc-6fc32f802b2e'
+            }
+          }
+          json = flag '--json' {
+            description 'print one JSON object instead of text'
+            metadata {
+              uid '35504978-b281-4453-934c-47bdffb073ee'
+            }
+          }
+        }
+        order = command 'board group order' {
+          description 'Set the order of the groups. Names (or ids) as a comma list that names every group of the board exactly once. Only the order changes. Prints the change (dry run) and writes only with --yes'
+          metadata {
+            uid '96afb683-42dd-4b2a-9c61-548159855ab8'
+          }
+          -> c4pm.c4pm.boards 'runs'
+          names = arg '<names>' {
+            metadata {
+              uid '518954a5-61f3-4c05-8ba4-ccca40de3220'
+            }
+          }
+          board = flag '--board <id>' {
+            description 'board of the groups (default: the only open board)'
+            metadata {
+              uid '5009d38c-08fb-4187-97bb-37cecc9791c7'
+            }
+          }
+          yes = flag '--yes' {
+            description 'write the change; without it only the change is printed'
+            metadata {
+              uid 'a51de641-fc8c-4e7d-8676-0aef28d3e33b'
+            }
+          }
+          json = flag '--json' {
+            description 'print one JSON object instead of text'
+            metadata {
+              uid '06efd751-01eb-4678-a4bd-8679023405e6'
+            }
+          }
+        }
+      }
+    }
+    cmd_install = command 'install' {
+      description 'Make this single-file binary a global command. Copies it to ~/.local/bin (Windows: %LOCALAPPDATA%\\Programs\\c4pm) and, with your consent, adds that folder to PATH. Shows the plan and asks once; without a terminal it needs --yes. Never uses sudo: for /usr/local/bin run sudo cp yourself'
+      metadata {
+        uid 'a002a87b-c1a7-47de-90be-9730aa2996e9'
+      }
+      dir = flag '--dir <folder>' {
+        description 'install into this folder instead of the default'
+        metadata {
+          uid '15579330-b9c0-43fd-963c-850c68732c23'
+        }
+      }
+      yes = flag '--yes' {
+        description 'do it without asking'
+        metadata {
+          uid 'ddba4c80-b970-4454-85c7-415410862a2b'
+        }
+      }
+      no_path = flag '--no-path' {
+        description 'do not change PATH or any shell profile'
+        metadata {
+          uid 'e6b61855-0330-48a2-8ac3-ef445b371347'
+        }
+      }
+    }
+    cmd_uninstall = command 'uninstall' {
+      description 'Remove the installed binary and the PATH block c4pm added. Removes only the file c4pm (c4pm.exe) in the install folder and the marked block in your shell profile; asks once, or use --yes'
+      metadata {
+        uid 'cbdb66a2-8ec2-4c59-9b27-5161ac67e425'
+      }
+      dir = flag '--dir <folder>' {
+        description 'the folder c4pm was installed into (default: the install default)'
+        metadata {
+          uid '0095f72a-0533-4108-8f09-ded6c2024cda'
+        }
+      }
+      yes = flag '--yes' {
+        description 'do it without asking'
+        metadata {
+          uid '5c3b00c9-e9d1-4e69-b1f3-74ef42c185a0'
+        }
+      }
+    }
+    tool_find = tool 'find' {
+      description 'Find functions, classes, methods and files by name. Case-insensitive substring of the name or the file path; each hit has file, lines, kind and owning component.'
+      metadata {
+        uid '1e27d64e-f2c8-4e3b-9345-0e839edd0133'
+      }
+      -> c4pm.c4pm.mcp 'served by'
+      query = param 'query' {
+        description 'Substring of an element name or a file path'
+        metadata {
+          uid 'da75f54f-dff5-4f4a-82c6-a87dc10335ab'
+          type 'string'
+          required 'true'
+        }
+      }
+      kind = param 'kind' {
+        description 'Only this kind'
+        metadata {
+          uid '64679d9c-7ebd-41ee-b78f-1db888c6be92'
+          type 'string (function|class|method|file)'
+        }
+      }
+      limit = param 'limit' {
+        description 'Most hits to return'
+        metadata {
+          uid '5e4b7aeb-4120-4292-990b-89bf87f245d9'
+          type 'integer'
+        }
+      }
+    }
+    tool_search = tool 'search' {
+      description 'Search the text of the files (source, html, css, md, json, yaml, templates) for an error message or a UI label. Literal, case-insensitive by default. Each hit has file, line, text, enclosing function and owner. Skips binary files, files over 1 MB and ignored folders; the result counts hits, files searched and files skipped.'
+      metadata {
+        uid 'a1ba9fb6-9e20-49ee-8b15-1fefb89a40cf'
+      }
+      -> c4pm.c4pm.mcp 'served by'
+      query = param 'query' {
+        description 'Text to look for (a pattern when regex is true)'
+        metadata {
+          uid '32858cfe-c9b8-41df-b114-990aa88b2275'
+          type 'string'
+          required 'true'
+        }
+      }
+      regex = param 'regex' {
+        description 'Treat query as a regular expression'
+        metadata {
+          uid '157513da-49f5-4b2a-af59-a8b9b7ee5d52'
+          type 'boolean'
+        }
+      }
+      case = param 'case' {
+        description 'Case-sensitive'
+        metadata {
+          uid '4fbe83f6-3465-46f9-9440-99079943bc2d'
+          type 'boolean'
+        }
+      }
+      ext = param 'ext' {
+        description 'Only these extensions, e.g. [".html", ".css"]'
+        metadata {
+          uid '8d9a76c3-b701-4820-9758-c8a6f511cf41'
+          type 'array<string>'
+        }
+      }
+      max = param 'max' {
+        description 'Most hits to return'
+        metadata {
+          uid '03469d1a-fd55-45bd-af1d-1f1a98df7491'
+          type 'integer'
+        }
+      }
+      context = param 'context' {
+        description 'Lines around each hit'
+        metadata {
+          uid '3ab54f1d-fbc8-40f3-8550-e597c805484d'
+          type 'integer'
+        }
+      }
+    }
+    tool_show = tool 'show' {
+      description 'Return the source of a function, a line range or a whole file. Target is path, path#name, path#Class.method, path#L10 or path#L10-L20; only scanned source files inside the repo are shown.'
+      metadata {
+        uid 'b40a8373-03a9-4028-b80d-4463ffa8347e'
+      }
+      -> c4pm.c4pm.mcp 'served by'
+      target = param 'target' {
+        description 'path, path#name, path#Class.method, path#L10 or path#L10-L20'
+        metadata {
+          uid '7bf0642e-b046-4506-bb7a-12e04d14dd0b'
+          type 'string'
+          required 'true'
+        }
+      }
+      max_lines = param 'max_lines' {
+        description 'Most lines to return'
+        metadata {
+          uid 'bc2aade5-f175-4856-9957-7ee6227b6c32'
+          type 'integer'
+        }
+      }
+    }
+    tool_outline = tool 'outline' {
+      description 'List every function, class and method of one scanned file. Methods are nested under their class; each shows lines and owning component.'
+      metadata {
+        uid '7b925fde-379f-40f7-bb14-7fa5ab476291'
+      }
+      -> c4pm.c4pm.mcp 'served by'
+      path = param 'path' {
+        description 'Repo-relative path of a scanned source file'
+        metadata {
+          uid 'f9314c98-9220-4d23-9869-23a49c765eaf'
+          type 'string'
+          required 'true'
+        }
+      }
+    }
+    tool_deps = tool 'deps' {
+      description 'Show what a container or component uses and what uses it, plus declared plan relations. Id is a uid, id, fqn, local id or title.'
+      metadata {
+        uid '00b2e2f5-322c-45c6-96c3-58936092d9b5'
+      }
+      -> c4pm.c4pm.mcp 'served by'
+      id = param 'id' {
+        description 'Container or component: uid, id, fqn, local id or title'
+        metadata {
+          uid '6ca94632-9f71-4575-a193-8b6be90d2118'
+          type 'string'
+          required 'true'
+        }
+      }
+    }
+    tool_calls = tool 'calls' {
+      description 'List the functions a function or method calls: {target, calls: [{name, file, line, resolved}], unresolved, external}. Only traced calls are listed (same file, imported from a repo file, method of a known class or namespace); unresolved and external calls are counted, never guessed.'
+      metadata {
+        uid '08c3ae70-c50d-4afc-9905-deac4069604d'
+      }
+      -> c4pm.c4pm.mcp 'served by'
+      function = param 'function' {
+        description 'path#name, or a function / Class.method name found in one file'
+        metadata {
+          uid '1c7be796-294e-4ebf-a8de-8d9d0d043281'
+          type 'string'
+          required 'true'
+        }
+      }
+    }
+    tool_callers = tool 'callers' {
+      description 'List the functions that call a function or method: {target, callers: [{name, file, line, resolved}], unresolved}. <module> is the caller of calls outside any named function. unresolved counts untraced calls of the same name elsewhere (possible callers).'
+      metadata {
+        uid 'd334bca8-acb5-4c62-a4f7-e6801c31db2d'
+      }
+      -> c4pm.c4pm.mcp 'served by'
+      function = param 'function' {
+        description 'path#name, or a function / Class.method name found in one file'
+        metadata {
+          uid '7e5c6745-dd89-4b59-abf5-f197dcaf357c'
+          type 'string'
+          required 'true'
+        }
+      }
+    }
+    tool_view_path = tool 'view_path' {
+      description 'Where the exported view page (the interactive map of the repo) is, and whether and when it was last written. Does not generate it.'
+      metadata {
+        uid '07936fd0-9574-4e69-bec9-9290f43bb553'
+      }
+      -> c4pm.c4pm.mcp 'served by'
+    }
+    tool_check = tool 'check' {
+      description 'Check the .c4 plan against the code: the findings (severity, rule, id, message) of `c4pm check`, same array as `c4pm check --format json`. {"plan": false, "findings": []} when the repo has no .c4 files.'
+      metadata {
+        uid '83225430-cc8c-45c1-b646-a5d32667d196'
+      }
+      -> c4pm.c4pm.mcp 'served by'
+      min_severity = param 'min_severity' {
+        description 'Hide findings below this level'
+        metadata {
+          uid '5622231c-28b5-450d-8bb3-a737736ed70f'
+          type 'string (info|warning|critical)'
+        }
+      }
+      sprint = param 'sprint' {
+        description 'Only plan items of this sprint'
+        metadata {
+          uid 'a81fe832-a344-49a3-a47c-248ed8374491'
+          type 'string'
+        }
+      }
+    }
+    tool_status = tool 'status' {
+      description 'Summary of the repo as `c4pm status` sees it: snapshot size, stored history, plan findings by severity and the effective config (languages, ignore).'
+      metadata {
+        uid 'a9294622-c2ff-4573-8921-362064267919'
+      }
+      -> c4pm.c4pm.mcp 'served by'
+    }
+  }
+}

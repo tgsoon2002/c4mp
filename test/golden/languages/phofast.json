@@ -1,0 +1,227 @@
+{
+  "files": [
+    {
+      "elements": [
+        {
+          "endLine": 19,
+          "kind": "function",
+          "lineCount": 3,
+          "name": "issueToken",
+          "startLine": 17
+        },
+        {
+          "endLine": 23,
+          "kind": "function",
+          "lineCount": 3,
+          "name": "revokeToken",
+          "startLine": 21,
+          "stub": "todo"
+        }
+      ],
+      "file": "src/api/auth/index.ts",
+      "handler": "typescript",
+      "imports": [
+        {
+          "kind": "import",
+          "line": 1,
+          "resolved": {
+            "pkg": "passport",
+            "status": "external"
+          },
+          "spec": "passport"
+        },
+        {
+          "kind": "import",
+          "line": 2,
+          "resolved": {
+            "pkg": "jsonwebtoken",
+            "status": "external"
+          },
+          "spec": "jsonwebtoken"
+        },
+        {
+          "kind": "import",
+          "line": 3,
+          "resolved": {
+            "pkg": "passport-jwt",
+            "status": "external"
+          },
+          "spec": "passport-jwt"
+        },
+        {
+          "kind": "import",
+          "line": 4,
+          "resolved": {
+            "status": "unresolved"
+          },
+          "spec": "../db"
+        }
+      ],
+      "lineCount": 23,
+      "parseError": false
+    },
+    {
+      "elements": [
+        {
+          "endLine": 4,
+          "kind": "function",
+          "lineCount": 3,
+          "name": "pointsFor",
+          "startLine": 2
+        }
+      ],
+      "file": "src/api/loyalty/points.ts",
+      "handler": "typescript",
+      "imports": [],
+      "lineCount": 4,
+      "parseError": false
+    },
+    {
+      "elements": [],
+      "file": "src/api/menu/index.ts",
+      "handler": "typescript",
+      "imports": [
+        {
+          "kind": "import",
+          "line": 1,
+          "resolved": {
+            "pkg": "express",
+            "status": "external"
+          },
+          "spec": "express"
+        },
+        {
+          "kind": "import",
+          "line": 2,
+          "resolved": {
+            "status": "unresolved"
+          },
+          "spec": "../db"
+        }
+      ],
+      "lineCount": 8,
+      "parseError": false
+    },
+    {
+      "elements": [],
+      "file": "src/api/orders/index.ts",
+      "handler": "typescript",
+      "imports": [
+        {
+          "kind": "import",
+          "line": 1,
+          "resolved": {
+            "pkg": "express",
+            "status": "external"
+          },
+          "spec": "express"
+        },
+        {
+          "kind": "import",
+          "line": 2,
+          "resolved": {
+            "status": "internal",
+            "target": "src/api/auth/index.ts"
+          },
+          "spec": "../auth"
+        },
+        {
+          "kind": "import",
+          "line": 3,
+          "resolved": {
+            "status": "unresolved"
+          },
+          "spec": "../db"
+        }
+      ],
+      "lineCount": 16,
+      "parseError": false
+    },
+    {
+      "elements": [
+        {
+          "endLine": 4,
+          "kind": "function",
+          "lineCount": 3,
+          "name": "AdminDashboard",
+          "startLine": 2
+        }
+      ],
+      "file": "src/web/admin/Dashboard.tsx",
+      "handler": "typescript",
+      "imports": [],
+      "lineCount": 4,
+      "parseError": false
+    },
+    {
+      "elements": [
+        {
+          "endLine": 15,
+          "kind": "function",
+          "lineCount": 12,
+          "name": "Checkout",
+          "startLine": 4
+        }
+      ],
+      "file": "src/web/pages/Checkout.tsx",
+      "handler": "typescript",
+      "imports": [
+        {
+          "kind": "import",
+          "line": 1,
+          "resolved": {
+            "status": "unresolved"
+          },
+          "spec": "../cart"
+        },
+        {
+          "kind": "import",
+          "line": 2,
+          "resolved": {
+            "status": "unresolved"
+          },
+          "spec": "../api"
+        }
+      ],
+      "lineCount": 15,
+      "parseError": false
+    },
+    {
+      "elements": [
+        {
+          "endLine": 8,
+          "kind": "function",
+          "lineCount": 5,
+          "name": "Menu",
+          "startLine": 4
+        }
+      ],
+      "file": "src/web/pages/Menu.tsx",
+      "handler": "typescript",
+      "imports": [
+        {
+          "kind": "import",
+          "line": 1,
+          "resolved": {
+            "pkg": "react",
+            "status": "external"
+          },
+          "spec": "react"
+        },
+        {
+          "kind": "import",
+          "line": 2,
+          "resolved": {
+            "status": "unresolved"
+          },
+          "spec": "../api"
+        }
+      ],
+      "lineCount": 8,
+      "parseError": false
+    }
+  ],
+  "languages": [
+    "typescript"
+  ]
+}

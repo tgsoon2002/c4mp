@@ -1,0 +1,324 @@
+{
+  "files": [
+    {
+      "elements": [
+        {
+          "endLine": 11,
+          "kind": "function",
+          "lineCount": 3,
+          "name": "total",
+          "startLine": 9
+        }
+      ],
+      "file": "src/lib.rs",
+      "handler": "rust",
+      "imports": [
+        {
+          "kind": "import",
+          "line": 1,
+          "resolved": {
+            "status": "internal",
+            "target": "src/shop.rs"
+          },
+          "spec": "mod shop"
+        },
+        {
+          "kind": "import",
+          "line": 2,
+          "resolved": {
+            "status": "internal",
+            "target": "src/util/mod.rs"
+          },
+          "spec": "mod util"
+        },
+        {
+          "kind": "import",
+          "line": 4,
+          "resolved": {
+            "status": "internal",
+            "target": "src/shop.rs"
+          },
+          "spec": "crate::shop::Order"
+        },
+        {
+          "kind": "import",
+          "line": 4,
+          "resolved": {
+            "status": "internal",
+            "target": "src/shop.rs"
+          },
+          "spec": "crate::shop::make_order"
+        },
+        {
+          "kind": "import",
+          "line": 5,
+          "resolved": {
+            "pkg": "serde",
+            "status": "external"
+          },
+          "spec": "serde::Serialize"
+        },
+        {
+          "kind": "import",
+          "line": 6,
+          "resolved": {
+            "status": "internal",
+            "target": "src/shop.rs"
+          },
+          "spec": "shop::tax"
+        },
+        {
+          "kind": "import",
+          "line": 7,
+          "resolved": {
+            "pkg": "std",
+            "status": "external"
+          },
+          "spec": "std::collections::HashMap"
+        }
+      ],
+      "lineCount": 11,
+      "parseError": false
+    },
+    {
+      "elements": [
+        {
+          "endLine": 6,
+          "kind": "class",
+          "lineCount": 4,
+          "name": "Order",
+          "startLine": 3
+        },
+        {
+          "endLine": 11,
+          "kind": "type",
+          "lineCount": 4,
+          "name": "Status",
+          "startLine": 8
+        },
+        {
+          "endLine": 19,
+          "kind": "type",
+          "lineCount": 7,
+          "name": "Priced",
+          "startLine": 13
+        },
+        {
+          "endLine": 14,
+          "kind": "method",
+          "lineCount": 1,
+          "name": "Priced.price",
+          "startLine": 14
+        },
+        {
+          "endLine": 18,
+          "kind": "method",
+          "lineCount": 3,
+          "name": "Priced.is_free",
+          "startLine": 16
+        },
+        {
+          "endLine": 24,
+          "kind": "method",
+          "lineCount": 3,
+          "name": "Order.new",
+          "startLine": 22
+        },
+        {
+          "endLine": 28,
+          "kind": "method",
+          "lineCount": 3,
+          "name": "Order.refund",
+          "startLine": 26,
+          "stub": "todo"
+        },
+        {
+          "endLine": 34,
+          "kind": "method",
+          "lineCount": 3,
+          "name": "Order.price",
+          "startLine": 32
+        },
+        {
+          "endLine": 40,
+          "kind": "method",
+          "lineCount": 3,
+          "name": "Order.fmt",
+          "startLine": 38
+        },
+        {
+          "endLine": 45,
+          "kind": "function",
+          "lineCount": 3,
+          "name": "make_order",
+          "startLine": 43
+        },
+        {
+          "endLine": 50,
+          "kind": "function",
+          "lineCount": 3,
+          "name": "vat",
+          "startLine": 48
+        },
+        {
+          "endLine": 54,
+          "kind": "function",
+          "lineCount": 3,
+          "name": "exempt",
+          "startLine": 52,
+          "stub": "todo"
+        }
+      ],
+      "file": "src/shop.rs",
+      "handler": "rust",
+      "imports": [
+        {
+          "kind": "import",
+          "line": 1,
+          "resolved": {
+            "pkg": "std",
+            "status": "external"
+          },
+          "spec": "std::fmt"
+        }
+      ],
+      "lineCount": 55,
+      "parseError": false
+    },
+    {
+      "elements": [
+        {
+          "endLine": 10,
+          "kind": "type",
+          "lineCount": 1,
+          "name": "Align",
+          "startLine": 10
+        },
+        {
+          "endLine": 15,
+          "kind": "function",
+          "lineCount": 4,
+          "name": "pad",
+          "startLine": 12
+        }
+      ],
+      "file": "src/util/fmt.rs",
+      "handler": "rust",
+      "imports": [
+        {
+          "kind": "import",
+          "line": 1,
+          "resolved": {
+            "status": "internal",
+            "target": "src/util/mod.rs"
+          },
+          "spec": "super::helper"
+        },
+        {
+          "kind": "import",
+          "line": 2,
+          "resolved": {
+            "status": "internal",
+            "target": "src/shop.rs"
+          },
+          "spec": "crate::shop::tax"
+        },
+        {
+          "kind": "import",
+          "line": 2,
+          "resolved": {
+            "status": "internal",
+            "target": "src/shop.rs"
+          },
+          "spec": "crate::shop::tax::vat"
+        },
+        {
+          "kind": "import",
+          "line": 7,
+          "resolved": {
+            "status": "internal",
+            "target": "src/util/mod.rs"
+          },
+          "spec": "crate::util::helper"
+        },
+        {
+          "kind": "import",
+          "line": 13,
+          "resolved": {
+            "status": "internal",
+            "target": "src/util/fmt.rs"
+          },
+          "spec": "Align"
+        }
+      ],
+      "lineCount": 15,
+      "parseError": false
+    },
+    {
+      "elements": [
+        {
+          "endLine": 3,
+          "kind": "function",
+          "lineCount": 1,
+          "name": "helper",
+          "startLine": 3
+        }
+      ],
+      "file": "src/util/mod.rs",
+      "handler": "rust",
+      "imports": [
+        {
+          "kind": "import",
+          "line": 1,
+          "resolved": {
+            "status": "internal",
+            "target": "src/util/fmt.rs"
+          },
+          "spec": "mod fmt"
+        }
+      ],
+      "lineCount": 3,
+      "parseError": false
+    },
+    {
+      "elements": [
+        {
+          "endLine": 3,
+          "kind": "function",
+          "lineCount": 3,
+          "name": "make_total",
+          "startLine": 1
+        },
+        {
+          "endLine": 8,
+          "kind": "test",
+          "lineCount": 3,
+          "name": "total_doubles",
+          "startLine": 6
+        },
+        {
+          "endLine": 14,
+          "kind": "test",
+          "lineCount": 3,
+          "name": "total_async",
+          "startLine": 12
+        },
+        {
+          "endLine": 20,
+          "kind": "test",
+          "lineCount": 3,
+          "name": "total_overflows",
+          "startLine": 18
+        }
+      ],
+      "file": "tests/orders.rs",
+      "handler": "rust",
+      "imports": [],
+      "lineCount": 20,
+      "parseError": false
+    }
+  ],
+  "languages": [
+    "rust"
+  ]
+}

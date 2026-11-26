@@ -1,0 +1,92 @@
+/* board-drawer.css: the bar of the board drawer under the map (P16-B28b). The shell (#board-drawer, edge, body) is in style.css. */
+#board-drawer-edge:hover {
+  background: var(--accentSoft);
+}
+
+#board-drawer-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 2px 10px 6px;
+  border-bottom: 1px solid var(--line);
+  flex-shrink: 0;
+  font-size: 12px;
+}
+
+#board-drawer.bd-min {
+  height: auto;
+  min-height: 0;
+}
+
+#board-drawer.bd-min #board-drawer-body,
+#board-drawer.bd-min #board-drawer-edge {
+  display: none;
+}
+
+#board-drawer.bd-min #board-drawer-bar {
+  border-bottom: 0;
+}
+
+#board-drawer-bar button,
+#board-drawer-bar select {
+  background: var(--panel);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 3px 9px;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+#board-drawer-bar .bd-seg {
+  display: inline-flex;
+}
+
+#board-drawer-bar .bd-seg button {
+  border-radius: 0;
+  margin-left: -1px;
+}
+
+#board-drawer-bar .bd-seg button:first-child {
+  border-radius: 6px 0 0 6px;
+  margin-left: 0;
+}
+
+#board-drawer-bar .bd-seg button:last-child {
+  border-radius: 0 6px 6px 0;
+}
+
+#board-drawer-bar .bd-seg button[aria-pressed="true"] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+#board-drawer-bar .bd-hint {
+  flex: 1 1 120px;   /* shrinks with an ellipsis before the bar wraps; the full text is in the title */
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+#board-drawer-bar .bd-slot[hidden] {
+  display: none;
+}
+
+#board-drawer-bar .bd-end {
+  margin-left: auto;
+  flex-shrink: 0;
+  display: inline-flex;
+  gap: 6px;
+}
+
+#board-drawer-body .bd-empty {
+  padding: 14px;
+  color: var(--muted);
+  font-size: 12.5px;
+}

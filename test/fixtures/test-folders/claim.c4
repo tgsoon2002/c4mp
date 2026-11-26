@@ -1,0 +1,31 @@
+specification {
+  element system
+  element container
+  element component
+}
+
+model {
+  shop = system 'Shop' {
+    web = container 'Web' {
+      a = component 'A' {
+        link ./src/a/x.ts#x
+      }
+      b = component 'B' {
+        link ./src/b/
+      }
+      tests = component 'Tests' {
+        link ./test/
+      }
+    }
+    e2e = container 'E2E' {
+      flows = component 'Flows' {
+        link ./e2e/
+      }
+    }
+    tools = container 'Tools' {
+      gen = component 'Gen' {
+        link ./tools/
+      }
+    }
+  }
+}

@@ -1,0 +1,333 @@
+{
+  "files": [
+    {
+      "elements": [],
+      "file": "public/index.php",
+      "handler": "php",
+      "imports": [
+        {
+          "kind": "require",
+          "line": 3,
+          "resolved": {
+            "status": "internal",
+            "target": "src/Models/Order.php"
+          },
+          "spec": "./../src/Models/Order.php"
+        },
+        {
+          "kind": "require",
+          "line": 4,
+          "resolved": {
+            "status": "internal",
+            "target": "views/list.php"
+          },
+          "spec": "./../views/list.php"
+        },
+        {
+          "kind": "require",
+          "line": 5,
+          "resolved": {
+            "status": "unresolved"
+          },
+          "spec": "missing.php"
+        },
+        {
+          "kind": "require",
+          "line": 7,
+          "resolved": {
+            "status": "unresolved"
+          },
+          "spec": "$page . \".php\""
+        },
+        {
+          "kind": "require",
+          "line": 8,
+          "resolved": {
+            "status": "unresolved"
+          },
+          "spec": "\"pages/{$page}.php\""
+        },
+        {
+          "kind": "require",
+          "line": 9,
+          "resolved": {
+            "status": "unresolved"
+          },
+          "spec": "./../vendor/autoload.php"
+        }
+      ],
+      "lineCount": 9,
+      "parseError": false
+    },
+    {
+      "elements": [
+        {
+          "endLine": 11,
+          "kind": "type",
+          "lineCount": 4,
+          "name": "Payable",
+          "startLine": 8
+        },
+        {
+          "endLine": 19,
+          "kind": "class",
+          "lineCount": 7,
+          "name": "Loggable",
+          "startLine": 13
+        },
+        {
+          "endLine": 18,
+          "kind": "method",
+          "lineCount": 4,
+          "name": "Loggable.log",
+          "startLine": 15
+        },
+        {
+          "endLine": 30,
+          "kind": "type",
+          "lineCount": 10,
+          "name": "Status",
+          "startLine": 21
+        },
+        {
+          "endLine": 54,
+          "kind": "class",
+          "lineCount": 23,
+          "name": "Order",
+          "startLine": 32
+        },
+        {
+          "endLine": 38,
+          "kind": "method",
+          "lineCount": 3,
+          "name": "Order.__construct",
+          "startLine": 36
+        },
+        {
+          "endLine": 43,
+          "kind": "method",
+          "lineCount": 4,
+          "name": "Order.pay",
+          "startLine": 40
+        },
+        {
+          "endLine": 48,
+          "kind": "method",
+          "lineCount": 4,
+          "name": "Order.free",
+          "startLine": 45
+        },
+        {
+          "endLine": 53,
+          "kind": "method",
+          "lineCount": 4,
+          "name": "Order.refund",
+          "startLine": 50,
+          "stub": "throws"
+        },
+        {
+          "endLine": 59,
+          "kind": "function",
+          "lineCount": 4,
+          "name": "make_order",
+          "startLine": 56
+        }
+      ],
+      "file": "src/Models/Order.php",
+      "handler": "php",
+      "imports": [
+        {
+          "kind": "import",
+          "line": 5,
+          "resolved": {
+            "status": "unresolved"
+          },
+          "spec": "Shop\\Contracts\\Priced"
+        },
+        {
+          "kind": "import",
+          "line": 6,
+          "resolved": {
+            "status": "internal",
+            "target": "src/Util/Money.php"
+          },
+          "spec": "Shop\\Util\\Money"
+        }
+      ],
+      "lineCount": 59,
+      "parseError": false
+    },
+    {
+      "elements": [
+        {
+          "endLine": 16,
+          "kind": "class",
+          "lineCount": 7,
+          "name": "Money",
+          "startLine": 10
+        },
+        {
+          "endLine": 15,
+          "kind": "method",
+          "lineCount": 4,
+          "name": "Money.format",
+          "startLine": 12
+        }
+      ],
+      "file": "src/Util/Money.php",
+      "handler": "php",
+      "imports": [
+        {
+          "kind": "import",
+          "line": 5,
+          "resolved": {
+            "pkg": "Psr",
+            "status": "external"
+          },
+          "spec": "Psr\\Log\\LoggerInterface"
+        },
+        {
+          "kind": "import",
+          "line": 6,
+          "resolved": {
+            "pkg": "shop/http-kit",
+            "status": "external"
+          },
+          "spec": "Shop\\HttpKit\\Client"
+        },
+        {
+          "kind": "import",
+          "line": 7,
+          "resolved": {
+            "status": "internal",
+            "target": "src/Models/Order.php"
+          },
+          "spec": "Shop\\Models\\Order"
+        },
+        {
+          "kind": "import",
+          "line": 7,
+          "resolved": {
+            "status": "unresolved"
+          },
+          "spec": "Shop\\Models\\Status"
+        },
+        {
+          "kind": "import",
+          "line": 8,
+          "resolved": {
+            "status": "unresolved"
+          },
+          "spec": "Shop\\Models\\make_order"
+        }
+      ],
+      "lineCount": 16,
+      "parseError": false
+    },
+    {
+      "elements": [
+        {
+          "endLine": 35,
+          "kind": "class",
+          "lineCount": 27,
+          "name": "OrderTest",
+          "startLine": 9
+        },
+        {
+          "endLine": 14,
+          "kind": "method",
+          "lineCount": 4,
+          "name": "OrderTest.makeOrder",
+          "startLine": 11
+        },
+        {
+          "endLine": 19,
+          "kind": "test",
+          "lineCount": 4,
+          "name": "OrderTest.testPays",
+          "startLine": 16
+        },
+        {
+          "endLine": 27,
+          "kind": "test",
+          "lineCount": 4,
+          "name": "OrderTest.it_is_free",
+          "startLine": 24
+        },
+        {
+          "endLine": 34,
+          "kind": "test",
+          "lineCount": 6,
+          "name": "OrderTest.refunds",
+          "startLine": 29
+        }
+      ],
+      "file": "tests/OrderTest.php",
+      "handler": "php",
+      "imports": [
+        {
+          "kind": "import",
+          "line": 5,
+          "resolved": {
+            "pkg": "PHPUnit",
+            "status": "external"
+          },
+          "spec": "PHPUnit\\Framework\\Attributes\\Test"
+        },
+        {
+          "kind": "import",
+          "line": 6,
+          "resolved": {
+            "pkg": "PHPUnit",
+            "status": "external"
+          },
+          "spec": "PHPUnit\\Framework\\TestCase"
+        },
+        {
+          "kind": "import",
+          "line": 7,
+          "resolved": {
+            "status": "internal",
+            "target": "src/Models/Order.php"
+          },
+          "spec": "Shop\\Models\\Order"
+        }
+      ],
+      "lineCount": 35,
+      "parseError": false
+    },
+    {
+      "elements": [
+        {
+          "endLine": 7,
+          "kind": "function",
+          "lineCount": 4,
+          "name": "render_row",
+          "startLine": 4
+        },
+        {
+          "endLine": 21,
+          "kind": "class",
+          "lineCount": 7,
+          "name": "ListView",
+          "startLine": 15
+        },
+        {
+          "endLine": 20,
+          "kind": "method",
+          "lineCount": 4,
+          "name": "ListView.title",
+          "startLine": 17
+        }
+      ],
+      "file": "views/list.php",
+      "handler": "php",
+      "imports": [],
+      "lineCount": 24,
+      "parseError": false
+    }
+  ],
+  "languages": [
+    "php"
+  ]
+}

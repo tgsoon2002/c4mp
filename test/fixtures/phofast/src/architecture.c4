@@ -1,0 +1,27 @@
+specification {
+  element person
+  element system
+  element container
+  element component
+}
+
+model {
+  customer = person 'Customer'
+  kitchen  = person 'Kitchen staff'
+  stripe   = system 'Stripe' {
+    description 'External card payments'
+  }
+
+  phofast = system 'PhoFast' {
+    description 'Order pho online, pick it up hot'
+    web = container 'Web App' { technology 'React SPA' }
+    api = container 'API'     { technology 'Node / Express' }
+    db  = container 'Database' { technology 'PostgreSQL' }
+  }
+
+  customer -> phofast.web 'browses menu, places orders'
+  kitchen  -> phofast.web 'sees incoming orders'
+  phofast.web -> phofast.api 'JSON over HTTPS'
+  phofast.api -> phofast.db 'reads / writes'
+  phofast.api -> stripe 'charges cards'
+}

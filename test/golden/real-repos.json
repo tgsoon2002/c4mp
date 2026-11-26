@@ -1,0 +1,130 @@
+{
+  "repos": {
+    "fd": {
+      "language": "rust",
+      "sha": "4f81778774463bf414a184cbe6d5219ad2229646",
+      "crashes": 0,
+      "files": 24,
+      "parseErrorFiles": 0,
+      "elements": 384,
+      "tests": 101,
+      "imports": {
+        "total": 293,
+        "internal": 99,
+        "external": 194,
+        "asset": 0,
+        "unresolved": 0
+      },
+      "containers": 1,
+      "components": 4
+    },
+    "slim": {
+      "language": "php",
+      "sha": "3675bf6baac66b07032575b7bef4200b60b7974b",
+      "crashes": 0,
+      "files": 125,
+      "parseErrorFiles": 0,
+      "elements": 776,
+      "tests": 306,
+      "imports": {
+        "total": 825,
+        "internal": 306,
+        "external": 518,
+        "asset": 0,
+        "unresolved": 1
+      },
+      "containers": 1,
+      "components": 1
+    },
+    "serilog": {
+      "language": "csharp",
+      "sha": "6d9fc0b84e004418f2677b5961b9c8970349d0be",
+      "crashes": 0,
+      "files": 216,
+      "parseErrorFiles": 31,
+      "elements": 1663,
+      "tests": 436,
+      "imports": {
+        "total": 425,
+        "internal": 380,
+        "external": 45,
+        "asset": 0,
+        "unresolved": 0
+      },
+      "containers": 1,
+      "components": 16
+    },
+    "fmt": {
+      "language": "cpp",
+      "sha": "1be298e1bd68957e4cd352e1f676f00e07dcfb57",
+      "crashes": 0,
+      "files": 71,
+      "parseErrorFiles": 35,
+      "elements": 3765,
+      "tests": 608,
+      "imports": {
+        "total": 723,
+        "internal": 166,
+        "external": 557,
+        "asset": 0,
+        "unresolved": 0
+      },
+      "containers": 3,
+      "components": 2
+    },
+    "alamofire": {
+      "language": "swift",
+      "sha": "bda9ed57d72988a3a2ada33d824583541f86eac6",
+      "crashes": 0,
+      "files": 101,
+      "parseErrorFiles": 20,
+      "elements": 2389,
+      "tests": 834,
+      "imports": {
+        "total": 2124,
+        "internal": 1980,
+        "external": 144,
+        "asset": 0,
+        "unresolved": 0
+      },
+      "containers": 1,
+      "components": 4
+    },
+    "requests": {
+      "language": "python",
+      "sha": "6e83187b8feb273ed4c6cdab5efd8d54901dfab3",
+      "crashes": 0,
+      "files": 37,
+      "parseErrorFiles": 0,
+      "elements": 684,
+      "tests": 345,
+      "imports": {
+        "total": 304,
+        "internal": 86,
+        "external": 218,
+        "asset": 0,
+        "unresolved": 0
+      },
+      "containers": 2,
+      "components": 4
+    },
+    "hono": {
+      "language": "typescript",
+      "sha": "bac5c4a8bcd76b165428ce757e1185753c7935bd",
+      "crashes": 0,
+      "files": 450,
+      "parseErrorFiles": 8,
+      "elements": 4541,
+      "tests": 3159,
+      "imports": {
+        "total": 1407,
+        "internal": 1165,
+        "external": 229,
+        "asset": 3,
+        "unresolved": 10
+      },
+      "containers": 14,
+      "components": 28
+    }
+  }
+}

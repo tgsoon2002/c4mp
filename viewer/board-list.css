@@ -1,0 +1,104 @@
+/* board-list.css: the List view of the board drawer (P16-B24). Scoped under .bd-tbl so it cannot touch other views. */
+.bd-tbl {
+  height: 100%;
+  overflow: auto;
+}
+
+.bd-tbl table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 12.5px;
+}
+
+.bd-tbl th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--panel2);
+  text-align: left;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: var(--muted);
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+.bd-tbl td {
+  padding: 5px 8px;
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+}
+
+.bd-tbl tr.r {
+  cursor: pointer;
+}
+
+.bd-tbl tr.r:hover {
+  background: var(--panel2);
+}
+
+.bd-tbl tr.r:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+.bd-tbl tr.sel {
+  background: var(--accentSoft);
+  box-shadow: inset 3px 0 0 #FFB020;
+}
+
+.bd-tbl .bd-kind {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.bd-tbl .bd-ttl {
+  max-width: 260px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bd-tbl .bd-id {
+  color: var(--muted);
+  font: 11px ui-monospace, monospace;
+}
+
+.bd-tbl .bd-n {
+  color: var(--muted);
+}
+
+.bd-tbl .bd-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 5px;
+  background: #A3B0AD;
+}
+
+.bd-tbl .bd-dot.st-in-progress {
+  background: #E7B24A;
+}
+
+.bd-tbl .bd-dot.st-done {
+  background: #5CC98C;
+}
+
+.bd-tbl .bd-due {
+  padding: 0 6px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+}
+
+.bd-tbl .bd-due.over {
+  color: #fff;
+  background: #D0473B;
+  border-color: #D0473B;
+}
+
+.bd-tbl .bd-empty {
+  padding: 14px;
+  color: var(--muted);
+  font-size: 12px;
+}

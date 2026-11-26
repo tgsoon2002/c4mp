@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "s-2",
+  "kind": "journey",
+  "title": "Spring sale buyer",
+  "person": "customer",
+  "description": "Mai over three days: a sale email (outside the system), the buy flow s-1, and the delivery email (outside the system).",
+  "stages": [
+    {
+      "name": "Discover",
+      "outside": "Email: \"Spring sale, mugs -20%\"",
+      "goal": "Find a gift",
+      "from": "Newsletter tool",
+      "channel": "email",
+      "state": "Mai: not signed in",
+      "caption": "Mai gets the spring sale email and taps the Blue mug.",
+      "durationSec": 4
+    },
+    {
+      "name": "Buy",
+      "flow": "s-1",
+      "goal": "Buy the mug in under two minutes"
+    },
+    {
+      "name": "Follow-up",
+      "outside": "Email: \"Your order is on its way\"",
+      "goal": "Know when it arrives",
+      "from": "Shipping partner",
+      "channel": "email",
+      "state": "order o-1001: shipped (outside)",
+      "caption": "Two days later the shipping partner emails the tracking link. It is sent outside this model.",
+      "durationSec": 4
+    }
+  ]
+}

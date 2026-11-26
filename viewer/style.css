@@ -1,0 +1,1173 @@
+:root {
+  --bg: #EEF2F1;
+  --panel: #FFFFFF;
+  --panel2: #F6F8F8;
+  --ink: #17201E;
+  --muted: #5C6966;
+  --line: #D8E0DE;
+  --c1: #08427B;
+  --bp: #EAF2FB;
+  --bpline: #CFE0F2;
+  --edge: #3D5A80;
+  --c2: #438DD5;
+  --c3: #85BBF0;
+  --c3-ink: #0B2B4A;
+  --subregion: #2C8C99;
+  --subregion-ink: #FFFFFF;
+  --file: #85BBF0;
+  --fn: #438DD5;
+  --cls: #4F93D8;
+  --person: #2D6A6A;
+  --screen: #5B4FC9;
+  --screen-soft: #F1EFFB;
+  --screen-line: #D9D3F2;
+  --control: #8E80E0;
+  --method-get: #1f9d55;
+  --method-post: #2b6cb0;
+  --method-put: #b7791f;
+  --method-delete: #c53030;
+  --external: #8A8F98;
+  --actor-ink: #FFFFFF;     /* C1 C1 (b833): text on a person's body and an external's box (render.js drawPerson, drawExternal) */
+  --external-line: #17201E; /* C1 C1 (b833): an external's dashed outline (the demo's dark dash) */
+  --accent: #1168BD;
+  --accentSoft: #E3EEF9;
+  --brand: #1F6F5C;   /* Phase 35 C (b945): the C4MP badge and spinner: green, white strokes, orange fire */
+  --brand-ink: #FFFFFF;
+  --brand-warm: #C9621F;
+  --drift-added: #4CAF50;
+  --drift-grew: #FFC107;
+  --drift-shrank: #00BCD4;
+  --drift-changed: #2196F3;
+  --drift-renamed: #9C27B0;
+  --findings: #F44336;
+  --tests: #2E7D5B;        /* Phase 26 (T26-10): test count pill on map boxes, Tests panel section */
+  --tests-soft: #E3F2EA;
+  /* b908: foundation components, one hue per slot (render.js foundationHue); >= 4.5:1 on --bp; never a status or drift colour */
+  --found-1: #D40579; --found-2: #627504; --found-3: #7344FF;
+  /* Phase 25 (UI4, b754): simulations (s-items): teal path and text on it, new row, changed cell, unverified step, lit ring, scrim, shadows */
+  --flow: #0E9F8E;
+  --flow-ink: #FFFFFF;
+  --added: #2E9E5B;
+  --changed: #E0A100;
+  --unver: #C77700;
+  --lit: #FFB020;
+  --scrim: rgba(10, 14, 14, .55);
+  --shadow-1: 0 3px 12px rgba(0, 0, 0, .12);
+  --shadow-2: 0 8px 28px rgba(0, 0, 0, .28);
+  /* Phase 30 b901: the live light of c4pm serve (live.js sets #header[data-live]). Glow = a soft light rising from the
+     top bar's bottom edge. A small dot instead: --live-glow: 0px; --live-dot: 7px; (one line below). */
+  --live-ok: #2E9E5B; --live-busy: #E0A100; --live-bad: #D93025; --live-strength: 55%;
+  --live-glow: 12px; --live-dot: 0px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #0F1514;
+    --panel: #161E1D;
+    --panel2: #1B2524;
+    --ink: #E2E9E7;
+    --muted: #91A09C;
+    --line: #293432;
+    --c1: #2C6FB3;
+    --bp: #112233;
+    --bpline: #1B3350;
+    --edge: #7A9CC6;
+    --c2: #4F93D8;
+    --c3: #7FB2E6;
+    --c3-ink: #08233D;
+    --subregion: #45A5B2;
+    --subregion-ink: #062126;
+    --file: #7FB2E6;
+    --fn: #4F93D8;
+    --cls: #6FA8D8;
+    --person: #4FA3A3;
+    --screen: #8B7FE8;
+    --screen-soft: #1A1830;
+    --screen-line: #2E2950;
+    --control: #6E62C9;
+    --method-get: #1f9d55;
+    --method-post: #2b6cb0;
+    --method-put: #b7791f;
+    --method-delete: #c53030;
+    --external: #9AA3AD;
+    --actor-ink: #0F1514;
+    --external-line: #E2E9E7;
+    --accent: #6FAEF0;
+    --accentSoft: #17304A;
+    --brand: #8FD9C2;
+    --brand-ink: #121715;
+    --drift-added: #66BB6A;
+    --drift-grew: #FFC107;
+    --drift-shrank: #26C6DA;
+    --drift-changed: #42A5F5;
+    --drift-renamed: #AB47BC;
+    --findings: #EF5350;
+    --tests: #5FC596;
+    --tests-soft: #17382A;
+    --found-1: #FF3D9A; --found-2: #B9DB00; --found-3: #9466FF;
+    --flow: #36E2C9;
+    --flow-ink: #0F1514;
+    --added: #5FC596;
+    --changed: #FFC107;
+    --unver: #FFB020;
+    --lit: #FFB020;
+    --scrim: rgba(10, 14, 14, .55);
+    --shadow-1: 0 3px 12px rgba(0, 0, 0, .12);
+    --shadow-2: 0 8px 28px rgba(0, 0, 0, .28);
+    --live-ok: #5FC596; --live-busy: #FFC107; --live-bad: #EF5350; --live-strength: 45%;
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0F1514;
+  --panel: #161E1D;
+  --panel2: #1B2524;
+  --ink: #E2E9E7;
+  --muted: #91A09C;
+  --line: #293432;
+  --c1: #2C6FB3;
+  --bp: #112233;
+  --bpline: #1B3350;
+  --edge: #7A9CC6;
+  --c2: #4F93D8;
+  --c3: #7FB2E6;
+  --c3-ink: #08233D;
+  --subregion: #45A5B2;
+  --subregion-ink: #062126;
+  --file: #7FB2E6;
+  --fn: #4F93D8;
+  --cls: #6FA8D8;
+  --person: #4FA3A3;
+  --screen: #8B7FE8;
+  --screen-soft: #1A1830;
+  --screen-line: #2E2950;
+  --control: #6E62C9;
+  --method-get: #1f9d55;
+  --method-post: #2b6cb0;
+  --method-put: #b7791f;
+  --method-delete: #c53030;
+  --external: #9AA3AD;
+  --actor-ink: #0F1514;
+  --external-line: #E2E9E7;
+  --accent: #6FAEF0;
+  --accentSoft: #17304A;
+  --brand: #8FD9C2;
+  --brand-ink: #121715;
+  --drift-added: #66BB6A;
+  --drift-grew: #FFC107;
+  --drift-shrank: #26C6DA;
+  --drift-changed: #42A5F5;
+  --drift-renamed: #AB47BC;
+  --findings: #EF5350;
+  --tests: #5FC596;
+  --tests-soft: #17382A;
+  --found-1: #FF3D9A; --found-2: #B9DB00; --found-3: #9466FF;
+  --flow: #36E2C9;
+  --flow-ink: #0F1514;
+  --added: #5FC596;
+  --changed: #FFC107;
+  --unver: #FFB020;
+  --lit: #FFB020;
+  --scrim: rgba(10, 14, 14, .55);
+  --shadow-1: 0 3px 12px rgba(0, 0, 0, .12);
+  --shadow-2: 0 8px 28px rgba(0, 0, 0, .28);
+  --live-ok: #5FC596; --live-busy: #FFC107; --live-bad: #EF5350; --live-strength: 45%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font: 14px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+  padding: 0;
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+input {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Header */
+#header {
+  background: var(--panel);
+  border-bottom: 1px solid var(--line);
+  height: 44px;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+  position: relative;
+}
+
+#header[data-live] { --live-c: var(--live-ok); box-shadow: inset 0 calc(-1 * var(--live-glow)) var(--live-glow) calc(-0.5 * var(--live-glow)) color-mix(in srgb, var(--live-c) var(--live-strength), transparent); transition: box-shadow .4s ease; }
+#header[data-live="updating"], #header[data-live="new"] { --live-c: var(--live-busy); }
+#header[data-live="failed"], #header[data-live="stopped"] { --live-c: var(--live-bad); }
+#header[data-live]::after { content: ''; position: absolute; left: 4px; top: 50%; width: var(--live-dot); height: var(--live-dot); margin-top: calc(var(--live-dot) / -2); border-radius: 50%; background: var(--live-c); box-shadow: 0 0 var(--live-dot) var(--live-c); pointer-events: none; }
+#live-badge { font-size: 12px; color: var(--muted); white-space: nowrap; flex-shrink: 0; }
+#live-badge button { margin-left: 6px; font: inherit; }
+#header[data-live="failed"] #live-badge, #header[data-live="stopped"] #live-badge { color: var(--live-bad); }
+/* "live": the text stays for screen readers only; the glow says it */
+#header[data-live="live"] #live-badge { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+@media (prefers-reduced-motion: reduce) { #header[data-live] { transition: none; } }
+
+#title {
+  font-size: 15px;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+#bar-chips,
+#board-chips {
+  font-size: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+#bar-chips {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+#board-chips {
+  margin-left: auto;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+#board-chips[hidden] {
+  display: none;
+}
+
+#btn-details,
+#btn-gear {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1;
+}
+
+/* P20-T11 (b232): the gear sits right after (i); (i) pushes the pair to the right edge. */
+#btn-details {
+  margin-left: auto;
+}
+
+#btn-details:hover,
+#btn-details[aria-expanded="true"],
+#btn-gear:hover,
+#btn-gear[aria-expanded="true"] {
+  border-color: var(--accent);
+  color: var(--ink);
+}
+
+#board-chips:not([hidden]) ~ #btn-details {
+  margin-left: 0;
+}
+
+#details-pop,
+#settings-pop {
+  position: absolute;
+  top: 100%;
+  right: 8px;
+  z-index: 20;
+  width: min(460px, calc(100vw - 16px));
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+}
+
+#settings-pop {
+  width: min(400px, calc(100vw - 16px));
+  gap: 9px;
+}
+
+#details-pop[hidden],
+#settings-pop[hidden] {
+  display: none;
+}
+
+/* Settings popup rows (P20-T11, b232): copied from the approved demo (Document/v0.6-frontend-demo.html:59-67, 89-97). */
+.set-title {
+  font-size: 11px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+/* P33: the c4pm build that made the page, top-right of the title row; selectable so K can copy it. */
+.set-version {
+  font-size: 10.5px;
+  font-weight: 400;
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--muted);
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+.set-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.set-l {
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.set-status {
+  font-size: 11.5px;
+  color: var(--muted);
+}
+
+/* b914: the Export section of the settings popup (served page only, live-export.js) */
+.set-check {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+}
+
+.seg {
+  display: inline-flex;
+  flex-wrap: wrap;
+}
+
+.seg button {
+  background: var(--panel);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 0;
+  margin-left: -1px;
+  padding: 3px 9px;
+  font: inherit;
+  font-size: 12px;
+  line-height: 1.45;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.seg button:first-child {
+  border-radius: 6px 0 0 6px;
+  margin-left: 0;
+}
+
+.seg button:last-child {
+  border-radius: 0 6px 6px 0;
+}
+
+.seg button:hover {
+  border-color: var(--accent);
+}
+
+.seg button[aria-pressed="true"] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* Help text hidden: only the default hint goes; a message written there (hint-msg: edit hint, export result) stays. */
+#root.no-help #hud-bl:not(.hint-msg) {
+  display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .seg button[aria-pressed="true"] {
+    color: var(--bg);
+  }
+}
+
+:root[data-theme="dark"] .seg button[aria-pressed="true"] {
+  color: var(--bg);
+}
+
+#subtitle {
+  font-size: 12px;
+  color: var(--muted);
+  font-family: ui-monospace, monospace;
+}
+
+#summary {
+  font-size: 13px;
+  color: var(--muted);
+  max-width: 80ch;
+}
+
+#drift-summary {
+  font-size: 13px;
+  color: var(--muted);
+  max-width: 80ch;
+}
+
+/* Main layout */
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  --left-w: 270px;   /* b269: side panel widths; the drag grips set these inline on #root */
+  --right-w: 420px;
+}
+
+#main {
+  display: flex;
+  gap: 0;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* P16-B28a: #center holds the map and, under it, the board drawer. */
+#center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+}
+
+#map-wrap {
+  flex: 1;
+  position: relative;
+  background: var(--panel2);
+  overflow: hidden;
+  min-width: 0;
+  min-height: 0;
+}
+
+#board-drawer {
+  height: var(--board-h, 46%);
+  min-height: 120px;
+  max-height: 78%;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  border-top: 1px solid var(--line);
+  background: var(--panel);
+}
+
+#board-drawer[hidden] {
+  display: none;
+}
+
+#board-drawer-edge {
+  height: 7px;
+  flex-shrink: 0;
+  cursor: ns-resize;
+}
+
+#board-drawer-body {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+}
+
+#map {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+  cursor: grab;
+}
+
+#map.drag {
+  cursor: grabbing;
+}
+
+/* HUD */
+.hud {
+  position: absolute;
+  display: flex;
+  gap: 6px;
+  pointer-events: none;
+}
+
+.hud > * {
+  pointer-events: auto;
+}
+
+#hud-tl {
+  top: 20px;
+  left: 12px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  max-width: calc(100% - 24px);
+}
+
+#hud-tr {
+  top: 20px;   /* P16-B20b: clears the 16px Top edge tab */
+  right: 12px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  max-width: calc(100% - 220px);
+}
+
+#hud-bl {
+  bottom: 10px;
+  left: 12px;
+  right: auto;
+  max-width: min(46ch, calc(100% - 140px));   /* P22 b168: leaves room for #made-with on a narrow map (it wraps) */
+  white-space: pre-line;
+  line-height: 1.45;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* Phase 35 C (b945): the tent-4 badge in the header (index.html #brand-badge) and the loading spinner (brand.js .c4mp-spin).
+   Colours: --brand (green; mint in dark), --brand-ink (strokes), --brand-warm (the fire). The spinner's C, M, P circle the tent
+   (.c4mp-crew) and its core glows (.c4mp-glow); both stop under prefers-reduced-motion. */
+.brand-badge { flex-shrink: 0; }
+.brand-badge rect { fill: var(--brand); }
+.brand-badge g { stroke: var(--brand-ink); }
+.brand-badge .warm, .c4mp-glow { fill: var(--brand-warm); }
+.c4mp-spin { display: inline-flex; vertical-align: middle; color: var(--brand); line-height: 0; }
+.c4mp-spin svg { display: block; }
+.c4mp-crew { transform-origin: 70px 70px; animation: c4mp-orbit 2.4s linear infinite; }
+.c4mp-glow { animation: c4mp-glow 1.2s ease-in-out infinite; }
+@keyframes c4mp-orbit { to { transform: rotate(360deg); } }
+@keyframes c4mp-glow { 50% { opacity: 0.45; } }
+@media (prefers-reduced-motion: reduce) { .c4mp-crew, .c4mp-glow { animation: none; } }
+#map-wrap .c4mp-boot { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 12px; color: var(--muted); }
+
+/* P22 b168 (K 2026-11-18): "Made with C4MP" credit link, bottom-right of the map (hidden in &bare and present mode,
+   and on a phone while the sim strip shows: sim.css) */
+#made-with {
+  bottom: 10px;
+  right: 12px;
+  left: auto;
+  top: auto;
+  padding: 2px 4px;
+  font-size: 11px;
+  color: var(--muted);
+  text-decoration: none;
+  pointer-events: auto;
+}
+#made-with:hover,
+#made-with:focus-visible {
+  text-decoration: underline;
+}
+
+/* The C1 pill colour is the default (controls.js updateHud sets the level colour inline on every draw): the white text
+   is never on the bare map, also before the first draw has set the inline style (C1 A1 b828 follow-up). */
+#hud-level {
+  font-weight: 600;
+  font-size: 12.5px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: var(--c1);
+  color: #fff;
+  font-family: ui-monospace, monospace;
+}
+#hud-level:empty { visibility: hidden; }
+
+#hud-sub {
+  font-size: 12.5px;
+  color: var(--ink);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 3px 8px;
+}
+
+.hud button {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 4px 9px;
+  font-size: 13px;
+  min-width: 32px;
+}
+
+.hud button:hover {
+  border-color: var(--accent);
+}
+
+.hud button[aria-pressed="true"] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* T33a: dark accent is light blue, so white text is unreadable; use the dark background token.
+   Both dark selectors the file uses: the OS preference (no data-theme="light") and the explicit theme. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .hud button[aria-pressed="true"] {
+    color: var(--bg);
+  }
+}
+
+:root[data-theme="dark"] .hud button[aria-pressed="true"] {
+  color: var(--bg);
+}
+
+.hud button[disabled] {
+  opacity: 0.4;
+  cursor: default;
+  border-color: var(--line);
+}
+
+#hud-sub:empty {
+  display: none;
+}
+
+/* Panel (right sidebar) */
+#left {
+  width: var(--left-w);
+  flex-shrink: 0;
+  border-right: 1px solid var(--line);
+  background: var(--panel);
+  overflow-y: auto;
+}
+
+#left[hidden],
+#left:empty {
+  display: none;
+}
+
+/* Left panel (P13-T3a): tabs + Architecture tree */
+#left {
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+}
+.lt-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--line);
+  flex-shrink: 0;
+}
+.lt-tab {
+  flex: 1;
+  padding: 9px 6px;
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  color: var(--muted);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+.lt-tab.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+.lt-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 6px 0;
+}
+.lt-body[hidden],
+.lt-children[hidden] {
+  display: none;
+}
+.lt-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  white-space: nowrap;
+  color: var(--ink);
+}
+.lt-row:hover {
+  background: var(--panel2);
+}
+.lt-row.selected {
+  background: var(--accentSoft);
+}
+.lt-twist {
+  width: 12px;
+  flex-shrink: 0;
+  color: var(--muted);
+  cursor: pointer;
+  user-select: none;
+}
+.lt-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.lt-tag {
+  flex-shrink: 0;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 1px 4px;
+  border-radius: 3px;
+  background: var(--panel2);
+  border: 1px solid var(--line);
+  color: var(--muted);
+}
+.lt-tag-system { background: var(--c1); border-color: var(--c1); color: #fff; }
+.lt-tag-container { background: var(--c2); border-color: var(--c2); color: #fff; }
+.lt-tag-subregion { background: var(--subregion); border-color: var(--subregion); color: var(--subregion-ink); }
+.lt-tag-person { background: var(--person); border-color: var(--person); color: #fff; }
+.lt-tag-external { background: var(--external); border-color: var(--external); color: #fff; }
+.lt-tag-screen { background: var(--screen); border-color: var(--screen); color: #fff; }
+.lt-tag-component,
+.lt-tag-shared { background: var(--c3); border-color: var(--c3); color: var(--c3-ink); }
+/* b612: on a narrow row the flags give way before the name. A flag starts at 0 and grows into the space the name leaves, up to its
+   own width (max-content), ellipsizing when cut; only when every flag is down to its stub (min-width, under the narrowest flag:
+   a one-digit count) does the name shrink and ellipsize. A row that fits looks as before. */
+.lt-flag {
+  flex: 1 1 0;
+  min-width: 1.5em;
+  max-width: max-content;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 9px;
+  padding: 0 4px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+}
+.lt-tag-test { border-color: var(--tests); color: var(--tests); }   /* Phase 26 (T26-10): Files tab test file */
+.lt-flag-test-only { border-color: var(--tests); color: var(--tests); }
+.lt-flag-unassigned {
+  border-color: var(--findings);
+  color: var(--findings);
+}
+
+#panel-col {
+  width: var(--right-w);
+  flex-shrink: 0;
+  border-left: 1px solid var(--line);
+  background: var(--panel);
+  padding: 14px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+/* Search */
+#search {
+  width: 100%;
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--panel);
+  color: var(--ink);
+}
+
+#search-results {
+  background: var(--panel2);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+/* b230: global search lives in the top bar (#header). The box is a flex item there; the results
+   open as an overlay under it (#search-pop, like #details-pop), so the thin header never grows. */
+#search-box { position: static; flex: 0 1 260px; min-width: 80px; margin-left: auto; }
+#search-box ~ #btn-details { margin-left: 0; }
+#search-box #search { width: 100%; padding: 4px 10px; }
+#search-pop {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 8px;
+  z-index: 20;
+  width: min(420px, calc(100vw - 16px));
+  max-height: 60vh;
+  overflow-y: auto;
+  padding: 6px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+}
+#search-box:focus-within #search-pop { display: block; }
+#search-results { max-height: none; margin-top: 4px; }
+/* b144: Names | Content switch and its one-line hint, under the box. */
+#search-mode { display: flex; gap: 4px; margin: 0; flex-shrink: 0; }
+.pn-search-mode-btn { flex: 1; padding: 2px 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); color: var(--muted); font-size: 12px; cursor: pointer; }
+.pn-search-mode-btn.active { color: var(--ink); border-color: var(--accent); }
+#search-hint { margin: 0; font-size: 11px; color: var(--muted); flex-shrink: 0; }
+#search-hint:empty { display: none; }
+#search-results:empty {
+  display: none;
+}
+
+.search-result {
+  padding: 8px 10px;
+  border-top: 1px solid var(--line);
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.search-result:hover {
+  background: var(--accentSoft);
+}
+
+/* Legend */
+#legend {
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+  font-size: 12px;
+}
+
+.legend-colors {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 8px 12px;
+  margin-bottom: 12px;
+}
+
+.legend-color {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.legend-swatch {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.legend-overlays {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.legend-overlay {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.legend-overlay input[type="checkbox"] {
+  cursor: pointer;
+}
+
+.legend-hints {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+/* P13-T11: collapse handles (inside #map-wrap, so they work without tree.js) */
+.side-toggle {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  width: 16px;
+  height: 48px;
+  padding: 0;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+}
+.side-toggle:hover {
+  border-color: var(--accent);
+  color: var(--ink);
+}
+#toggle-left {
+  left: 0;
+  border-left: 0;
+  border-radius: 0 6px 6px 0;
+}
+#toggle-right {
+  right: 0;
+  border-right: 0;
+  border-radius: 6px 0 0 6px;
+}
+/* P16-B20b: Top and Board edge tabs, same family as the side tabs turned 90 degrees (48x16),
+   centred on the top / bottom edge of the map area */
+.edge-toggle {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  width: 48px;
+  height: 16px;
+  padding: 0;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1;
+  cursor: pointer;
+}
+.edge-toggle:hover {
+  border-color: var(--accent);
+  color: var(--ink);
+}
+.edge-toggle[hidden] {
+  display: none;
+}
+#btn-top {
+  top: 0;
+  border-top: 0;
+  border-radius: 0 0 6px 6px;
+}
+#btn-board {
+  bottom: 0;
+  border-bottom: 0;
+  border-radius: 6px 6px 0 0;
+}
+/* b236: in the dark theme --line / --muted on --panel is too faint; border and arrow use --accent
+   (about 7:1 on --panel), bolder and a little bigger. Light theme keeps the rules above.
+   Both dark selectors the file uses: the OS preference (no data-theme="light") and the explicit theme. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .side-toggle,
+  :root:not([data-theme="light"]) .edge-toggle {
+    border-color: var(--accent);
+    color: var(--accent);
+    font-weight: 700;
+    box-shadow: 0 0 0 1px var(--panel);
+  }
+  :root:not([data-theme="light"]) .side-toggle {
+    font-size: 18px;
+  }
+  :root:not([data-theme="light"]) .edge-toggle {
+    font-size: 11px;
+  }
+  :root:not([data-theme="light"]) .side-toggle:hover,
+  :root:not([data-theme="light"]) .edge-toggle:hover {
+    background: var(--accentSoft);
+    border-color: var(--accent);
+    color: var(--ink);
+  }
+}
+
+:root[data-theme="dark"] .side-toggle,
+:root[data-theme="dark"] .edge-toggle {
+  border-color: var(--accent);
+  color: var(--accent);
+  font-weight: 700;
+  box-shadow: 0 0 0 1px var(--panel);
+}
+:root[data-theme="dark"] .side-toggle {
+  font-size: 18px;
+}
+:root[data-theme="dark"] .edge-toggle {
+  font-size: 11px;
+}
+:root[data-theme="dark"] .side-toggle:hover,
+:root[data-theme="dark"] .edge-toggle:hover {
+  background: var(--accentSoft);
+  border-color: var(--accent);
+  color: var(--ink);
+}
+.side-toggle:focus-visible,
+.edge-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+#main.left-collapsed #left,
+#main.right-collapsed #panel-col {
+  display: none;
+}
+
+/* b269: drag grips on the inner edge of each side panel. Zero-width flex items; the ::before strip lies fully inside
+   the panel (so it never overlaps the .side-toggle buttons in #map-wrap). Hidden when collapsed, under 1100px, and bare. */
+.side-grip {
+  position: relative;
+  flex: 0 0 0;
+  width: 0;
+  z-index: 6;
+  touch-action: none;
+}
+.side-grip::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 6px;
+  cursor: col-resize;
+}
+#grip-left::before { left: -6px; }
+#grip-right::before { left: 0; }
+.side-grip:hover::before,
+.side-grip:focus-visible::before,
+.side-grip.dragging::before {
+  background: var(--accent);
+  opacity: 0.5;
+}
+.side-grip:focus-visible {
+  outline: none;
+}
+#main.left-collapsed #grip-left,
+#main.right-collapsed #grip-right {
+  display: none;
+}
+
+/* Responsive (P13-T11): under 1100px the left panel narrows to 220px and the right panel moves
+   under the map (shares the height with the map). Replaces the old max-width:900px block. */
+@media (max-width: 1099px) {
+  .side-grip {
+    display: none;
+  }
+
+  #main {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-rows: minmax(320px, 3fr) minmax(0, 2fr);
+  }
+
+  #left {
+    grid-column: 1;
+    grid-row: 1 / -1;
+    width: 220px;
+  }
+
+  #center {
+    grid-column: 2;
+    grid-row: 1;
+    min-height: 0;
+  }
+
+  #map-wrap {
+    min-height: 0;
+  }
+
+  #panel-col {
+    grid-column: 2;
+    grid-row: 2;
+    width: auto;
+    min-height: 0;
+    border-left: none;
+    border-top: 1px solid var(--line);
+  }
+
+  /* P16-B21b: a hidden right panel must free its grid row, or an empty bar stays over the map. */
+  #main.right-collapsed {
+    grid-template-rows: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 719px) {
+  #board-drawer {
+    height: var(--board-h, 34%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* P16-B20: the Top button hides the whole top bar */
+#root.top-hidden #header {
+  display: none;
+}
+
+/* hidden must beat any display rule on HUD buttons (Reset layout shows only in edit mode) */
+.hud button[hidden] {
+  display: none;
+}
+
+/* VIEW-0 (b337): the view switch (look: .seg, Document/v0.7-three-views-demo.html) and its toast. openView.js adds one button per
+   registered view; here only its place in the header, the disabled state and the narrow widths. */
+#view-switch { flex-shrink: 0; margin-left: auto; }
+#view-switch ~ #search-box { margin-left: 8px; }   /* the switch takes the free space; the search box follows it */
+#view-switch button:disabled { opacity: .45; cursor: not-allowed; background: var(--panel2); color: var(--muted); border-color: var(--line); }
+/* P20-T5-P (b263): narrow header. openView.js writes the view name, the title carries it and data-short the short text; at <=1099px the
+   text is replaced by the short label, down to the narrowest width (b602: one shared arrow could not tell the segments apart; the
+   title carries the "opens in its own window" hint). CSS only: the text node is hidden with font-size 0. */
+@media (max-width: 1099px) {
+  #view-switch button { font-size: 0; }
+  #view-switch button::after { font-size: 12px; }
+  #view-switch button[data-short]::after { content: attr(data-short); }
+}
+#view-toast { position: absolute; top: 24px; left: 50%; transform: translateX(-50%); z-index: 21; max-width: min(360px, calc(100% - 16px)); padding: 5px 10px; border-radius: 8px; background: var(--panel); border: 1px solid #FFB020; color: var(--ink); font-size: 12px; box-shadow: 0 6px 20px rgba(0,0,0,.18); pointer-events: none; }
+#view-toast[hidden] { display: none; }
+
+/* P20-T5-Q (b264): a window opened with '&bare' shows only the map and the camera buttons (#hud-tr, #hud-tl stay).
+   CSS on this window only: the stored collapse keys are never written. Edit-layout buttons hidden too (bare arch). */
+#root.bare #header,
+#root.bare #left,
+#root.bare .side-grip,
+#root.bare #panel-col,
+#root.bare #board-drawer,
+#root.bare #board-drawer-edge,
+#root.bare .side-toggle,
+#root.bare .edge-toggle,
+#root.bare #hud-bl,
+#root.bare #legend,
+#root.bare #made-with,
+#root.bare #btn-edit,
+#root.bare #btn-reset,
+#root.bare #btn-arrange,
+#root.bare #btn-undo,
+#root.bare #btn-redo,
+#root.bare #btn-export {
+  display: none;
+}
+
+/* b910: the faint tag of a board item with no owner (kanban card, list cell, panel pill). */
+.bd-unassigned {
+  color: var(--muted);
+  font-style: italic;
+  opacity: 0.75;
+}
+
+/* Under 1100px #main is a grid with two rows; one column and one row give the map the whole window. */
+#root.bare #main {
+  display: flex;
+}

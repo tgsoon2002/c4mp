@@ -1,0 +1,40 @@
+// planned components for this folder
+model {
+  extend phofast.web {
+    checkout = component 'Checkout Page' {
+      technology 'React'
+      description 'Cart review and pay button'
+      link ./Checkout.tsx#L3-L14 'Checkout component'
+      metadata {
+        status   'in-progress'
+        owner    'jay'
+        sprint   'S15'
+        priority 'high'
+      }
+    }
+
+    menupage = component 'Menu Page' {
+      technology 'React'
+      description 'Lists dishes from the Menu Service'
+      link ./Menu.tsx 'Entrypoint'
+      metadata {
+        status   'done'
+        owner    'kien'
+        sprint   'S13'
+        priority 'medium'
+      }
+    }
+
+    reviews = component 'Reviews Widget' {
+      technology 'React'
+      description 'Star ratings per dish'
+      link ./Reviews.tsx 'Entrypoint'
+      metadata {
+        status   'abandoned'
+        owner    'kien'
+        sprint   'S12'
+        priority 'low'
+      }
+    }
+  }
+}

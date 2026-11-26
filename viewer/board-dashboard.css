@@ -1,0 +1,125 @@
+/* board-dashboard.css: the Dashboard view of the board drawer (P16-B27). Scoped under .bdb. Status colours as in board-kanban.css. */
+.bdb {
+  height: 100%;
+  overflow: auto;
+  padding: 10px 14px;
+  box-sizing: border-box;
+}
+
+.bdb-stats {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.bdb-stat {
+  display: flex;
+  flex-direction: column;
+  min-width: 78px;
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel2);
+}
+
+.bdb-stat.warn {
+  border-color: #D0473B;
+}
+
+.bdb-stat.warn .bdb-big {
+  color: #D0473B;
+}
+
+.bdb-big {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.bdb-slbl {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: var(--muted);
+}
+
+.bdb-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+.bdb-sec {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+
+.bdb-sec:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.bdb-h {
+  margin: 0 0 6px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: var(--muted);
+}
+
+.bdb-rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.bdb-row {
+  display: grid;
+  grid-template-columns: 90px 1fr 28px;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 0;
+  font-size: 12.5px;
+}
+
+.bdb-lbl {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bdb-track {
+  height: 8px;
+  border-radius: 4px;
+  background: var(--panel2);
+  overflow: hidden;
+}
+
+.bdb-bar {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+}
+
+.bdb-bar.st-planned,
+.bdb-bar.st-abandoned {
+  background: #A3B0AD;
+}
+
+.bdb-bar.st-in-progress {
+  background: #E7B24A;
+}
+
+.bdb-bar.st-done {
+  background: #5CC98C;
+}
+
+.bdb-n {
+  text-align: right;
+  color: var(--muted);
+}
+
+.bdb-none {
+  color: var(--muted);
+  font-size: 12px;
+}

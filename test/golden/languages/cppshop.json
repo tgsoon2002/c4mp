@@ -1,0 +1,297 @@
+{
+  "files": [
+    {
+      "elements": [
+        {
+          "endLine": 5,
+          "kind": "function",
+          "lineCount": 1,
+          "name": "clampId",
+          "startLine": 5
+        }
+      ],
+      "file": "include/shop/util.h",
+      "handler": "cpp",
+      "imports": [],
+      "lineCount": 7,
+      "parseError": false
+    },
+    {
+      "elements": [
+        {
+          "endLine": 5,
+          "kind": "function",
+          "lineCount": 1,
+          "name": "ok",
+          "startLine": 5
+        }
+      ],
+      "file": "libs/gtest/gtest/gtest.h",
+      "handler": "cpp",
+      "imports": [],
+      "lineCount": 7,
+      "parseError": false
+    },
+    {
+      "elements": [
+        {
+          "endLine": 13,
+          "kind": "function",
+          "lineCount": 4,
+          "name": "main",
+          "startLine": 10
+        }
+      ],
+      "file": "src/main.cpp",
+      "handler": "cpp",
+      "imports": [
+        {
+          "kind": "import",
+          "line": 1,
+          "resolved": {
+            "pkg": "vector",
+            "status": "external"
+          },
+          "spec": "<vector>"
+        },
+        {
+          "kind": "import",
+          "line": 2,
+          "resolved": {
+            "pkg": "sys",
+            "status": "external"
+          },
+          "spec": "<sys/types.h>"
+        },
+        {
+          "kind": "import",
+          "line": 3,
+          "resolved": {
+            "status": "internal",
+            "target": "src/order.hpp"
+          },
+          "spec": "order.hpp"
+        },
+        {
+          "kind": "import",
+          "line": 4,
+          "resolved": {
+            "status": "internal",
+            "target": "include/shop/util.h"
+          },
+          "spec": "shop/util.h"
+        },
+        {
+          "kind": "import",
+          "line": 5,
+          "resolved": {
+            "status": "unresolved"
+          },
+          "spec": "missing.h"
+        },
+        {
+          "kind": "import",
+          "line": 6,
+          "resolved": {
+            "status": "internal",
+            "target": "libs/gtest/gtest/gtest.h"
+          },
+          "spec": "gtest/gtest.h"
+        },
+        {
+          "kind": "import",
+          "line": 7,
+          "resolved": {
+            "pkg": "absl",
+            "status": "external"
+          },
+          "spec": "absl/strings/str_cat.h"
+        },
+        {
+          "kind": "import",
+          "line": 8,
+          "resolved": {
+            "status": "unresolved"
+          },
+          "spec": "shop/missing.h"
+        }
+      ],
+      "lineCount": 13,
+      "parseError": false
+    },
+    {
+      "elements": [
+        {
+          "endLine": 5,
+          "kind": "method",
+          "lineCount": 1,
+          "name": "Order.Order",
+          "startLine": 5
+        },
+        {
+          "endLine": 9,
+          "kind": "method",
+          "lineCount": 3,
+          "name": "Order.refund",
+          "startLine": 7
+        },
+        {
+          "endLine": 13,
+          "kind": "function",
+          "lineCount": 3,
+          "name": "makeId",
+          "startLine": 11
+        },
+        {
+          "endLine": 17,
+          "kind": "function",
+          "lineCount": 3,
+          "name": "findOrder",
+          "startLine": 15
+        }
+      ],
+      "file": "src/order.cpp",
+      "handler": "cpp",
+      "imports": [
+        {
+          "kind": "import",
+          "line": 1,
+          "resolved": {
+            "status": "internal",
+            "target": "src/order.hpp"
+          },
+          "spec": "order.hpp"
+        }
+      ],
+      "lineCount": 19,
+      "parseError": false
+    },
+    {
+      "elements": [
+        {
+          "endLine": 10,
+          "kind": "class",
+          "lineCount": 5,
+          "name": "Point",
+          "startLine": 6
+        },
+        {
+          "endLine": 9,
+          "kind": "method",
+          "lineCount": 1,
+          "name": "Point.sum",
+          "startLine": 9
+        },
+        {
+          "endLine": 21,
+          "kind": "class",
+          "lineCount": 10,
+          "name": "Order",
+          "startLine": 12
+        },
+        {
+          "endLine": 15,
+          "kind": "method",
+          "lineCount": 1,
+          "name": "Order.isFree",
+          "startLine": 15
+        },
+        {
+          "endLine": 26,
+          "kind": "function",
+          "lineCount": 3,
+          "name": "maxOf",
+          "startLine": 24
+        },
+        {
+          "endLine": 28,
+          "kind": "type",
+          "lineCount": 1,
+          "name": "Status",
+          "startLine": 28
+        }
+      ],
+      "file": "src/order.hpp",
+      "handler": "cpp",
+      "imports": [
+        {
+          "kind": "import",
+          "line": 2,
+          "resolved": {
+            "pkg": "string",
+            "status": "external"
+          },
+          "spec": "<string>"
+        }
+      ],
+      "lineCount": 30,
+      "parseError": false
+    },
+    {
+      "elements": [
+        {
+          "endLine": 4,
+          "kind": "function",
+          "lineCount": 1,
+          "name": "makeId",
+          "startLine": 4
+        },
+        {
+          "endLine": 9,
+          "kind": "class",
+          "lineCount": 4,
+          "name": "OrderFixture",
+          "startLine": 6
+        },
+        {
+          "endLine": 8,
+          "kind": "method",
+          "lineCount": 1,
+          "name": "OrderFixture.SetUp",
+          "startLine": 8
+        },
+        {
+          "endLine": 14,
+          "kind": "test",
+          "lineCount": 4,
+          "name": "TEST(OrderTest, IsFree)",
+          "startLine": 11
+        },
+        {
+          "endLine": 18,
+          "kind": "test",
+          "lineCount": 3,
+          "name": "TEST_F(OrderFixture, Total)",
+          "startLine": 16
+        }
+      ],
+      "file": "test/order_test.cpp",
+      "handler": "cpp",
+      "imports": [
+        {
+          "kind": "import",
+          "line": 1,
+          "resolved": {
+            "status": "internal",
+            "target": "libs/gtest/gtest/gtest.h"
+          },
+          "spec": "gtest/gtest.h"
+        },
+        {
+          "kind": "import",
+          "line": 2,
+          "resolved": {
+            "status": "internal",
+            "target": "src/order.hpp"
+          },
+          "spec": "../src/order.hpp"
+        }
+      ],
+      "lineCount": 18,
+      "parseError": false
+    }
+  ],
+  "languages": [
+    "cpp"
+  ]
+}

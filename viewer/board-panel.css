@@ -1,0 +1,214 @@
+/* board-panel.css: board items in the right panel (P16-B23, B31). panel.js injects the pn-* classes; these are the board-only ones. */
+.bd-time {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 3px 14px;
+  font-size: 12.5px;
+  margin: 0;
+}
+
+.bd-time dt {
+  color: var(--muted);
+}
+
+.bd-time dd {
+  margin: 0;
+}
+
+.bd-time .over {
+  color: #D0473B;
+  font-weight: 600;
+}
+
+.bd-zoom {
+  align-self: flex-start;
+  margin-top: 8px;
+  background: var(--accent);
+  color: #fff;
+  border: 0;
+  border-radius: 6px;
+  padding: 5px 10px;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+/* b645 (SV12): the Edit section of a served page */
+.bd-edit {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 6px 8px;
+  align-items: center;
+  margin-top: 6px;
+}
+.bd-edit[hidden] { display: none; }
+.bd-edit-label {
+  font-size: 12px;
+  color: var(--muted);
+}
+.bd-edit-input {
+  width: 100%;
+  box-sizing: border-box;
+  font: inherit;
+  font-size: 12.5px;
+  color: var(--ink);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 3px 6px;
+}
+.bd-edit-buttons {
+  display: flex;
+  gap: 6px;
+}
+.bd-edit-open,
+.bd-edit-btn {
+  background: var(--accent);
+  color: var(--actor-ink);
+  border: 0;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+.bd-edit-open[hidden] { display: none; }
+
+.bd-dead {
+  color: #D0473B;
+  border-style: dashed;
+  cursor: default;
+}
+
+.bd-none {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* kind chip and the rows of "Board items" in a c-item's panel (B31) */
+.bd-kind {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  font: 700 10px/16px ui-monospace, monospace;
+  text-align: center;
+  color: #fff;
+  background: #438DD5;
+}
+
+.bd-kind.bk-feature { background: #5B4FC9; }
+.bd-kind.bk-issue { background: #C98A12; }
+.bd-kind.bk-bug { background: #D0473B; }
+.bd-kind.bk-decision { background: #12806E; }   /* teal: distinct from blue/violet/amber/red; white text stays readable on light and dark pages */
+.bd-kind.bk-question { background: #B5307A; }   /* magenta */
+
+/* size chip (S, M, L, XL) next to a title */
+.bd-size {
+  flex-shrink: 0;
+  margin-left: 6px;
+  padding: 0 5px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--muted);
+  font: 600 10px/15px ui-monospace, monospace;
+  vertical-align: middle;
+}
+
+/* B43: description / outcome text and the documents list in the item detail */
+.bd-desc {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  max-height: 260px;
+  overflow-y: auto;
+  font-size: 12.5px;
+  line-height: 1.45;
+}
+
+.bd-docs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12.5px;
+}
+
+.bd-doc {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px;
+  min-width: 0;
+}
+
+.bd-doc-label {
+  font-weight: 600;
+}
+
+.bd-doc-link,
+.bd-doc-path {
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+
+.bd-doc-path {
+  font: 12px ui-monospace, monospace;
+}
+
+.bd-doc-link {
+  color: var(--accent);
+}
+
+.bd-copy {
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  padding: 1px 7px;
+  font: inherit;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.bd-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.bd-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-width: 0;
+  text-align: left;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 12.5px;
+  cursor: pointer;
+}
+
+.bd-row:hover {
+  border-color: var(--accent);
+}
+
+.bd-row .bd-id {
+  color: var(--muted);
+  flex-shrink: 0;
+}
+
+.bd-row .bd-t {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bd-row .bd-st {
+  color: var(--muted);
+  font-size: 11px;
+  flex-shrink: 0;
+}

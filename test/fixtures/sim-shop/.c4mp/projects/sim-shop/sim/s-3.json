@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "s-3",
+  "kind": "flow",
+  "title": "Browse without a path",
+  "colour": "blue",
+  "steps": [
+    {
+      "target": "shop.web.products",
+      "view": "io"
+    },
+    {
+      "target": "shop.web.done",
+      "view": "io",
+      "rows": {
+        "shop.api.cart": [
+          {
+            "id": 1
+          }
+        ]
+      }
+    },
+    {
+      "target": "shop.api.cart",
+      "view": "arch"
+    }
+  ]
+}

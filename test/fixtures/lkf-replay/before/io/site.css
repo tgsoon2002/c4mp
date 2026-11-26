@@ -1,0 +1,36 @@
+/*
+  Site stylesheet of C4PM's own wireframes: the layout every screen of the viewer shares, written once.
+  Linked by each wireframe with <link rel="stylesheet" href="site.css">. Layout properties only (spec H7);
+  c4pm removes anything else. Sizes measured from the viewer at 1280 x 800 on 2026-11-03.
+*/
+
+/* page frame */
+.page { display: flex; flex-direction: column; height: 100%; }
+.col  { display: flex; flex-direction: column; }
+.row  { display: flex; align-items: center; }
+.grow { flex: 1; min-width: 0; min-height: 0; }
+.main { display: flex; flex: 1; min-height: 0; }
+
+/* top bar: title and chips on the left, buttons on the right */
+.topbar { display: flex; align-items: center; height: 44px; gap: 14px; padding: 0 14px; position: relative; }
+.search { width: 260px; height: 31px; }
+.icon   { width: 26px; height: 26px; }
+.popup  { position: absolute; top: 100%; right: 8px; }
+
+/* side panels */
+.left  { width: 270px; position: relative; }
+.right { width: 420px; position: relative; }
+.grip  { position: absolute; top: 0; bottom: 0; width: 6px; }
+.left  > .grip { right: -3px; }
+.right > .grip { left: -3px; }
+
+/* map and its overlays */
+.map    { position: relative; }
+.camera { display: flex; position: absolute; top: 20px; right: 12px; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+.btn    { height: 30px; }
+
+/* edge tabs on the map's borders */
+.edge-top    { position: absolute; top: 0;    left: calc(50% - 24px); width: 48px; height: 16px; }
+.edge-bottom { position: absolute; bottom: 0; left: calc(50% - 24px); width: 48px; height: 16px; }
+.edge-left   { position: absolute; left: 0;   top: calc(50% - 24px);  width: 16px; height: 48px; }
+.edge-right  { position: absolute; right: 0;  top: calc(50% - 24px);  width: 16px; height: 48px; }

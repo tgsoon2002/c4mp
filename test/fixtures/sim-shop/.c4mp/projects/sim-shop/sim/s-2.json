@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "s-2",
+  "kind": "journey",
+  "title": "First-time buyer",
+  "person": "customer",
+  "stages": [
+    {
+      "outside": "Sees an ad",
+      "goal": "Find something worth buying"
+    },
+    {
+      "target": "5a1e0000-0000-4000-8000-00000000ca27",
+      "view": "io",
+      "goal": "Look at the cart"
+    },
+    {
+      "flow": "s-1",
+      "goal": "Buy"
+    },
+    {
+      "flow": "s-9",
+      "goal": "Return the product"
+    },
+    {
+      "target": "u-gone",
+      "view": "io",
+      "goal": "Rate the shop"
+    }
+  ]
+}

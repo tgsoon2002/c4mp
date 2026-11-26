@@ -1,0 +1,296 @@
+{
+  "files": [
+    {
+      "elements": [
+        {
+          "endLine": 3,
+          "kind": "function",
+          "lineCount": 3,
+          "name": "log",
+          "startLine": 1
+        }
+      ],
+      "file": "api/src/lib/log.ts",
+      "handler": "typescript",
+      "imports": [],
+      "lineCount": 3,
+      "parseError": false
+    },
+    {
+      "elements": [],
+      "file": "api/src/lib/missing-user.ts",
+      "handler": "typescript",
+      "imports": [
+        {
+          "kind": "import",
+          "line": 1,
+          "resolved": {
+            "status": "unresolved"
+          },
+          "spec": "./does-not-exist"
+        }
+      ],
+      "lineCount": 3,
+      "parseError": false
+    },
+    {
+      "elements": [
+        {
+          "endLine": 3,
+          "kind": "type",
+          "lineCount": 3,
+          "name": "Order",
+          "startLine": 1
+        },
+        {
+          "endLine": 8,
+          "kind": "function",
+          "lineCount": 4,
+          "name": "makeOrder",
+          "startLine": 5
+        }
+      ],
+      "file": "api/src/models/order.ts",
+      "handler": "typescript",
+      "imports": [],
+      "lineCount": 8,
+      "nested": [
+        {
+          "endLine": 6,
+          "kind": "function",
+          "lineCount": 1,
+          "name": "makeOrder.helper",
+          "outer": "makeOrder",
+          "parent": "makeOrder",
+          "startLine": 6
+        }
+      ],
+      "parseError": false
+    },
+    {
+      "elements": [
+        {
+          "endLine": 10,
+          "kind": "function",
+          "lineCount": 7,
+          "name": "orderRoutes",
+          "startLine": 4
+        }
+      ],
+      "file": "api/src/routes/orders.ts",
+      "handler": "typescript",
+      "imports": [
+        {
+          "kind": "import",
+          "line": 1,
+          "resolved": {
+            "status": "internal",
+            "target": "api/src/services/orderService.ts"
+          },
+          "spec": "../services/orderService"
+        },
+        {
+          "kind": "import",
+          "line": 2,
+          "resolved": {
+            "status": "internal",
+            "target": "api/src/lib/log.ts"
+          },
+          "spec": "@lib/log"
+        }
+      ],
+      "lineCount": 10,
+      "parseError": false
+    },
+    {
+      "elements": [
+        {
+          "endLine": 9,
+          "kind": "function",
+          "lineCount": 5,
+          "name": "start",
+          "startLine": 5
+        }
+      ],
+      "file": "api/src/server.ts",
+      "handler": "typescript",
+      "imports": [
+        {
+          "kind": "import",
+          "line": 1,
+          "resolved": {
+            "pkg": "express",
+            "status": "external"
+          },
+          "spec": "express"
+        },
+        {
+          "kind": "import",
+          "line": 2,
+          "resolved": {
+            "status": "internal",
+            "target": "api/src/routes/orders.ts"
+          },
+          "spec": "./routes/orders"
+        },
+        {
+          "kind": "export-from",
+          "line": 3,
+          "resolved": {
+            "status": "internal",
+            "target": "api/src/lib/log.ts"
+          },
+          "spec": "./lib/log"
+        }
+      ],
+      "lineCount": 9,
+      "parseError": false
+    },
+    {
+      "elements": [
+        {
+          "endLine": 17,
+          "kind": "class",
+          "lineCount": 15,
+          "name": "OrderService",
+          "startLine": 3
+        },
+        {
+          "endLine": 4,
+          "kind": "method",
+          "lineCount": 1,
+          "name": "OrderService.constructor",
+          "startLine": 4
+        },
+        {
+          "endLine": 12,
+          "kind": "method",
+          "lineCount": 7,
+          "name": "OrderService.create",
+          "startLine": 6
+        },
+        {
+          "endLine": 16,
+          "kind": "method",
+          "lineCount": 3,
+          "name": "OrderService.find",
+          "startLine": 14
+        }
+      ],
+      "file": "api/src/services/orderService.ts",
+      "handler": "typescript",
+      "imports": [
+        {
+          "kind": "import",
+          "line": 1,
+          "resolved": {
+            "status": "internal",
+            "target": "api/src/models/order.ts"
+          },
+          "spec": "../models/order"
+        }
+      ],
+      "lineCount": 17,
+      "nested": [
+        {
+          "endLine": 9,
+          "kind": "function",
+          "lineCount": 3,
+          "name": "OrderService.create.validate",
+          "outer": "OrderService.create",
+          "parent": "OrderService.create",
+          "startLine": 7
+        }
+      ],
+      "parseError": false
+    },
+    {
+      "elements": [
+        {
+          "endLine": 5,
+          "kind": "function",
+          "lineCount": 3,
+          "name": "App",
+          "startLine": 3
+        }
+      ],
+      "file": "web/src/App.tsx",
+      "handler": "typescript",
+      "imports": [
+        {
+          "kind": "import",
+          "line": 1,
+          "resolved": {
+            "status": "internal",
+            "target": "web/src/components/Cart.jsx"
+          },
+          "spec": "./components/Cart"
+        }
+      ],
+      "lineCount": 5,
+      "parseError": false
+    },
+    {
+      "elements": [
+        {
+          "endLine": 7,
+          "kind": "function",
+          "lineCount": 3,
+          "name": "Cart",
+          "startLine": 5
+        },
+        {
+          "endLine": 12,
+          "kind": "function",
+          "lineCount": 4,
+          "name": "loadApp",
+          "startLine": 9
+        }
+      ],
+      "file": "web/src/components/Cart.jsx",
+      "handler": "typescript",
+      "imports": [
+        {
+          "kind": "require",
+          "line": 1,
+          "resolved": {
+            "pkg": "react",
+            "status": "external"
+          },
+          "spec": "react"
+        },
+        {
+          "kind": "require",
+          "line": 3,
+          "resolved": {
+            "status": "asset"
+          },
+          "spec": "./cart.css"
+        },
+        {
+          "kind": "dynamic",
+          "line": 10,
+          "resolved": {
+            "status": "internal",
+            "target": "web/src/App.tsx"
+          },
+          "spec": "../App"
+        }
+      ],
+      "lineCount": 14,
+      "parseError": false
+    },
+    {
+      "elements": [],
+      "file": "worker/main.py",
+      "handler": "python",
+      "imports": [],
+      "lineCount": 1,
+      "parseError": false
+    }
+  ],
+  "languages": [
+    "typescript",
+    "python"
+  ]
+}

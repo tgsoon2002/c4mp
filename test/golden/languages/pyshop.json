@@ -1,0 +1,292 @@
+{
+  "files": [
+    {
+      "elements": [],
+      "file": "run.py",
+      "handler": "python",
+      "imports": [
+        {
+          "kind": "import",
+          "line": 1,
+          "resolved": {
+            "status": "internal",
+            "target": "shop/__init__.py"
+          },
+          "spec": "shop"
+        }
+      ],
+      "lineCount": 6,
+      "parseError": false
+    },
+    {
+      "elements": [
+        {
+          "endLine": 8,
+          "kind": "function",
+          "lineCount": 4,
+          "name": "create_app",
+          "startLine": 5
+        }
+      ],
+      "file": "shop/__init__.py",
+      "handler": "python",
+      "imports": [
+        {
+          "kind": "import",
+          "line": 1,
+          "resolved": {
+            "pkg": "flask",
+            "status": "external"
+          },
+          "spec": "flask"
+        },
+        {
+          "kind": "import",
+          "line": 2,
+          "resolved": {
+            "status": "internal",
+            "target": "shop/config.py"
+          },
+          "spec": "shop.config"
+        }
+      ],
+      "lineCount": 8,
+      "parseError": false
+    },
+    {
+      "elements": [],
+      "file": "shop/config.py",
+      "handler": "python",
+      "imports": [
+        {
+          "kind": "import",
+          "line": 1,
+          "resolved": {
+            "pkg": "os",
+            "status": "external"
+          },
+          "spec": "os"
+        }
+      ],
+      "lineCount": 3,
+      "parseError": false
+    },
+    {
+      "elements": [
+        {
+          "endLine": 10,
+          "kind": "class",
+          "lineCount": 7,
+          "name": "Order",
+          "startLine": 4
+        },
+        {
+          "endLine": 10,
+          "kind": "method",
+          "lineCount": 2,
+          "name": "Order.is_free",
+          "startLine": 9
+        }
+      ],
+      "file": "shop/models/order.py",
+      "handler": "python",
+      "imports": [
+        {
+          "kind": "import",
+          "line": 1,
+          "resolved": {
+            "pkg": "dataclasses",
+            "status": "external"
+          },
+          "spec": "dataclasses"
+        }
+      ],
+      "lineCount": 10,
+      "parseError": false
+    },
+    {
+      "elements": [
+        {
+          "endLine": 13,
+          "kind": "class",
+          "lineCount": 9,
+          "name": "OrderService",
+          "startLine": 5
+        },
+        {
+          "endLine": 7,
+          "kind": "method",
+          "lineCount": 2,
+          "name": "OrderService.__init__",
+          "startLine": 6
+        },
+        {
+          "endLine": 10,
+          "kind": "method",
+          "lineCount": 2,
+          "name": "OrderService.create",
+          "startLine": 9
+        },
+        {
+          "endLine": 13,
+          "kind": "method",
+          "lineCount": 2,
+          "name": "OrderService.refund",
+          "startLine": 12,
+          "stub": "throws"
+        },
+        {
+          "endLine": 18,
+          "kind": "function",
+          "lineCount": 3,
+          "name": "list_orders",
+          "startLine": 16,
+          "stub": "empty"
+        }
+      ],
+      "file": "shop/services/orders.py",
+      "handler": "python",
+      "imports": [
+        {
+          "kind": "import",
+          "line": 1,
+          "resolved": {
+            "status": "internal",
+            "target": "shop/models/order.py"
+          },
+          "spec": "shop.models.order"
+        },
+        {
+          "kind": "import",
+          "line": 2,
+          "resolved": {
+            "status": "internal",
+            "target": "shop/services/pricing.py"
+          },
+          "spec": ".pricing"
+        }
+      ],
+      "lineCount": 18,
+      "parseError": false
+    },
+    {
+      "elements": [
+        {
+          "endLine": 3,
+          "kind": "function",
+          "lineCount": 3,
+          "name": "apply_discount",
+          "startLine": 1
+        }
+      ],
+      "file": "shop/services/pricing.py",
+      "handler": "python",
+      "imports": [],
+      "lineCount": 3,
+      "parseError": false
+    },
+    {
+      "elements": [
+        {
+          "endLine": 10,
+          "kind": "function",
+          "lineCount": 2,
+          "name": "order",
+          "startLine": 9
+        },
+        {
+          "endLine": 14,
+          "kind": "function",
+          "lineCount": 2,
+          "name": "make_order",
+          "startLine": 13
+        },
+        {
+          "endLine": 18,
+          "kind": "test",
+          "lineCount": 2,
+          "name": "test_free",
+          "startLine": 17
+        },
+        {
+          "endLine": 23,
+          "kind": "test",
+          "lineCount": 2,
+          "name": "test_not_free",
+          "startLine": 22
+        },
+        {
+          "endLine": 31,
+          "kind": "class",
+          "lineCount": 6,
+          "name": "TestOrders",
+          "startLine": 26
+        },
+        {
+          "endLine": 28,
+          "kind": "method",
+          "lineCount": 2,
+          "name": "TestOrders.setup_method",
+          "startLine": 27
+        },
+        {
+          "endLine": 31,
+          "kind": "test",
+          "lineCount": 2,
+          "name": "TestOrders.test_total",
+          "startLine": 30
+        },
+        {
+          "endLine": 36,
+          "kind": "class",
+          "lineCount": 3,
+          "name": "OrderCase",
+          "startLine": 34
+        },
+        {
+          "endLine": 36,
+          "kind": "test",
+          "lineCount": 2,
+          "name": "OrderCase.test_id",
+          "startLine": 35
+        }
+      ],
+      "file": "tests/test_orders.py",
+      "handler": "python",
+      "imports": [
+        {
+          "kind": "import",
+          "line": 1,
+          "resolved": {
+            "pkg": "unittest",
+            "status": "external"
+          },
+          "spec": "unittest"
+        },
+        {
+          "kind": "import",
+          "line": 3,
+          "resolved": {
+            "pkg": "pytest",
+            "status": "external"
+          },
+          "spec": "pytest"
+        },
+        {
+          "kind": "import",
+          "line": 5,
+          "resolved": {
+            "status": "internal",
+            "target": "shop/models/order.py"
+          },
+          "spec": "shop.models.order"
+        }
+      ],
+      "lineCount": 36,
+      "parseError": false
+    }
+  ],
+  "languages": [
+    "python"
+  ]
+}

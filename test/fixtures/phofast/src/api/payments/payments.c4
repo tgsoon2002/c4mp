@@ -1,0 +1,16 @@
+// planned components for this folder
+model {
+  extend phofast.api {
+    payments = component 'Payment Service' {
+      technology 'Stripe SDK'
+      description 'Charges the customer via Stripe'
+      link ./stripe.ts 'Entrypoint'
+      metadata {
+        status   'done'
+        owner    'kien'
+        sprint   'S14'
+        priority 'high'
+      }
+    }
+  }
+}

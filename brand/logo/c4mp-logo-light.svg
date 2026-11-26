@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="372" height="128" viewBox="0 0 372 128" role="img" aria-label="C4MP">
+  <!-- Logo 11: the tent-4 wordmark (main logo), light background. Text uses Space Grotesk 700; outline it to paths
+       before shipping as an image (Phase 35 slice I). Forest green #1F6F5C, campfire orange #C9621F. -->
+  <g fill="#1F6F5C" font-family="Space Grotesk, Inter, sans-serif" font-weight="700" font-size="112">
+    <text x="0" y="104">C</text>
+    <text x="190" y="104">MP</text>
+  </g>
+  <g transform="translate(78 4) scale(1.75)" fill="none" stroke="#1F6F5C" stroke-width="7" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M40 6 L6 48 H40 Z"/>
+    <path d="M40 22 L19 48 H40" stroke-width="4.5"/>
+    <path d="M40 6 V64 M40 48 H54"/>
+  </g>
+  <path transform="translate(78 4) scale(1.75)" d="M40 35 L30 48 H40 Z" fill="#C9621F" stroke="#C9621F" stroke-width="3" stroke-linejoin="round"/>
+</svg>

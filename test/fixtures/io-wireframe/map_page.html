@@ -1,0 +1,88 @@
+<!--
+  Wireframe of screen c4pm.c4pm.map_page ('Map page') for the IO view.
+  Bare HTML: only where each region and control sits and how big it is. c4pm draws it in its own theme;
+  colours, fonts and text are ignored. data-c4 = id of a region or control of this screen in io.c4.
+  hidden = shown only sometimes (a popup, a state): drawn dashed. Classes only: every size lives in site.css.
+  Measured from the viewer at 1280 x 800 on 2026-11-03 (board drawer 46% of the centre); popups on 2026-11-07.
+-->
+<link rel="stylesheet" href="site.css">
+<div class="page">
+
+  <header data-c4="top_bar" class="topbar">
+    <div class="grow"></div>   <!-- title and count chips: not in the plan -->
+    <button data-c4="view_btn" class="bar-btn w-84"></button>
+    <input data-c4="search" class="search">
+    <button data-c4="details_btn" class="icon"></button>
+    <button data-c4="gear_btn" class="icon"></button>
+
+    <div data-c4="details_pop" hidden class="popup pop-details"></div>
+    <div data-c4="settings_pop" hidden class="popup pop-settings">
+      <div class="set-title"></div>   <!-- popup title: not in the plan -->
+      <div data-c4="set_theme" class="set-row"></div>
+      <div data-c4="set_search" class="set-row"></div>
+      <div data-c4="set_help" class="set-row"></div>
+      <div data-c4="set_open_in" class="set-row"></div>
+      <div data-c4="set_light" class="set-row"></div>
+      <div data-c4="set_link" class="set-row"></div>
+      <!-- the window-link status line and the "kept in this browser" note follow: not in the plan -->
+    </div>
+  </header>
+
+  <div class="main">
+
+    <aside data-c4="left_panel" class="left col">
+      <div class="row">
+        <button data-c4="tab_arch" class="grow tab"></button>
+        <button data-c4="tab_files" class="grow tab"></button>
+      </div>
+      <div data-c4="grip_left" class="grip"></div>
+    </aside>
+
+    <div class="col grow">
+      <div data-c4="map" class="map grow">
+        <div data-c4="hud" class="hud-top w-104"></div>
+        <div data-c4="hud" class="hud-bottom w-268"></div>
+
+        <div data-c4="camera" class="camera">
+          <button data-c4="up" class="btn w-52"></button>
+          <button data-c4="fit" class="btn w-36"></button>
+          <button data-c4="auto" class="btn w-80"></button>
+          <button data-c4="edit" class="btn w-84"></button>
+          <button data-c4="zoom_in" class="btn w-30"></button>
+          <button data-c4="zoom_out" class="btn w-30"></button>
+          <button data-c4="reset" hidden class="btn w-92"></button>
+          <button data-c4="undo" hidden class="btn w-50"></button>
+          <button data-c4="redo" hidden class="btn w-50"></button>
+          <button data-c4="export" hidden class="btn w-100"></button>
+        </div>
+
+        <div data-c4="legend" hidden class="legend"></div>
+
+        <button data-c4="top_toggle" class="edge-top"></button>
+        <button data-c4="toggle_left" class="edge-left"></button>
+        <button data-c4="toggle_right" class="edge-right"></button>
+        <button data-c4="board_btn" class="edge-bottom"></button>
+      </div>
+
+      <section data-c4="board_drawer" hidden class="drawer">
+        <div class="row">
+          <select data-c4="board_select" class="board-select"></select>
+        </div>
+        <div class="row">
+          <button data-c4="tab_timeline" class="btn w-66"></button>
+          <button data-c4="tab_kanban" class="btn w-62"></button>
+          <button data-c4="tab_list" class="btn w-40"></button>
+          <button data-c4="tab_dashboard" class="btn w-82"></button>
+          <div class="grow"></div>
+          <button data-c4="board_min" class="square"></button>
+          <button data-c4="board_close" class="square"></button>
+        </div>
+      </section>
+    </div>
+
+    <aside data-c4="right_panel" class="right">
+      <div data-c4="grip_right" class="grip"></div>
+    </aside>
+
+  </div>
+</div>

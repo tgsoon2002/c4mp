@@ -1,0 +1,398 @@
+{
+  "files": [
+    {
+      "elements": [
+        {
+          "endLine": 13,
+          "kind": "class",
+          "lineCount": 11,
+          "name": "Item",
+          "startLine": 3
+        },
+        {
+          "endLine": 7,
+          "kind": "method",
+          "lineCount": 1,
+          "name": "Item.Label",
+          "startLine": 7
+        },
+        {
+          "endLine": 12,
+          "kind": "class",
+          "lineCount": 4,
+          "name": "Dim",
+          "startLine": 9
+        },
+        {
+          "endLine": 11,
+          "kind": "method",
+          "lineCount": 1,
+          "name": "Dim.Width",
+          "startLine": 11
+        }
+      ],
+      "file": "Shop/Catalog.cs",
+      "handler": "csharp",
+      "imports": [],
+      "lineCount": 13,
+      "parseError": false
+    },
+    {
+      "elements": [
+        {
+          "endLine": 25,
+          "kind": "class",
+          "lineCount": 12,
+          "name": "Checkout",
+          "startLine": 14
+        },
+        {
+          "endLine": 22,
+          "kind": "method",
+          "lineCount": 7,
+          "name": "Checkout.Total",
+          "startLine": 16
+        },
+        {
+          "endLine": 24,
+          "kind": "method",
+          "lineCount": 1,
+          "name": "Checkout.Dump",
+          "startLine": 24
+        }
+      ],
+      "file": "Shop/Checkout.cs",
+      "handler": "csharp",
+      "imports": [
+        {
+          "kind": "import",
+          "line": 1,
+          "resolved": {
+            "pkg": "System",
+            "status": "external"
+          },
+          "spec": "System.Linq"
+        },
+        {
+          "kind": "import",
+          "line": 2,
+          "resolved": {
+            "status": "internal",
+            "target": "Util/Format.cs"
+          },
+          "spec": "Shop.Util"
+        },
+        {
+          "kind": "import",
+          "line": 2,
+          "resolved": {
+            "status": "internal",
+            "target": "Util/Rounding.cs"
+          },
+          "spec": "Shop.Util"
+        },
+        {
+          "kind": "import",
+          "line": 3,
+          "resolved": {
+            "status": "internal",
+            "target": "Util/Format.cs"
+          },
+          "spec": "static Shop.Util.Format"
+        },
+        {
+          "kind": "import",
+          "line": 3,
+          "resolved": {
+            "status": "internal",
+            "target": "Util/Rounding.cs"
+          },
+          "spec": "static Shop.Util.Format"
+        },
+        {
+          "kind": "import",
+          "line": 4,
+          "resolved": {
+            "pkg": "Newtonsoft.Json",
+            "status": "external"
+          },
+          "spec": "Json = Newtonsoft.Json.JsonConvert"
+        },
+        {
+          "kind": "import",
+          "line": 5,
+          "resolved": {
+            "pkg": "System",
+            "status": "external"
+          },
+          "spec": "Ints = System.Collections.Generic.List<int>"
+        },
+        {
+          "kind": "import",
+          "line": 6,
+          "resolved": {
+            "status": "unresolved"
+          },
+          "spec": "Tools"
+        },
+        {
+          "kind": "import",
+          "line": 7,
+          "resolved": {
+            "status": "unresolved"
+          },
+          "spec": "Missing.Thing"
+        },
+        {
+          "kind": "import",
+          "line": 12,
+          "resolved": {
+            "status": "internal",
+            "target": "Shop/Catalog.cs"
+          },
+          "spec": "Shop.Catalog"
+        }
+      ],
+      "lineCount": 26,
+      "parseError": false
+    },
+    {
+      "elements": [
+        {
+          "endLine": 8,
+          "kind": "type",
+          "lineCount": 4,
+          "name": "IPriced",
+          "startLine": 5
+        },
+        {
+          "endLine": 7,
+          "kind": "method",
+          "lineCount": 1,
+          "name": "IPriced.Price",
+          "startLine": 7
+        },
+        {
+          "endLine": 31,
+          "kind": "class",
+          "lineCount": 22,
+          "name": "Order",
+          "startLine": 10
+        },
+        {
+          "endLine": 18,
+          "kind": "method",
+          "lineCount": 4,
+          "name": "Order.Order",
+          "startLine": 15
+        },
+        {
+          "endLine": 23,
+          "kind": "method",
+          "lineCount": 4,
+          "name": "Order.Price",
+          "startLine": 20
+        },
+        {
+          "endLine": 28,
+          "kind": "method",
+          "lineCount": 4,
+          "name": "Order.Refund",
+          "startLine": 25,
+          "stub": "throws"
+        },
+        {
+          "endLine": 30,
+          "kind": "method",
+          "lineCount": 1,
+          "name": "Order.IsFree",
+          "startLine": 30
+        },
+        {
+          "endLine": 36,
+          "kind": "class",
+          "lineCount": 4,
+          "name": "Money",
+          "startLine": 33
+        },
+        {
+          "endLine": 38,
+          "kind": "class",
+          "lineCount": 1,
+          "name": "Receipt",
+          "startLine": 38
+        },
+        {
+          "endLine": 44,
+          "kind": "type",
+          "lineCount": 5,
+          "name": "Status",
+          "startLine": 40
+        },
+        {
+          "endLine": 54,
+          "kind": "class",
+          "lineCount": 7,
+          "name": "Vat",
+          "startLine": 48
+        },
+        {
+          "endLine": 53,
+          "kind": "method",
+          "lineCount": 4,
+          "name": "Vat.Of",
+          "startLine": 50
+        }
+      ],
+      "file": "Shop/Order.cs",
+      "handler": "csharp",
+      "imports": [
+        {
+          "kind": "import",
+          "line": 1,
+          "resolved": {
+            "pkg": "System",
+            "status": "external"
+          },
+          "spec": "System"
+        }
+      ],
+      "lineCount": 56,
+      "parseError": false
+    },
+    {
+      "elements": [
+        {
+          "endLine": 22,
+          "kind": "class",
+          "lineCount": 20,
+          "name": "OrderTests",
+          "startLine": 3
+        },
+        {
+          "endLine": 5,
+          "kind": "method",
+          "lineCount": 1,
+          "name": "OrderTests.Make",
+          "startLine": 5
+        },
+        {
+          "endLine": 11,
+          "kind": "test",
+          "lineCount": 5,
+          "name": "OrderTests.HasId",
+          "startLine": 7
+        },
+        {
+          "endLine": 18,
+          "kind": "test",
+          "lineCount": 6,
+          "name": "OrderTests.IsFree",
+          "startLine": 13
+        },
+        {
+          "endLine": 21,
+          "kind": "test",
+          "lineCount": 2,
+          "name": "OrderTests.Prices",
+          "startLine": 20
+        }
+      ],
+      "file": "Shop/OrderTests.cs",
+      "handler": "csharp",
+      "imports": [],
+      "lineCount": 23,
+      "parseError": false
+    },
+    {
+      "elements": [],
+      "file": "Shop/Usings.cs",
+      "handler": "csharp",
+      "imports": [
+        {
+          "kind": "import",
+          "line": 1,
+          "resolved": {
+            "status": "internal",
+            "target": "Shop/Catalog.cs"
+          },
+          "spec": "Shop.Catalog"
+        }
+      ],
+      "lineCount": 1,
+      "parseError": false
+    },
+    {
+      "elements": [
+        {
+          "endLine": 6,
+          "kind": "class",
+          "lineCount": 4,
+          "name": "Format",
+          "startLine": 3
+        },
+        {
+          "endLine": 5,
+          "kind": "method",
+          "lineCount": 1,
+          "name": "Format.Price",
+          "startLine": 5
+        }
+      ],
+      "file": "Util/Format.cs",
+      "handler": "csharp",
+      "imports": [],
+      "lineCount": 7,
+      "parseError": false
+    },
+    {
+      "elements": [
+        {
+          "endLine": 6,
+          "kind": "class",
+          "lineCount": 4,
+          "name": "Rounding",
+          "startLine": 3
+        },
+        {
+          "endLine": 5,
+          "kind": "method",
+          "lineCount": 1,
+          "name": "Rounding.Cents",
+          "startLine": 5
+        }
+      ],
+      "file": "Util/Rounding.cs",
+      "handler": "csharp",
+      "imports": [],
+      "lineCount": 6,
+      "parseError": false
+    },
+    {
+      "elements": [
+        {
+          "endLine": 7,
+          "kind": "class",
+          "lineCount": 4,
+          "name": "Slug",
+          "startLine": 4
+        },
+        {
+          "endLine": 6,
+          "kind": "method",
+          "lineCount": 1,
+          "name": "Slug.Of",
+          "startLine": 6
+        }
+      ],
+      "file": "Util/Text.cs",
+      "handler": "csharp",
+      "imports": [],
+      "lineCount": 8,
+      "parseError": false
+    }
+  ],
+  "languages": [
+    "csharp"
+  ]
+}

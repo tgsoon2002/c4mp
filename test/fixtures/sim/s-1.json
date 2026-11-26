@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "id": "s-1",
+  "kind": "flow",
+  "title": "Buy a product",
+  "description": "One buyer adds a product to the cart and pays.",
+  "steps": [
+    {
+      "target": "u-add",
+      "view": "io",
+      "state": "cart: empty",
+      "caption": "On Products the buyer presses Add to cart.",
+      "durationSec": 4
+    },
+    {
+      "target": "shop.api.cart.addItem",
+      "view": "arch",
+      "call": {
+        "from": "u-add",
+        "to": "shop.api.cart.addItem",
+        "label": "POST /cart/items"
+      },
+      "state": "cart: 1 item",
+      "caption": "The web app calls Cart.addItem (planned function, no uid).",
+      "durationSec": 5
+    },
+    {
+      "target": "u-cartrec",
+      "view": "storage",
+      "rows": {
+        "u-cartrec": [
+          {
+            "product": 42,
+            "qty": 1
+          }
+        ]
+      },
+      "caption": "One cart line is stored."
+    },
+    {
+      "target": "u-cart",
+      "view": "io",
+      "state": "cart: 1 item",
+      "caption": "The Cart screen shows the line and its total."
+    },
+    {
+      "target": "u-checkout",
+      "view": "io",
+      "caption": "The buyer presses Checkout."
+    },
+    {
+      "target": "src/api/orders.ts#createOrder",
+      "view": "arch",
+      "state": "order: pending",
+      "caption": "Orders creates the order."
+    },
+    {
+      "target": [
+        "src/api/payments.ts#authorise",
+        "shop.api.payments"
+      ],
+      "view": "arch",
+      "caption": "Payments takes the money."
+    },
+    {
+      "target": "u-orders",
+      "view": "storage",
+      "state": "order: paid",
+      "rows": {
+        "u-orders": [
+          {
+            "id": 1,
+            "status": "paid"
+          }
+        ]
+      }
+    },
+    {
+      "target": "u-done",
+      "view": "io",
+      "caption": "Order done: the buyer sees the order number.",
+      "durationSec": 4
+    }
+  ]
+}

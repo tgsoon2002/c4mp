@@ -1,0 +1,154 @@
+{
+  "schemaVersion": 1,
+  "id": "s-1",
+  "kind": "flow",
+  "title": "Buy a product",
+  "person": "customer",
+  "description": "One buyer puts the Blue mug in the cart and pays: the product and checkout screens, the Cart, Catalog, Orders and Payments components, and the rows that change in orders and order_items.",
+  "steps": [
+    {
+      "target": "b05d90b4-72c6-4463-bcf4-570c14739018",
+      "view": "io",
+      "call": {
+        "from": "ddea502b-030e-47ce-b5c1-0d9c6852b44a",
+        "to": "a07fa683-4d65-40f4-8f80-7d0ce807503a",
+        "label": "opens Product page"
+      },
+      "state": "cart: empty",
+      "caption": "The buyer opens the product page of the Blue mug (12.00).",
+      "durationSec": 4
+    },
+    {
+      "target": "061fbf7b-3657-4dbc-8fd5-d919d0034768",
+      "view": "io",
+      "call": {
+        "from": "ddea502b-030e-47ce-b5c1-0d9c6852b44a",
+        "to": "15e1bcfb-ca64-49d5-9717-f1317dec6fb7",
+        "label": "presses Add to cart"
+      },
+      "state": "cart: empty",
+      "caption": "The buyer presses Add to cart. The Cart store of the web app takes the click.",
+      "durationSec": 4
+    },
+    {
+      "target": "e400c70c-e0cf-4475-ad94-5f9e34da83d3",
+      "view": "arch",
+      "call": {
+        "from": "15e1bcfb-ca64-49d5-9717-f1317dec6fb7",
+        "to": "e400c70c-e0cf-4475-ad94-5f9e34da83d3",
+        "label": "POST /cart/items"
+      },
+      "state": "request: sku MUG-BLU, qty 1",
+      "caption": "The web app calls the API: POST /cart/items lands in the Cart component.",
+      "durationSec": 4
+    },
+    {
+      "target": "shop.api.cart.addItem",
+      "view": "arch",
+      "call": {
+        "from": "shop.api.cart.addItem",
+        "to": "shop.api.catalog.getPrice",
+        "label": "getPrice(p-42)"
+      },
+      "state": "price: 12.00",
+      "caption": "addItem asks Catalog for the current price. The call is resolved in the code, so the S3 check marks the step verified.",
+      "durationSec": 4
+    },
+    {
+      "target": [
+        "b2bac1d4-e515-46fd-9afb-1df410779fe5",
+        "bd3ca7be-80d4-463e-8a44-1f01b8c17631"
+      ],
+      "view": "storage",
+      "call": {
+        "from": "shop.api.cart.addItem",
+        "to": "7ecadf2d-b54e-4a53-aab6-4ab2b36d86f3",
+        "label": "INSERT orders, order_items"
+      },
+      "state": "cart: 1 item",
+      "rows": {
+        "b2bac1d4-e515-46fd-9afb-1df410779fe5": [
+          {
+            "id": "o-1001",
+            "customer_id": "c-7",
+            "status": "cart"
+          }
+        ],
+        "bd3ca7be-80d4-463e-8a44-1f01b8c17631": [
+          {
+            "order_id": "o-1001",
+            "product_id": "p-42",
+            "qty": 1
+          }
+        ]
+      },
+      "caption": "The cart is kept as an order with status \"cart\": one new orders row and one order_items row.",
+      "durationSec": 5
+    },
+    {
+      "target": "faaa8fcd-d95c-4cf6-870d-7bc597e3a6c5",
+      "view": "io",
+      "call": {
+        "from": "ddea502b-030e-47ce-b5c1-0d9c6852b44a",
+        "to": "423f3090-489c-44ba-b9f1-b7e9c54dd630",
+        "label": "presses Place order"
+      },
+      "state": "cart: 1 item · address set",
+      "caption": "On Checkout the buyer enters the address and the card, then presses Place order.",
+      "durationSec": 4
+    },
+    {
+      "target": "shop.api.orders.placeOrder",
+      "view": "arch",
+      "call": {
+        "from": "423f3090-489c-44ba-b9f1-b7e9c54dd630",
+        "to": "shop.api.orders.placeOrder",
+        "label": "POST /orders"
+      },
+      "state": "order o-1001: placing",
+      "caption": "POST /orders runs placeOrder in the Orders component.",
+      "durationSec": 4
+    },
+    {
+      "target": "shop.api.payments.charge",
+      "view": "arch",
+      "call": {
+        "from": "shop.api.orders.placeOrder",
+        "to": "shop.api.payments.charge",
+        "label": "charge(12.00)"
+      },
+      "state": "order o-1001: paid",
+      "rows": {
+        "b2bac1d4-e515-46fd-9afb-1df410779fe5": [
+          {
+            "id": "o-1001",
+            "customer_id": "c-7",
+            "status": "paid"
+          }
+        ],
+        "bd3ca7be-80d4-463e-8a44-1f01b8c17631": [
+          {
+            "order_id": "o-1001",
+            "product_id": "p-42",
+            "qty": 1
+          }
+        ]
+      },
+      "caption": "placeOrder charges the card through Payments and marks the order paid.",
+      "durationSec": 5
+    },
+    {
+      "target": "90a4e906-18ab-4753-9dae-b9976d03af83",
+      "view": "io",
+      "call": {
+        "from": "a07fa683-4d65-40f4-8f80-7d0ce807503a",
+        "to": "ddea502b-030e-47ce-b5c1-0d9c6852b44a",
+        "label": "shows Order confirmation",
+        "reply": true
+      },
+      "state": "order o-1001: paid",
+      "caption": "The buyer sees Order confirmation with the order number o-1001.",
+      "durationSec": 4
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+CREATE TABLE [notes] (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  "title" TEXT NOT NULL,
+  body TEXT DEFAULT '',
+  author_id INTEGER REFERENCES authors(id)
+);
+CREATE TABLE authors (id INTEGER PRIMARY KEY, name TEXT NOT NULL) WITHOUT ROWID;
+CREATE INDEX notes_author ON notes(author_id);

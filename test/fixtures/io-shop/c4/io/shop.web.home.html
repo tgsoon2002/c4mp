@@ -1,0 +1,23 @@
+<!--
+  Wireframe of screen shop.web.home ('Home'). Bare HTML: only where each region and control sits and how big it is.
+  data-c4 = id of a region or control of this screen in shop.c4. The other screens of the shop have no file on purpose.
+-->
+<style>
+  .page { display: flex; flex-direction: column; height: 100%; }
+  .row { display: flex; align-items: center; gap: 16px; padding: 0 24px; }
+</style>
+<div class="page">
+  <div data-c4="header" class="row" style="height: 64px">
+    <div data-c4="logo" style="width: 120px; height: 32px"></div>
+    <div data-c4="search" style="width: 480px; height: 36px"></div>
+  </div>
+  <div data-c4="hero" class="row" style="height: 320px">
+    <button data-c4="shop_now" style="width: 160px; height: 44px"></button>
+  </div>
+  <div data-c4="featured" class="row" style="height: 280px">
+    <div data-c4="cards" style="width: 1000px; height: 220px"></div>
+  </div>
+  <div data-c4="footer" class="row" style="height: 80px">
+    <div data-c4="footer_nav" style="width: 600px; height: 24px"></div>
+  </div>
+</div>

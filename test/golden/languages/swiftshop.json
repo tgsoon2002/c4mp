@@ -1,0 +1,385 @@
+{
+  "files": [
+    {
+      "elements": [
+        {
+          "endLine": 1,
+          "kind": "function",
+          "lineCount": 1,
+          "name": "formatCents",
+          "startLine": 1
+        }
+      ],
+      "file": "Kit/Format.swift",
+      "handler": "swift",
+      "imports": [],
+      "lineCount": 1,
+      "parseError": false
+    },
+    {
+      "elements": [
+        {
+          "endLine": 4,
+          "kind": "function",
+          "lineCount": 1,
+          "name": "kitOrder",
+          "startLine": 4
+        }
+      ],
+      "file": "Kit/Kit.swift",
+      "handler": "swift",
+      "imports": [
+        {
+          "kind": "import",
+          "line": 1,
+          "resolved": {
+            "pkg": "Foundation",
+            "status": "external"
+          },
+          "spec": "Foundation"
+        },
+        {
+          "kind": "import",
+          "line": 2,
+          "resolved": {
+            "status": "internal",
+            "target": "Sources/Shop/Shop.swift"
+          },
+          "spec": "Shop"
+        },
+        {
+          "kind": "import",
+          "line": 2,
+          "resolved": {
+            "status": "internal",
+            "target": "Sources/Shop/Util/Money.swift"
+          },
+          "spec": "Shop"
+        }
+      ],
+      "lineCount": 4,
+      "parseError": false
+    },
+    {
+      "elements": [],
+      "file": "Package.swift",
+      "handler": "swift",
+      "imports": [
+        {
+          "kind": "import",
+          "line": 2,
+          "resolved": {
+            "pkg": "PackageDescription",
+            "status": "external"
+          },
+          "spec": "PackageDescription"
+        }
+      ],
+      "lineCount": 20,
+      "parseError": false
+    },
+    {
+      "elements": [
+        {
+          "endLine": 15,
+          "kind": "class",
+          "lineCount": 13,
+          "name": "Order",
+          "startLine": 3
+        },
+        {
+          "endLine": 10,
+          "kind": "method",
+          "lineCount": 4,
+          "name": "Order.init",
+          "startLine": 7
+        },
+        {
+          "endLine": 14,
+          "kind": "method",
+          "lineCount": 3,
+          "name": "Order.refund",
+          "startLine": 12
+        },
+        {
+          "endLine": 25,
+          "kind": "type",
+          "lineCount": 9,
+          "name": "Status",
+          "startLine": 17
+        },
+        {
+          "endLine": 24,
+          "kind": "method",
+          "lineCount": 3,
+          "name": "Status.next",
+          "startLine": 22
+        },
+        {
+          "endLine": 30,
+          "kind": "type",
+          "lineCount": 4,
+          "name": "Priced",
+          "startLine": 27
+        },
+        {
+          "endLine": 28,
+          "kind": "method",
+          "lineCount": 1,
+          "name": "Priced.price",
+          "startLine": 28
+        },
+        {
+          "endLine": 29,
+          "kind": "method",
+          "lineCount": 1,
+          "name": "Priced.init",
+          "startLine": 29
+        },
+        {
+          "endLine": 35,
+          "kind": "method",
+          "lineCount": 3,
+          "name": "Order.price",
+          "startLine": 33
+        },
+        {
+          "endLine": 40,
+          "kind": "method",
+          "lineCount": 4,
+          "name": "Order.init#2",
+          "startLine": 37
+        },
+        {
+          "endLine": 55,
+          "kind": "class",
+          "lineCount": 13,
+          "name": "Cart",
+          "startLine": 43
+        },
+        {
+          "endLine": 48,
+          "kind": "method",
+          "lineCount": 3,
+          "name": "Cart.add",
+          "startLine": 46
+        },
+        {
+          "endLine": 54,
+          "kind": "class",
+          "lineCount": 3,
+          "name": "Line",
+          "startLine": 52
+        },
+        {
+          "endLine": 53,
+          "kind": "method",
+          "lineCount": 1,
+          "name": "Line.describe",
+          "startLine": 53
+        },
+        {
+          "endLine": 64,
+          "kind": "class",
+          "lineCount": 8,
+          "name": "Counter",
+          "startLine": 57
+        },
+        {
+          "endLine": 63,
+          "kind": "method",
+          "lineCount": 4,
+          "name": "Counter.tick",
+          "startLine": 60
+        },
+        {
+          "endLine": 69,
+          "kind": "function",
+          "lineCount": 3,
+          "name": "makeOrder",
+          "startLine": 67
+        }
+      ],
+      "file": "Sources/Shop/Shop.swift",
+      "handler": "swift",
+      "imports": [
+        {
+          "kind": "import",
+          "line": 1,
+          "resolved": {
+            "pkg": "Foundation",
+            "status": "external"
+          },
+          "spec": "Foundation"
+        }
+      ],
+      "lineCount": 70,
+      "parseError": false
+    },
+    {
+      "elements": [
+        {
+          "endLine": 2,
+          "kind": "method",
+          "lineCount": 1,
+          "name": "Line.cents",
+          "startLine": 2
+        },
+        {
+          "endLine": 7,
+          "kind": "function",
+          "lineCount": 3,
+          "name": "vat",
+          "startLine": 5
+        }
+      ],
+      "file": "Sources/Shop/Util/Money.swift",
+      "handler": "swift",
+      "imports": [],
+      "lineCount": 7,
+      "parseError": false
+    },
+    {
+      "elements": [
+        {
+          "endLine": 12,
+          "kind": "class",
+          "lineCount": 4,
+          "name": "ShopTests",
+          "startLine": 9
+        },
+        {
+          "endLine": 10,
+          "kind": "test",
+          "lineCount": 1,
+          "name": "ShopTests.testOrder",
+          "startLine": 10
+        },
+        {
+          "endLine": 11,
+          "kind": "method",
+          "lineCount": 1,
+          "name": "ShopTests.makeId",
+          "startLine": 11
+        },
+        {
+          "endLine": 20,
+          "kind": "class",
+          "lineCount": 6,
+          "name": "KitTests",
+          "startLine": 15
+        },
+        {
+          "endLine": 16,
+          "kind": "test",
+          "lineCount": 1,
+          "name": "KitTests.formats",
+          "startLine": 16
+        },
+        {
+          "endLine": 19,
+          "kind": "test",
+          "lineCount": 2,
+          "name": "KitTests.rounds",
+          "startLine": 18
+        },
+        {
+          "endLine": 22,
+          "kind": "test",
+          "lineCount": 1,
+          "name": "freeOrder",
+          "startLine": 22
+        }
+      ],
+      "file": "Tests/ShopTests/ShopTests.swift",
+      "handler": "swift",
+      "imports": [
+        {
+          "kind": "import",
+          "line": 1,
+          "resolved": {
+            "pkg": "XCTest",
+            "status": "external"
+          },
+          "spec": "XCTest"
+        },
+        {
+          "kind": "import",
+          "line": 2,
+          "resolved": {
+            "status": "internal",
+            "target": "Sources/Shop/Shop.swift"
+          },
+          "spec": "Shop"
+        },
+        {
+          "kind": "import",
+          "line": 2,
+          "resolved": {
+            "status": "internal",
+            "target": "Sources/Shop/Util/Money.swift"
+          },
+          "spec": "Shop"
+        },
+        {
+          "kind": "import",
+          "line": 3,
+          "resolved": {
+            "status": "internal",
+            "target": "Kit/Format.swift"
+          },
+          "spec": "ShopKit"
+        },
+        {
+          "kind": "import",
+          "line": 3,
+          "resolved": {
+            "status": "internal",
+            "target": "Kit/Kit.swift"
+          },
+          "spec": "ShopKit"
+        },
+        {
+          "kind": "import",
+          "line": 4,
+          "resolved": {
+            "pkg": "Collections",
+            "status": "external"
+          },
+          "spec": "Collections"
+        },
+        {
+          "kind": "import",
+          "line": 5,
+          "resolved": {
+            "pkg": "Foundation",
+            "status": "external"
+          },
+          "spec": "Foundation.URL"
+        },
+        {
+          "kind": "import",
+          "line": 6,
+          "resolved": {
+            "status": "unresolved"
+          },
+          "spec": "Empty"
+        },
+        {
+          "kind": "import",
+          "line": 7,
+          "resolved": {
+            "pkg": "Old",
+            "status": "external"
+          },
+          "spec": "Old"
+        }
+      ],
+      "lineCount": 22,
+      "parseError": false
+    }
+  ],
+  "languages": [
+    "swift"
+  ]
+}

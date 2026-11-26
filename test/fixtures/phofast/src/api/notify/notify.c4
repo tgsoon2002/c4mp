@@ -1,0 +1,16 @@
+// planned components for this folder
+model {
+  extend phofast.api {
+    notify = component 'Notification Service' {
+      technology 'Twilio SMS'
+      description 'Texts the customer when food is ready'
+      link ./index.ts 'Entrypoint'
+      metadata {
+        status   'planned'
+        owner    'jay'
+        sprint   'S14'
+        priority 'medium'
+      }
+    }
+  }
+}

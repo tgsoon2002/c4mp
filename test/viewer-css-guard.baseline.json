@@ -1,0 +1,27 @@
+{
+  "rawColours": {
+    "board-dashboard.css": 5,
+    "board-drawer.css": 1,
+    "board-kanban.css": 14,
+    "board-list.css": 7,
+    "board-panel.css": 10,
+    "board-timeline.css": 9,
+    "style.css": 12
+  },
+  "inlineStyles": {
+    "board-dashboard.js": 1,
+    "board-list.js": 1,
+    "board-map.js": 2,
+    "board-search.js": 18,
+    "board-timeline.js": 19,
+    "controls.js": 8,
+    "filePanel.js": 1,
+    "ioPanel.js": 1,
+    "legend.js": 29,
+    "map.js": 1,
+    "panel.js": 1,
+    "search.js": 40,
+    "summary.js": 17,
+    "tree.js": 6
+  }
+}

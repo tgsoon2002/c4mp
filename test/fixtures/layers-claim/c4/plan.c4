@@ -1,0 +1,31 @@
+specification {
+  element system
+  element container
+  element layer
+  element component
+}
+
+model {
+  shop = system 'Shop' {
+    api = container 'Api' {
+      logic = layer 'Logic' {
+        orders = component 'Orders' {
+          link ../api/src/orders.ts#placeOrder 'Order entry'
+        }
+      }
+      data = layer 'Data' {
+        store = component 'Store' {
+          link ../api/src/store.ts#savePrice 'Price storage'
+        }
+      }
+    }
+    web = container 'Web' {
+      pages = component 'Pages' {
+        link ../web/src/page.ts#renderPage 'Page renderer'
+      }
+    }
+  }
+
+  shop.api.logic.orders -> shop.api.data.store 'stores prices'
+  shop.web.pages -> shop.api.logic.orders 'places orders'
+}

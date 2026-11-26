@@ -1,0 +1,40 @@
+{
+  "files": [
+    {
+      "elements": [
+        {
+          "endLine": 3,
+          "kind": "function",
+          "lineCount": 3,
+          "name": "buildInvoice",
+          "startLine": 1
+        }
+      ],
+      "file": "src/built.ts",
+      "handler": "typescript",
+      "imports": [],
+      "lineCount": 3,
+      "parseError": false
+    },
+    {
+      "elements": [
+        {
+          "endLine": 3,
+          "kind": "function",
+          "lineCount": 3,
+          "name": "stubbed",
+          "startLine": 1,
+          "stub": "throws"
+        }
+      ],
+      "file": "src/stub.ts",
+      "handler": "typescript",
+      "imports": [],
+      "lineCount": 3,
+      "parseError": false
+    }
+  ],
+  "languages": [
+    "typescript"
+  ]
+}

@@ -1,0 +1,16 @@
+<!--
+  Wireframe of screen c4pm.c4pm.own_window ('Own window') for the IO view.
+  Bare HTML: only where each region and control sits and how big it is. c4pm draws it in its own style;
+  colours, fonts and text are ignored. data-c4 = id of a region or control of this screen in io.c4. Shared layout: site.css.
+  Measured from the viewer at 1280 x 800 (#io&bare) on 2026-11-03: only the map and its camera buttons.
+-->
+<link rel="stylesheet" href="site.css">
+<div data-c4="map" class="map" style="height: 100%">
+  <div class="camera">
+    <button data-c4="up" class="btn" style="width: 51px"></button>
+    <button data-c4="fit" class="btn" style="width: 35px"></button>
+    <div style="width: 79px"></div>   <!-- Auto level: not in the plan for this screen -->
+    <button data-c4="zoom_in" class="btn" style="width: 32px"></button>
+    <button data-c4="zoom_out" class="btn" style="width: 32px"></button>
+  </div>
+</div>

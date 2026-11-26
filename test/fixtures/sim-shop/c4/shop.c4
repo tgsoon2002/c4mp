@@ -1,0 +1,51 @@
+// Phase 25 T7 fixture: a small shop for the s-item check rules (test/sim-check.test.ts, end-to-end check snapshot).
+// Web screens and controls (io), an api container with components and two linked functions (arch), a store (storage).
+model {
+  shop = system 'Shop' {
+    web = container 'Shop web' {
+      products = screen 'Products' {
+        add = control 'Add to cart button' {
+          metadata { uid '5a1e0000-0000-4000-8000-00000000a0dd' }
+          -> shop.web.cart 'Add to cart'
+          -> shop.api.cart.addItem 'POST /cart/items'
+        }
+      }
+      cart = screen 'Cart' {
+        metadata { uid '5a1e0000-0000-4000-8000-00000000ca27' }
+        checkout = control 'Checkout button' {
+          -> shop.api.orders 'POST /orders'
+          -> shop.web.done 'Pay'
+        }
+      }
+      done = screen 'Order done'
+    }
+    api = container 'Shop api' {
+      cart = component 'Cart' {
+        link ../src/cart.ts
+        addItem = function 'addItem' {
+          link ../src/cart.ts#addItem
+        }
+      }
+      orders = component 'Orders' {
+        link ../src/orders.ts
+        refund = function 'refund' {
+          metadata {
+            status 'planned'
+            signature 'refund(id: string): void'
+          }
+        }
+      }
+      payments = component 'Payments' {
+        link ../src/payments.ts
+      }
+      db = store 'Shop db' {
+        technology 'postgres'
+        metadata { status 'planned' }
+        cart_items = record 'cart_items' {
+          metadata { uid '5a1e0000-0000-4000-8000-0000000c0a7e' }
+        }
+        orders = record 'orders'
+      }
+    }
+  }
+}

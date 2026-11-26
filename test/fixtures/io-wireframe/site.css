@@ -1,0 +1,77 @@
+/*
+  Site stylesheet of C4PM's own wireframes: every size and position of every screen lives here, written once.
+  Linked by each wireframe with <link rel="stylesheet" href="site.css">; the wireframes carry classes only (b603).
+  Layout properties only (spec H7); c4pm removes anything else. Sizes measured from the viewer at 1280 x 800
+  on 2026-11-03 and 2026-11-07.
+*/
+
+/* page frame */
+.page { display: flex; flex-direction: column; height: 100%; }
+.fill { height: 100%; }
+.col  { display: flex; flex-direction: column; }
+.row  { display: flex; align-items: center; }
+.grow { flex: 1; min-width: 0; min-height: 0; }
+.main { display: flex; flex: 1; min-height: 0; }
+
+/* top bar: title and chips on the left, buttons on the right */
+.topbar  { display: flex; align-items: center; height: 44px; gap: 14px; padding: 0 14px; position: relative; }
+.bar-btn { height: 31px; }
+.search  { width: 260px; height: 31px; }
+.icon    { width: 26px; height: 26px; }
+
+/* popups under the top bar */
+.popup        { position: absolute; top: 100%; right: 8px; }
+.pop-details  { width: 460px; height: 91px; }
+.pop-settings { width: 400px; height: 451px; display: flex; flex-direction: column; padding: 11px 13px; gap: 9px; }
+/* settings popup inside: padding is the viewer's 10px 12px plus its 1px border; a title, then one row per setting */
+.set-title { height: 16.5px; }
+.set-row   { height: 48px; }
+
+/* side panels */
+.left  { width: 270px; position: relative; }
+.right { width: 420px; position: relative; }
+.grip  { position: absolute; top: 0; bottom: 0; width: 6px; }
+.left  > .grip { right: -3px; }
+.right > .grip { left: -3px; }
+.tab   { height: 38px; }
+
+/* map and its overlays */
+.map        { position: relative; }
+.camera     { display: flex; position: absolute; top: 20px; right: 12px; gap: 6px; flex-wrap: wrap; justify-content: flex-end; max-width: 370px; }
+.btn        { height: 30px; }
+.hud-top    { position: absolute; top: 20px; left: 12px; height: 25px; }
+.hud-bottom { position: absolute; bottom: 10px; left: 12px; height: 70px; }
+.legend     { position: absolute; right: 12px; bottom: 24px; width: 160px; height: 96px; }
+
+/* edge tabs on the map's borders */
+.edge-top    { position: absolute; top: 0;    left: calc(50% - 24px); width: 48px; height: 16px; }
+.edge-bottom { position: absolute; bottom: 0; left: calc(50% - 24px); width: 48px; height: 16px; }
+.edge-left   { position: absolute; left: 0;   top: calc(50% - 24px);  width: 16px; height: 48px; }
+.edge-right  { position: absolute; right: 0;  top: calc(50% - 24px);  width: 16px; height: 48px; }
+
+/* board drawer under the map */
+.drawer       { display: flex; flex-direction: column; height: 46%; gap: 8px; padding: 8px 10px; }
+.board-select { width: 275px; height: 26px; }
+.square       { width: 28px; height: 28px; }
+.square + .square { margin-left: 6px; }
+
+/* widths: a button's text sets its width in the viewer; one class per measured width, shared by every screen that has it */
+.w-30  { width: 30px; }
+.w-32  { width: 32px; }
+.w-35  { width: 35px; }
+.w-36  { width: 36px; }
+.w-40  { width: 40px; }
+.w-50  { width: 50px; }
+.w-51  { width: 51px; }
+.w-52  { width: 52px; }
+.w-62  { width: 62px; }
+.w-66  { width: 66px; }
+.w-79  { width: 79px; }
+.w-80  { width: 80px; }
+.w-82  { width: 82px; }
+.w-84  { width: 84px; }
+.w-92  { width: 92px; }
+.w-100 { width: 100px; }
+.w-104 { width: 104px; }
+.w-193 { width: 193px; }
+.w-268 { width: 268px; }

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="/*C4PM_GENERATOR*/">   <!-- P33: the c4pm build that made this page (renderViewHtml) -->
+  <title>C4 Architecture Map</title>
+  <!-- Phase 35 C (b945): the C4MP icon (Brand/logo/c4mp-icon-32.svg and c4mp-icon-dark-32.svg), inline: the page loads nothing from the network.
+       The colon of the SVG namespace is %3A so that the page text holds no http(s) URL but the credit link. -->
+  <link rel="icon" type="image/svg+xml" media="(prefers-color-scheme: light)" href="data:image/svg+xml,%3Csvg xmlns='http%3A//www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='1' y='1' width='62' height='62' rx='15' fill='%231F6F5C'/%3E%3Cg fill='none' stroke='%23FFFFFF' stroke-width='5' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M40 10 L12 44 H40 Z'/%3E%3Cpath d='M40 10 V56 M40 44 H52'/%3E%3C/g%3E%3Cpath d='M40 33 L31 44 H40 Z' fill='%23C9621F'/%3E%3C/svg%3E">
+  <link rel="icon" type="image/svg+xml" media="(prefers-color-scheme: dark)" href="data:image/svg+xml,%3Csvg xmlns='http%3A//www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='1' y='1' width='62' height='62' rx='15' fill='%238FD9C2'/%3E%3Cg fill='none' stroke='%23121715' stroke-width='5' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M40 10 L12 44 H40 Z'/%3E%3Cpath d='M40 10 V56 M40 44 H52'/%3E%3C/g%3E%3Cpath d='M40 33 L31 44 H40 Z' fill='%23C9621F'/%3E%3C/svg%3E">
+  <style>/*C4PM_STYLE*/</style>
+</head>
+<body>
+  <div id="root">
+    <header id="header">
+      <!-- Phase 35 C (b945): the tent-4 badge (logo 12), inline; colours from the theme (style.css .brand-badge) -->
+      <svg id="brand-badge" class="brand-badge" viewBox="0 0 64 64" width="20" height="20" role="img" aria-label="C4MP"><rect x="1" y="1" width="62" height="62" rx="15"/><g fill="none" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"><path d="M40 10 L12 44 H40 Z"/><path d="M40 10 V56 M40 44 H52"/></g><path class="warm" d="M40 33 L31 44 H40 Z"/></svg>
+      <h1 id="title">Architecture Map</h1>
+      <span id="bar-chips"></span>
+      <span id="live-badge" role="status" aria-live="polite" hidden></span>   <!-- Phase 30 SV8/b901: c4mp serve state (live.js); empty and hidden in the static page -->
+      <span id="board-chips" hidden></span>
+      <span id="view-switch" class="seg" role="group" aria-label="View"></span>   <!-- VIEW-0 (b337): one button per registered view, openView.js fills it -->
+      <div id="search-box"><input id="search" placeholder="Search nodes..." aria-label="Search"><div id="search-pop" tabindex="-1"><div id="search-mode" role="group" aria-label="Search in"></div><div id="search-hint"></div><div id="search-results"></div></div></div>
+      <button id="btn-details" type="button" aria-expanded="false" aria-controls="details-pop" title="Details: commit, date, summary, drift">&#9432;</button>
+      <button id="btn-gear" type="button" aria-expanded="false" aria-controls="settings-pop" aria-label="Settings" title="Settings: theme, search start mode, help text">&#9881;&#65038;</button>
+      <div id="details-pop" hidden>
+        <div id="subtitle"></div>
+        <div id="summary"></div>
+        <div id="drift-summary"></div>
+      </div>
+      <div id="settings-pop" role="dialog" aria-label="Settings" hidden></div>
+    </header>
+
+    <div id="main">
+      <aside id="left" aria-label="Architecture and files">
+      </aside>
+      <div class="side-grip" id="grip-left" role="separator" aria-orientation="vertical" aria-label="Resize the left panel" tabindex="0"></div>
+      <div id="center">
+      <div id="map-wrap">
+        <div id="view-toast" role="status" hidden></div>   <!-- P20-T5-0 (b254): toast of C4PM_OPEN (openView.js) -->
+        <canvas id="map" role="img" aria-label="Zoomable architecture map"></canvas>
+        <div class="hud" id="hud-tl">
+          <span id="hud-level"></span>
+          <span id="hud-sub"></span>
+        </div>
+        <div class="hud" id="hud-tr">
+          <button id="btn-up"title="Zoom out one level">↑ Up</button>
+          <button id="btn-fit" title="Show the whole system">Fit</button>
+          <button id="btn-auto" aria-pressed="true" title="On: zooming opens/closes levels automatically. Off: zoom freely; the level only changes on double-click or Up.">Auto level</button>
+          <button id="btn-edit" aria-pressed="false" title="Drag a shape to move it. Drag a blueprint's header to move it, its right/bottom edge to resize it.">Edit layout</button>
+          <button id="btn-reset" hidden title="Put every shape back where it was when the map loaded">Reset layout</button>
+          <button id="btn-arrange" hidden disabled title="Put the selected container or subregion back to the automatic layout">Auto arrange</button>
+          <button id="btn-undo" hidden disabled title="Undo the last move or resize (Ctrl/Cmd+Z)">Undo</button>
+          <button id="btn-redo" hidden disabled title="Redo (Shift+Ctrl/Cmd+Z or Ctrl+Y)">Redo</button>
+          <button id="btn-export" hidden title="Download the edited layout as c4mp-layout.json (for c4mp plan apply-layout)">Export layout</button>
+          <button id="btn-in" aria-label="Zoom in">+</button>
+          <button id="btn-out" aria-label="Zoom out">−</button>
+        </div>
+        <div class="hud" id="hud-bl">Scroll or pinch: zoom · Drag: pan · Click: select
+Double-click: dive in · Up / Fit: back out
+Cmd/Ctrl+click: select and open the right panel
+Esc: clear the selection</div>
+        <div id="legend"></div>
+        <div id="simbar" hidden></div>   <!-- Phase 25 UI7 (b757): the path strip of the selected s-item (sim-strip.js) -->
+        <div id="pres" hidden></div>   <!-- Phase 25 UI12 (b762): present mode, head pill and caption card (sim-present.js) -->
+        <!-- P22 b168: credit link (K 2026-11-18). After #simbar: sim.css hides it on a phone while the strip (bottom there) shows -->
+        <a id="made-with" class="hud" href="https://github.com/tgsoon2002/c4mp-releases" target="_blank" rel="noopener noreferrer" title="c4mp: zoomable architecture map. Get it here">Made with C4MP</a>
+        <button class="side-toggle" id="toggle-left" type="button" data-side="left" aria-controls="left" aria-expanded="true" title="Hide the left panel">&#8249;</button>
+        <button class="side-toggle" id="toggle-right" type="button" data-side="right" aria-controls="panel-col" aria-expanded="true" title="Hide the right panel">&#8250;</button>
+        <button class="edge-toggle" id="btn-top" type="button" aria-pressed="true" aria-label="Show / hide the top bar" title="Show / hide the top bar">&#9650;</button>
+        <button class="edge-toggle" id="btn-board" type="button" aria-pressed="false" hidden aria-label="Open the board under the map (Timeline, Kanban, List)" title="Open the board under the map (Timeline, Kanban, List)">&#9650;</button>
+      </div>
+      <section id="board-drawer" hidden aria-label="Board"><div id="board-drawer-edge"></div><div id="board-drawer-bar"></div><div id="board-drawer-body"></div></section>
+      <section id="seq-drawer" hidden aria-label="Sequence"><div id="seq-drawer-edge"></div><div id="seq-bar"></div><div id="seq-body"></div></section>   <!-- Phase 25 UI13 (b763): the sequence drawer (sim-sequence.js); shown above the board drawer when both are open (sim.css order) -->
+      </div>
+
+      <div class="side-grip" id="grip-right" role="separator" aria-orientation="vertical" aria-label="Resize the right panel" tabindex="0"></div>
+      <div id="panel-col">
+        <div id="panel"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>window.C4PM_DATA = /*C4PM_DATA*/null;</script>
+  <script>/*C4PM_PRELUDE*/
+  // P13-T11: collapse buttons for the side panels. Independent of tree.js/map.js; state is kept in
+  // localStorage (c4mp.leftCollapsed / c4mp.rightCollapsed; the old c4pm.* keys are still read) and the page works with storage blocked.
+  (function () {
+    var main = document.getElementById('main');
+    if (!main) return;
+    // b269: raw string helpers; read/write below (booleans) and the width code use them. v === null removes the key.
+    // Phase 35 C (b945): through C4PM_STORE (store.js): reads the new key, else the old one; writes the new key only.
+    function rawGet(key) { return window.C4PM_STORE.get(key); }
+    function rawSet(key, v) { if (v === null) window.C4PM_STORE.remove(key); else window.C4PM_STORE.set(key, v); }
+    function read(key) { return rawGet(key) === '1'; }
+    function write(key, on) { rawSet(key, on ? '1' : '0'); }
+    function apply(side, collapsed) {
+      main.classList.toggle(side + '-collapsed', collapsed);
+      var btn = document.getElementById('toggle-' + side);
+      if (!btn) return;
+      btn.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+      btn.title = (collapsed ? 'Show the ' : 'Hide the ') + side + ' panel';
+      // arrow points toward the edge the panel collapses to (and away from it when collapsed)
+      btn.innerHTML = (side === 'left') === collapsed ? '&#8250;' : '&#8249;';
+    }
+    var KEYS = { left: 'c4mp.leftCollapsed', right: 'c4mp.rightCollapsed' };
+    // Cmd/Ctrl+click on a c-item or b-item opens the right panel through this (window.C4PM_SIDE.reveal(event)).
+    window.C4PM_SIDE = {
+      show: function (side) { apply(side, false); write(KEYS[side], false); },
+      reveal: function (ev) { if (ev && (ev.metaKey || ev.ctrlKey)) this.show('right'); }
+    };
+    ['left', 'right'].forEach(function (side) {
+      var key = KEYS[side];
+      apply(side, read(key));
+      var btn = document.getElementById('toggle-' + side);
+      if (btn) btn.addEventListener('click', function () {
+        var on = !main.classList.contains(side + '-collapsed');
+        apply(side, on);
+        write(key, on);
+      });
+    });
+    // b269: drag a grip to resize a side panel. Width lives in --left-w / --right-w on #root (CSS default when unset),
+    // is clamped, and is stored in c4mp.leftWidth / c4mp.rightWidth. Double-click a grip = back to the default.
+    var root = document.getElementById('root');
+    var CENTER_MIN = 320;
+    var W = {
+      left:  { min: 180, max: 480, v: '--left-w',  key: 'c4mp.leftWidth',  other: 'right' },
+      right: { min: 280, max: 720, v: '--right-w', key: 'c4mp.rightWidth', other: 'left' }
+    };
+    function shown(side) {   // current laid-out width of a panel (0 when collapsed or unmeasurable)
+      var el = document.getElementById(side === 'left' ? 'left' : 'panel-col');
+      return main.classList.contains(side + '-collapsed') || !el ? 0 : (el.offsetWidth || 0);
+    }
+    function clampW(side, w) {
+      var c = W[side], hi = c.max;
+      if (main.clientWidth > 0) hi = Math.min(hi, main.clientWidth - shown(c.other) - CENTER_MIN);
+      return Math.round(Math.max(c.min, Math.min(hi, w)));
+    }
+    function setW(side, w) { root.style.setProperty(W[side].v, clampW(side, w) + 'px'); return clampW(side, w); }
+    function resetW(side) { root.style.removeProperty(W[side].v); rawSet(W[side].key, null); }
+    if (root) ['left', 'right'].forEach(function (side) {
+      var grip = document.getElementById('grip-' + side), c = W[side];
+      var stored = rawGet(c.key), n = stored === null || stored === '' ? NaN : Number(stored);
+      if (isFinite(n)) setW(side, n);
+      if (!grip) return;
+      function widthAt(x) {
+        var r = main.getBoundingClientRect();
+        return side === 'left' ? x - r.left : r.right - x;
+      }
+      grip.addEventListener('pointerdown', function (e) {
+        if (e.button) return;
+        try { grip.setPointerCapture(e.pointerId); } catch (err) {}
+        grip.classList.add('dragging');
+        if (e.preventDefault) e.preventDefault();
+      });
+      grip.addEventListener('pointermove', function (e) {
+        if (grip.classList.contains('dragging')) setW(side, widthAt(e.clientX));
+      });
+      function end() {
+        if (!grip.classList.contains('dragging')) return;
+        grip.classList.remove('dragging');
+        var cur = parseFloat(root.style.getPropertyValue(c.v));
+        if (isFinite(cur)) rawSet(c.key, String(cur));
+      }
+      grip.addEventListener('pointerup', end);
+      grip.addEventListener('pointercancel', end);
+      grip.addEventListener('dblclick', function () { resetW(side); });
+      grip.addEventListener('keydown', function (e) {   // arrows move the edge by 16px
+        var d = e.key === 'ArrowRight' ? 16 : e.key === 'ArrowLeft' ? -16 : 0;
+        if (!d) return;
+        if (side === 'right') d = -d;
+        var cur = shown(side) || parseFloat(root.style.getPropertyValue(c.v)) || 0;
+        rawSet(c.key, String(setW(side, cur + d)));
+        if (e.preventDefault) e.preventDefault();
+      });
+    });
+  })();
+  // P16-B20/B20b: "Top" edge tab (top centre of the map area) hides the whole top bar (display:none, nothing stays behind).
+  // pressed = bar shown. State in localStorage c4mp.topHidden (old c4pm.topHidden still read); the page works with storage blocked.
+  (function () {
+    var root = document.getElementById('root');
+    var btn = document.getElementById('btn-top');
+    if (!root || !btn) return;
+    function read() { return window.C4PM_STORE.get('c4mp.topHidden') === '1'; }
+    function write(on) { window.C4PM_STORE.set('c4mp.topHidden', on ? '1' : '0'); }
+    function apply(hidden) {
+      root.classList.toggle('top-hidden', hidden);
+      btn.setAttribute('aria-pressed', hidden ? 'false' : 'true');
+      btn.textContent = hidden ? '▼' : '▲';   // arrow = what a click does: up hides the bar, down shows it
+    }
+    apply(read());
+    btn.addEventListener('click', function () {
+      var hidden = !root.classList.contains('top-hidden');
+      apply(hidden);
+      write(hidden);
+    });
+  })();
+  /*C4PM_SCRIPTS*/</script>
+</body>
+</html>

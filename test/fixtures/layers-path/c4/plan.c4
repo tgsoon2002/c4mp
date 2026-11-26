@@ -1,0 +1,60 @@
+specification {
+  element system
+  element container
+  element subregion
+  element component
+}
+
+model {
+  app = system 'App' {
+    core = container 'Core' {
+      entry = subregion 'Entry points' {
+        cli = component 'Cli' {
+          link ../src/entry/cli.ts#main
+        }
+        tool = component 'Tool' {
+          link ../src/entry/tool.ts
+        }
+      }
+      services = subregion 'Services' {
+        query = component 'Query' {
+          link ../src/services/query.ts
+        }
+      }
+      engines = subregion 'Engines' {
+        checks = component 'Checks' {
+          link ../src/engines/checks.ts
+        }
+        render = component 'Render' {
+          link ../src/engines/render.ts
+        }
+      }
+      readers = subregion 'Readers' {
+        workspace = component 'Workspace' {
+          link ../src/readers/open.ts
+        }
+        files = component 'Files' {
+          link ../src/readers/files.ts
+        }
+      }
+      foundation = subregion 'Foundation' {
+        metadata {
+          shared 'true'
+        }
+        types = component 'Types' {
+          link ../src/foundation/types.ts
+        }
+      }
+      loose = component 'Loose' {
+        link ../src/loose.ts
+      }
+    }
+    web = container 'Web' {
+      pages = subregion 'Pages' {
+        page = component 'Page' {
+          link ../src/page.ts
+        }
+      }
+    }
+  }
+}

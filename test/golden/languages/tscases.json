@@ -1,0 +1,237 @@
+{
+  "files": [
+    {
+      "elements": [
+        {
+          "endLine": 2,
+          "kind": "function",
+          "lineCount": 1,
+          "name": "describe",
+          "startLine": 2
+        },
+        {
+          "endLine": 3,
+          "kind": "function",
+          "lineCount": 1,
+          "name": "it",
+          "startLine": 3
+        }
+      ],
+      "file": "src/runner.ts",
+      "handler": "typescript",
+      "imports": [],
+      "lineCount": 7,
+      "parseError": false
+    },
+    {
+      "elements": [
+        {
+          "endLine": 15,
+          "kind": "test",
+          "lineCount": 3,
+          "name": "outer › adds",
+          "startLine": 13
+        },
+        {
+          "endLine": 18,
+          "kind": "test",
+          "lineCount": 3,
+          "name": "outer › adds (2)",
+          "startLine": 16
+        },
+        {
+          "endLine": 22,
+          "kind": "test",
+          "lineCount": 1,
+          "name": "outer › inner › works",
+          "startLine": 22
+        },
+        {
+          "endLine": 25,
+          "kind": "test",
+          "lineCount": 3,
+          "name": "outer › inner › maps %i to %i",
+          "startLine": 23
+        },
+        {
+          "endLine": 29,
+          "kind": "test",
+          "lineCount": 1,
+          "name": "outer › inner › table $a",
+          "startLine": 29
+        },
+        {
+          "endLine": 30,
+          "kind": "test",
+          "lineCount": 1,
+          "name": "outer › inner › to write",
+          "startLine": 30
+        },
+        {
+          "endLine": 34,
+          "kind": "test",
+          "lineCount": 1,
+          "name": "outer › per %s › handles ${k}",
+          "startLine": 34
+        },
+        {
+          "endLine": 37,
+          "kind": "test",
+          "lineCount": 1,
+          "name": "outer › opens a page",
+          "startLine": 37
+        },
+        {
+          "endLine": 38,
+          "kind": "test",
+          "lineCount": 1,
+          "name": "outer › alias of an alias",
+          "startLine": 38
+        },
+        {
+          "endLine": 42,
+          "kind": "test",
+          "lineCount": 1,
+          "name": "lts only › replays",
+          "startLine": 42
+        },
+        {
+          "endLine": 46,
+          "kind": "test",
+          "lineCount": 1,
+          "name": "loop ${n}",
+          "startLine": 46
+        },
+        {
+          "endLine": 49,
+          "kind": "function",
+          "lineCount": 1,
+          "name": "pick",
+          "startLine": 49
+        },
+        {
+          "endLine": 52,
+          "kind": "test",
+          "lineCount": 3,
+          "name": "it's escaped once",
+          "startLine": 50
+        }
+      ],
+      "file": "test/cases.spec.ts",
+      "handler": "typescript",
+      "imports": [
+        {
+          "kind": "import",
+          "line": 1,
+          "resolved": {
+            "status": "internal",
+            "target": "test/helpers.ts"
+          },
+          "spec": "./helpers"
+        }
+      ],
+      "lineCount": 52,
+      "parseError": false,
+      "testBlocks": [
+        {
+          "endLine": 7,
+          "kind": "beforeAll",
+          "name": "",
+          "startLine": 7
+        },
+        {
+          "endLine": 39,
+          "kind": "describe",
+          "name": "outer",
+          "startLine": 9
+        },
+        {
+          "endLine": 10,
+          "kind": "beforeEach",
+          "name": "outer",
+          "startLine": 10
+        },
+        {
+          "endLine": 11,
+          "kind": "afterEach",
+          "name": "outer",
+          "startLine": 11
+        },
+        {
+          "endLine": 31,
+          "kind": "describe",
+          "name": "outer › inner",
+          "startLine": 20
+        },
+        {
+          "endLine": 21,
+          "kind": "afterAll",
+          "name": "outer › inner",
+          "startLine": 21
+        },
+        {
+          "endLine": 35,
+          "kind": "describe",
+          "name": "outer › per %s",
+          "startLine": 33
+        },
+        {
+          "endLine": 43,
+          "kind": "describe",
+          "name": "lts only",
+          "startLine": 41
+        }
+      ]
+    },
+    {
+      "elements": [
+        {
+          "endLine": 2,
+          "kind": "function",
+          "lineCount": 1,
+          "name": "plusOne",
+          "startLine": 2
+        }
+      ],
+      "file": "test/helpers.ts",
+      "handler": "typescript",
+      "imports": [],
+      "lineCount": 2,
+      "parseError": false
+    },
+    {
+      "elements": [
+        {
+          "endLine": 3,
+          "kind": "test",
+          "lineCount": 1,
+          "name": "legacy › runs",
+          "startLine": 3
+        },
+        {
+          "endLine": 6,
+          "kind": "test",
+          "lineCount": 1,
+          "name": "deno case",
+          "startLine": 6
+        }
+      ],
+      "file": "test/legacy.test.js",
+      "handler": "typescript",
+      "imports": [],
+      "lineCount": 6,
+      "parseError": false,
+      "testBlocks": [
+        {
+          "endLine": 4,
+          "kind": "describe",
+          "name": "legacy",
+          "startLine": 2
+        }
+      ]
+    }
+  ],
+  "languages": [
+    "typescript"
+  ]
+}

@@ -1,0 +1,1050 @@
+/* sim.css: every simulation (s-item) class of the viewer (Phase 25, S4-S7). UI4 (b754) adds the shared bits below; each later task appends its own block. Colours are tokens only (style.css). */
+
+/* View chip: which view a step shows (io / arch / storage), an outside step, an unverified step */
+.vchip {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 0 7px;
+  border-radius: 9px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  white-space: nowrap;
+  line-height: 16px;
+}
+.vchip.io {
+  border-color: var(--screen);
+  color: var(--screen);
+}
+.vchip.arch {
+  border-color: var(--c2);
+  color: var(--c2);
+}
+.vchip.storage {
+  border-color: var(--flow);
+  color: var(--flow);
+}
+.vchip.out {
+  border-color: var(--muted);
+  border-style: dashed;
+}
+.vchip.unver {
+  border: 1px dashed var(--unver);
+  color: var(--unver);
+}
+
+/* The s-item kind icon (flow / journey) in rows */
+.sim-ico {
+  flex-shrink: 0;
+  width: 18px;
+  text-align: center;
+  color: var(--flow);
+  font-size: 13px;
+  line-height: 1;
+}
+
+/* Small bar buttons (path strip, present card, sequence drawer) */
+.tbb {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--ink);
+  border-radius: 6px;
+  padding: 3px 9px;
+  font-size: 12px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.tbb:hover {
+  border-color: var(--accent);
+}
+.tbb[disabled] {
+  opacity: .4;
+  cursor: default;
+}
+.tbb.play {
+  border-color: var(--flow);
+  color: var(--flow);
+  font-weight: 700;
+}
+
+/* Sample rows of a step (storage, b244): right panel and present card. tr.ins = a new row, td.chg = a changed cell (old value in <s>) */
+.sim-rows {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.sim-rows table {
+  border-collapse: collapse;
+  font: 11px ui-monospace, Menlo, monospace;
+}
+.sim-rows caption {
+  text-align: left;
+  color: var(--muted);
+  padding-bottom: 1px;
+  font-weight: 600;
+}
+.sim-rows th,
+.sim-rows td {
+  border: 1px solid var(--line);
+  padding: 1px 7px;
+  text-align: left;
+  white-space: nowrap;
+}
+.sim-rows th {
+  background: var(--panel2);
+  color: var(--muted);
+  font-weight: 600;
+}
+.sim-rows tr.ins td {
+  background: color-mix(in srgb, var(--added) 20%, transparent);
+}
+.sim-rows tr.ins td:first-child::before {
+  content: '+ ';
+  color: var(--added);
+  font-weight: 700;
+}
+.sim-rows td.chg {
+  background: color-mix(in srgb, var(--changed) 38%, transparent);
+  font-weight: 700;
+}
+.sim-rows td.chg s {
+  opacity: .6;
+  font-weight: 400;
+}
+
+/* UI5 (b755): the Simulations section at the bottom of the left column (sim-list.js). Closed by default; open = at most 45% of the
+   column, its body scrolls; with it, #left itself does not scroll (only the tab body and the section body do). */
+#left.has-sims {
+  overflow: hidden;
+}
+#left.has-sims .lt-body {
+  min-height: 0;
+}
+#sims {
+  flex: 0 0 auto;
+  max-height: 45%;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  border-top: 1px solid var(--line);
+  background: var(--panel);
+}
+#sims-head {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  padding: 8px;
+  border: 0;
+  background: var(--panel2);
+  color: var(--ink);
+  font: inherit;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+#sims-head:hover {
+  background: var(--accentSoft);
+}
+#sims-sel {
+  font-weight: 500;
+  color: var(--flow);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+#sims-body {
+  overflow-y: auto;
+  min-height: 0;
+  padding: 4px 0;
+}
+#sims-body[hidden] {
+  display: none;
+}
+.lt-sim {
+  padding: 5px 8px;
+  cursor: pointer;
+}
+.lt-sim .lt-name {
+  font-weight: 500;
+  flex: 0 1 auto;
+  min-width: 0;
+}
+.lt-play {
+  flex-shrink: 0;
+  margin-left: auto;
+  border: 1px solid var(--flow);
+  background: none;
+  color: var(--flow);
+  border-radius: 999px;
+  font: inherit;
+  font-size: 10px;
+  line-height: 1;
+  padding: 3px 7px;
+  cursor: pointer;
+}
+.lt-play:hover {
+  background: var(--flow);
+  color: var(--flow-ink);
+}
+.sims-foot {
+  padding: 4px 10px 6px;
+  font-size: 11px;
+  color: var(--muted);
+}
+/* A page without s-items: the one line above the foot, how to add one */
+.sims-empty {
+  padding: 4px 10px;
+  color: var(--ink);
+}
+/* Tree rows the selected s-item lights in this view: amber bar on the left, teal flag "step 1 · 2" */
+.lt-row.sim-lit {
+  box-shadow: inset 3px 0 0 var(--lit);
+  transition-property: none;   /* the bar shows at once (headless Chrome with reduced motion never ends the 0.01ms transition) */
+}
+.lt-flag.sim-steps {
+  flex: 0 0 auto;   /* the step numbers keep their width; the other flags of the row give way first (b612) */
+  border-color: var(--flow);
+  color: var(--flow);
+}
+.lt-flag.unver {
+  border: 1px dashed var(--unver);
+  color: var(--unver);
+  font-weight: 700;
+}
+/* Right panel summary: the Simulations bullet (summary.js) */
+.pn-sims-note {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.pn-sims-note li {
+  margin: 3px 0;
+}
+.pn-sims-note b {
+  color: var(--ink);
+}
+
+/* Path strip (UI7, b757; demo CSS 141-161): the selected s-item's steps as chips on the map, coloured by the step's view */
+#simbar {
+  position: absolute;
+  left: 12px;
+  top: 52px;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  max-width: calc(100% - 24px);   /* demo: 100% - 40px; the real map is 20 px narrower (right panel 420), 12 px each side keeps one line */
+  padding: 5px 8px;
+  background: var(--panel);
+  color: var(--ink);
+  border: 1px solid var(--flow);
+  border-radius: 10px;
+  box-shadow: var(--shadow-1);
+  font-size: 12px;
+}
+#simbar[hidden] {
+  display: none;
+}
+.sb-title {
+  font-weight: 700;
+  white-space: nowrap;
+}
+.sb-id {
+  font: 600 10.5px ui-monospace, Menlo, monospace;
+  color: var(--flow);
+}
+.sb-steps {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.sb-step {
+  min-width: 22px;
+  height: 22px;
+  padding: 0 5px;
+  border-radius: 11px;
+  border: 1.5px solid var(--line);
+  background: var(--panel);
+  color: var(--ink);
+  font: 700 11px ui-monospace, Menlo, monospace;
+  cursor: pointer;
+  line-height: 1;
+}
+.sb-step.v-io {
+  border-color: var(--screen);
+  color: var(--screen);
+}
+.sb-step.v-arch {
+  border-color: var(--c2);
+  color: var(--c2);
+}
+.sb-step.v-storage {
+  border-color: var(--flow);
+  color: var(--flow);
+}
+.sb-step.v-out {
+  border-color: var(--muted);
+  color: var(--muted);
+  border-style: dashed;
+}
+.sb-step.here {
+  background: var(--panel2);
+}
+.sb-step.unver {
+  outline: 1.5px dashed var(--unver);
+  outline-offset: 1px;
+}
+.sb-step.cur {
+  color: var(--flow-ink) !important;
+}
+.sb-step.cur.v-io {
+  background: var(--screen);
+}
+.sb-step.cur.v-arch {
+  background: var(--c2);
+}
+.sb-step.cur.v-storage {
+  background: var(--flow);
+}
+.sb-step.cur.v-out {
+  background: var(--muted);
+}
+.sb-sep {
+  width: 1px;
+  height: 16px;
+  background: var(--line);
+  margin: 0 2px;
+}
+.sb-btn {
+  padding: 1px 8px;
+}
+/* b853 S4, b872: the flow depth switch after the chips, one "Depth" dropdown (the strip fits one line) */
+.sb-depth {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin: 0 2px;
+  font-size: 11.5px;
+  white-space: nowrap;
+}
+.sb-depth-sel {
+  font: inherit;
+  padding: 1px 4px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--panel);
+  color: var(--ink);
+}
+.sb-key {
+  display: flex;
+  gap: 8px;
+  font-size: 10.5px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.sb-key i {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1.5px solid;
+  margin-right: 3px;
+  vertical-align: -1px;
+}
+.sb-key i.k-io {
+  border-color: var(--screen);
+}
+.sb-key i.k-arch {
+  border-color: var(--c2);
+}
+.sb-key i.k-storage {
+  border-color: var(--flow);
+}
+.sb-key i.k-out {
+  border-color: var(--muted);
+  border-style: dashed;
+}
+.sb-key i.k-unver {
+  border-color: var(--unver);
+  border-style: dashed;
+}
+
+/* Phone (demo 323-324): the strip sits at the bottom of the map, without the key */
+@media (max-width: 700px) {
+  #simbar {
+    top: auto;
+    bottom: 8px;
+    left: 8px;
+    right: 8px;
+    max-width: none;
+  }
+  .sb-key {
+    display: none;
+  }
+  /* P22 b168: the credit link (bottom-right) gives way to the shown strip; #made-with follows #simbar in index.html */
+  #simbar:not([hidden]) ~ #made-with {
+    display: none;
+  }
+}
+
+/* UI10 (b760): the right panel of an s-item (sim-panel.js): the unverified note, the buttons, the step cards, "Stored as" rows */
+.pn-note.info {
+  border-color: var(--unver);
+  border-style: dashed;
+  overflow-wrap: anywhere;
+}
+.pbtns {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.pbtn {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--ink);
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 12.5px;
+  cursor: pointer;
+}
+.pbtn:hover {
+  border-color: var(--accent);
+}
+.pbtn.main {
+  border-color: var(--flow);
+  background: var(--flow);
+  color: var(--flow-ink);
+  font-weight: 600;
+}
+.pn-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 12.5px;
+}
+.pn-row {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+.pn-row .k {
+  font-weight: 600;
+}
+.pn-row .v {
+  color: var(--muted);
+  font-size: 11.5px;
+  font-family: ui-monospace, Menlo, monospace;
+  overflow-wrap: anywhere;
+}
+.st-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+/* a journey's stage header: "STAGE 2 · BUY · FLOW S-1", then the goal on its own line */
+.st-stage {
+  font-size: 11px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 700;
+  margin-top: 4px;
+  display: flex;
+  gap: 2px 6px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.st-stage .goal {
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 500;
+  flex-basis: 100%;
+}
+.st-card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 7px 9px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  background: var(--panel);
+  cursor: pointer;
+  overflow-wrap: anywhere;
+}
+.st-card:hover {
+  border-color: var(--accent);
+}
+.st-card.cur {
+  border-color: var(--flow);
+  box-shadow: inset 3px 0 0 var(--flow);
+  background: var(--panel2);
+}
+.st-card.unver {
+  border-style: dashed;
+  border-color: var(--unver);
+}
+.st-card.inflow {
+  margin-left: 12px;
+}
+.st-top {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 12px;
+}
+.st-n {
+  font: 700 11px ui-monospace, Menlo, monospace;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--flow);
+  color: var(--flow-ink);
+  padding: 0 5px;
+}
+.st-tgt {
+  font-weight: 600;
+}
+.st-cap {
+  font-size: 12.5px;
+  color: var(--ink);
+}
+.st-state {
+  font: 11.5px ui-monospace, Menlo, monospace;
+  color: var(--muted);
+}
+/* a check note on one step (sim-step-unconnected, sim-target-missing): small and muted, under the state line */
+.st-note {
+  font-size: 11px;
+  color: var(--muted);
+  font-style: italic;
+}
+.st-rows {
+  overflow-x: auto;
+}
+/* UI6 (b756): an s-item row of the search results (sim-list.js), listed before the map rows; the same look as a map row */
+.sim-search-result {
+  display: block;
+  width: 100%;
+  padding: 8px 12px;
+  border: none;
+  border-bottom: 1px solid var(--line);
+  background: none;
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+}
+.sim-search-result .pn-search-name {
+  font-weight: 500;
+}
+.sim-search-result .pn-search-detail {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+/* Sequence drawer (UI13, b763; demo CSS 272-285): under the map, ABOVE the board drawer when both are open (QK6: the flex
+   order of #center's children: map, sequence, board). Height = --seq-h (drawer-resize.js), 44% until dragged. */
+#center > #seq-drawer {
+  order: 1;
+}
+#center > #board-drawer {
+  order: 2;
+}
+#seq-drawer {
+  position: relative;
+  height: var(--seq-h, 44%);
+  min-height: 150px;
+  max-height: 78%;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--line);
+  background: var(--panel);
+}
+#seq-drawer[hidden],
+#root.presenting #seq-drawer,
+#root.seq-open #hud-bl {   /* demo: the map's how-to hint gives way to the drawer */
+  display: none;
+}
+/* The grab strip lies over the drawer's top edge (no height of its own, so the bar sits right under the border) */
+#seq-drawer-edge {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -4px;
+  height: 8px;
+  z-index: 2;
+  cursor: ns-resize;
+}
+#seq-drawer-edge:hover {
+  background: var(--accentSoft);
+}
+#seq-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-bottom: 1px solid var(--line);
+  font-size: 12.5px;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+#seq-bar .t {
+  font-weight: 700;
+}
+#seq-bar .sub {
+  color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+#seq-bar .sq-pos {
+  flex-shrink: 0;
+}
+#seq-bar .sp {
+  flex: 1;
+}
+#seq-bar .seg {
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+}
+#seq-bar .seg button {
+  padding: 1px 8px;
+}
+#seq-body {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+}
+#seq-body svg {
+  display: block;
+}
+/* The sequence in its own window (UI14, b764; demo CSS 282-283): '&seqonly' in the hash -> #root.seq-only (sim-sequence.js).
+   Only the drawer shows and it fills the window (no top bar, side panels, grips, map, board drawer or height drag); #main
+   stays a row under 1100px too (the phone grid would keep a row for the hidden panel). */
+#root.seq-only #header,
+#root.seq-only #left,
+#root.seq-only .side-grip,
+#root.seq-only #panel-col,
+#root.seq-only #map-wrap,
+#root.seq-only #board-drawer,
+#root.seq-only #seq-drawer-edge {
+  display: none;
+}
+#root.seq-only #main {
+  display: flex;
+}
+#root.seq-only #seq-drawer {
+  height: auto;
+  max-height: none;
+  flex: 1;
+  border-top: 0;
+}
+/* Lane heads: person round (--person), container (--c2), external (--external), outside a dashed panel; dashed lifelines */
+.sq-lane-head rect {
+  fill: var(--c2);
+}
+.sq-lane-head.k-person rect {
+  fill: var(--person);
+}
+.sq-lane-head.k-external rect {
+  fill: var(--external);
+}
+.sq-lane-head.k-outside rect {
+  fill: var(--panel);
+  stroke: var(--muted);
+  stroke-dasharray: 5 3;
+}
+/* b853 S5: lanes at the other depths: system (--c1), component (--c3, dark text), function (--fn), table (--flow) */
+.sq-lane-head.k-system rect {
+  fill: var(--c1);
+}
+.sq-lane-head.k-component rect {
+  fill: var(--c3);
+}
+.sq-lane-head.k-component text {
+  fill: var(--c3-ink);
+}
+.sq-lane-head.k-code rect {
+  fill: var(--fn);
+}
+.sq-lane-head.k-record rect {
+  fill: var(--flow);
+}
+.sq-lane-name {
+  fill: var(--flow-ink);
+  font-size: 12.5px;
+  font-weight: 700;
+}
+.sq-lane-sub {
+  fill: var(--flow-ink);
+  font-size: 10px;
+  opacity: .85;
+}
+.sq-lane-head.narrow .sq-lane-name {
+  font-size: 11.5px;
+}
+.sq-lane-head.narrow .sq-lane-sub {
+  font-size: 9px;
+}
+.sq-lane-head.k-outside text {
+  fill: var(--ink);
+}
+.sq-lifeline {
+  stroke: var(--muted);
+  stroke-width: 1;
+  stroke-dasharray: 4 4;
+  opacity: .7;
+}
+/* One row per step: band (current = accentSoft), number circle, view word, arrow, label */
+.sq-row {
+  cursor: pointer;
+}
+.sq-band {
+  fill: transparent;
+}
+.sq-row:hover .sq-band {
+  fill: var(--panel2);
+}
+.sq-band.cur,
+.sq-row:hover .sq-band.cur {
+  fill: var(--accentSoft);
+}
+.sq-num circle {
+  fill: var(--panel);
+  stroke: var(--flow);
+  stroke-width: 1.5;
+}
+.sq-num text {
+  fill: var(--flow);
+  font: 700 11px ui-monospace, Menlo, monospace;
+}
+.sq-num.cur circle {
+  fill: var(--flow);
+}
+.sq-num.cur text {
+  fill: var(--panel);
+}
+.sq-view {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: .04em;
+}
+.sq-view.v-io {
+  fill: var(--screen);
+}
+.sq-view.v-arch {
+  fill: var(--c2);
+}
+.sq-view.v-storage {
+  fill: var(--flow);
+}
+.sq-view.v-out {
+  fill: var(--muted);
+}
+.sq-arrow {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1.5;
+}
+.sq-arrow.reply {
+  stroke: var(--muted);
+  stroke-dasharray: 3 3;
+}
+.sq-arrow.out {
+  stroke-dasharray: 3 3;
+}
+.sq-arrow.cur {
+  stroke: var(--flow);
+  stroke-width: 2.6;
+}
+.sq-arrow.unver {
+  stroke: var(--unver);
+  stroke-dasharray: 6 4;
+}
+.sq-label {
+  fill: var(--ink);
+  font-size: 11.5px;
+  font-weight: 500;
+  paint-order: stroke;
+  stroke: var(--panel);
+  stroke-width: 3px;
+  stroke-linejoin: round;
+}
+.sq-label.cur {
+  font-weight: 700;
+}
+.sq-label.unver {
+  fill: var(--unver);
+}
+/* Arrow heads (markers): ink, current teal, unverified amber, reply open and muted */
+.sq-mk-ink {
+  fill: var(--ink);
+}
+.sq-mk-flow {
+  fill: var(--flow);
+}
+.sq-mk-unver {
+  fill: var(--unver);
+}
+.sq-mk-ret {
+  fill: none;
+  stroke: var(--muted);
+  stroke-width: 1.5;
+}
+/* Journey: stage rows, goals, the dashed frame of a flow stage and its UML tab */
+.sq-stage {
+  fill: var(--muted);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .06em;
+}
+.sq-goal {
+  fill: var(--muted);
+  font-size: 10.5px;
+}
+.sq-frame {
+  fill: none;
+  stroke: var(--flow);
+  stroke-width: 1.2;
+  stroke-dasharray: 6 4;
+}
+.sq-tab path {
+  fill: var(--panel);
+  stroke: var(--flow);
+  stroke-width: 1.2;
+}
+.sq-tab text {
+  fill: var(--flow);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* UI12 (b762; demo CSS 240-271): present mode (sim-present.js). A caption card at the bottom of the map; an outside step is a
+   centred card over a dimmed map. #root.presenting hides the chrome (the pattern of #root.bare, style.css) and keeps only the
+   camera buttons Fit + - */
+#pres {
+  position: absolute;
+  inset: 0;
+  z-index: 7;
+  pointer-events: none;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0 16px 22px;
+}
+#pres[hidden] {
+  display: none;
+}
+#pres.outside {
+  align-items: center;
+  padding-bottom: 0;
+  background: var(--scrim);
+}
+.pres-head {
+  position: absolute;
+  left: 12px;
+  top: 14px;
+  pointer-events: auto;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--panel);
+  color: var(--ink);
+  border: 1px solid var(--flow);
+  font-size: 12.5px;
+  font-weight: 600;
+  box-shadow: var(--shadow-1);
+}
+.pres-card {
+  pointer-events: auto;
+  width: min(760px, 100%);
+  max-height: calc(100% - 70px);
+  overflow: auto;
+  background: var(--panel);
+  color: var(--ink);
+  border: 1px solid var(--flow);
+  border-radius: 12px;
+  box-shadow: var(--shadow-2);
+  padding: 11px 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+#pres.outside .pres-card {
+  width: min(540px, 100%);
+  padding: 20px 24px;
+  gap: 10px;
+}
+.pres-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: var(--muted);
+}
+.pres-n {
+  font-weight: 700;
+  color: var(--flow);
+}
+.pres-target {
+  font-weight: 700;
+  font-size: 14px;
+}
+.pres-ico {
+  font-size: 30px;
+  line-height: 1;
+}
+.pres-cap {
+  font-size: 15px;
+  line-height: 1.4;
+}
+#pres.outside .pres-cap {
+  font-size: 17px;
+}
+.pres-state {
+  font: 12px ui-monospace, Menlo, monospace;
+  color: var(--muted);
+}
+.pres-state b {
+  color: var(--ink);
+  font-weight: 600;
+}
+.pres-unver {
+  font-size: 12px;
+  color: var(--unver);
+  border: 1px dashed var(--unver);
+  border-radius: 6px;
+  padding: 4px 8px;
+}
+.pres-rows {
+  overflow-x: auto;
+}
+.pres-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.pres-dots {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  flex: 1 1 120px;
+  flex-wrap: wrap;
+}
+.pres-dot {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1.5px solid var(--flow);
+  background: none;
+  cursor: pointer;
+}
+.pres-dot.done {
+  background: var(--flow);
+  opacity: .5;
+}
+.pres-dot.cur {
+  background: var(--flow);
+  transform: scale(1.4);
+}
+.pres-dot.out {
+  border-style: dashed;
+  border-color: var(--muted);
+}
+.pres-dot.sep {
+  margin-left: 8px;
+}
+/* Progress of the playing step: shown while playing (.on); .run fills it over --pres-sec (set by sim-present.js) */
+.pres-prog {
+  height: 3px;
+  border-radius: 2px;
+  background: var(--line);
+  overflow: hidden;
+  visibility: hidden;
+}
+.pres-prog.on {
+  visibility: visible;
+}
+.pres-prog i {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--flow);
+}
+.pres-prog.run i {
+  width: 100%;
+  transition: width var(--pres-sec, 4s) linear;
+}
+.pres-keys {
+  font-size: 10.5px;
+  color: var(--muted);
+}
+#pres .pn-note[hidden] {
+  display: none;
+}
+/* UI17-3 (b849): #pres.away = another linked window plays this step (sim-present.js builds no caption card). The head
+   pill, one line under it ("Step n plays in the IO window") and the controls (.pres-ctl, where the card sits) stay. */
+.pres-away {
+  position: absolute;
+  left: 12px;
+  top: 50px;
+  pointer-events: auto;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--panel);
+  color: var(--muted);
+  border: 1px dashed var(--flow);
+  font-size: 12px;
+  box-shadow: var(--shadow-1);
+}
+.pres-ctl {
+  pointer-events: auto;
+  width: min(760px, 100%);
+  background: var(--panel);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: var(--shadow-1);
+  padding: 8px 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+#root.presenting #header,
+#root.presenting #left,
+#root.presenting .side-grip,
+#root.presenting #panel-col,
+#root.presenting #board-drawer,
+#root.presenting #seq-drawer,
+#root.presenting #hud-bl,
+#root.presenting #hud-tl,
+#root.presenting #legend,
+#root.presenting #simbar,
+#root.presenting #made-with,
+#root.presenting .side-toggle,
+#root.presenting .edge-toggle,
+#root.presenting #hud-tr > :not(#btn-fit):not(#btn-in):not(#btn-out) {
+  display: none;
+}
+/* Under 1100px #main is a grid with two rows; one column gives the map the whole window (as #root.bare #main) */
+#root.presenting #main {
+  display: flex;
+}

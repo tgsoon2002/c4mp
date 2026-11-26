@@ -1,0 +1,32 @@
+<!--
+  Wireframe of screen c4pm.c4pm.io_view ('IO view') for the IO view.
+  Bare HTML: only where each region and control sits and how big it is. c4pm draws it in its own style;
+  colours, fonts and text are ignored. data-c4 = id of a region or control of this screen in io.c4. Shared layout: site.css.
+  Measured from the viewer at 1280 x 800 (#io) on 2026-11-03. The page has the same frame as the Map page; parts the
+  plan does not list for this screen yet (left panel, details button, side toggles, HUD) are plain spacers, not drawn (b296).
+-->
+<link rel="stylesheet" href="site.css">
+<div class="page">
+
+  <header data-c4="top_bar" class="topbar">
+    <div class="grow"></div>   <!-- title and count chips: not in the plan -->
+    <button data-c4="view_btn" style="width: 149px; height: 31px"></button>
+    <input data-c4="search" class="search">
+    <div class="icon"></div>   <!-- details button: not in the plan for this screen -->
+    <button data-c4="gear_btn" class="icon"></button>
+  </header>
+
+  <div class="main">
+    <div class="left"></div>   <!-- left panel (tree): not in the plan for this screen -->
+
+    <div data-c4="map" class="map grow">
+      <div class="camera">
+        <button data-c4="fit" class="btn" style="width: 35px"></button>
+        <button data-c4="zoom_in" class="btn" style="width: 32px"></button>
+        <button data-c4="zoom_out" class="btn" style="width: 32px"></button>
+      </div>
+    </div>
+
+    <aside data-c4="right_panel" class="right"></aside>
+  </div>
+</div>

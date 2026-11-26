@@ -1,0 +1,12 @@
+C4MP
+Copyright 2026 Kien Nguyen
+
+This product includes software developed by Kien Nguyen and the C4MP contributors.
+
+Licensed under the Apache License, Version 2.0 (see LICENSE). The names "C4MP" and the
+tent-4 logo are trademarks of Kien Nguyen (see TRADEMARKS.md); the Apache licence does not
+grant rights to them.
+
+Third-party software that C4MP uses or ships is listed, with its licence texts, in
+THIRD-PARTY-NOTICES.txt. That file is generated from the installed dependencies by
+Project/scripts/third-party-notices.js.

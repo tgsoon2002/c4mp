@@ -1,0 +1,16 @@
+specification {
+  element system
+  element component
+}
+
+model {
+  app = system 'App' {
+    core = component 'Core' {
+      link ./src/a.ts#runA 'entry'
+      link ./src/split.test.ts#helperA
+    }
+    other = component 'Other' {
+      link ./src/split.test.ts#helperB
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "name": "c4mp",
+  "version": "0.11.0",
+  "license": "Apache-2.0",
+  "description": "Architecture-first project tool: zoomable C4 map, task boards, simulations",
+  "main": "dist/src/index.js",
+  "bin": {
+    "c4mp": "dist/bin/cli.js",
+    "c4pm": "dist/bin/cli.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "postbuild": "chmod +x dist/bin/cli.js",
+    "cli": "ts-node bin/cli.ts",
+    "coverage": "jest --coverage",
+    "prepack": "npm run build",
+    "test": "jest",
+    "typecheck": "tsc -p tsconfig.test.json"
+  },
+  "files": [
+    "dist/bin",
+    "dist/src",
+    "viewer",
+    "guide",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "dependencies": {
+    "commander": "^11.0.0",
+    "tree-sitter": "^0.21.0",
+    "tree-sitter-c-sharp": "0.23.1",
+    "tree-sitter-cpp": "0.23.4",
+    "tree-sitter-php": "0.23.12",
+    "tree-sitter-python": "^0.21.0",
+    "tree-sitter-rust": "0.23.1",
+    "tree-sitter-swift": "0.7.1",
+    "tree-sitter-typescript": "^0.21.0",
+    "typescript": "^5.3.0"
+  },
+  "overrides": {
+    "tree-sitter-swift": {
+      "tree-sitter": "$tree-sitter"
+    }
+  },
+  "devDependencies": {
+    "@types/jest": "^29.0.0",
+    "@types/node": "^20.0.0",
+    "jest": "^29.0.0",
+    "ts-jest": "^29.0.0",
+    "ts-node": "^10.9.0"
+  }
+}

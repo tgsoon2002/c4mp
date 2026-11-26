@@ -1,0 +1,12 @@
+specification {
+  element system
+  element component
+}
+
+model {
+  app = system 'App' {
+    core = component 'Core' {
+      link ./a.ts#runA 'entry'
+    }
+  }
+}

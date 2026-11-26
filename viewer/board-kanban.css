@@ -1,0 +1,339 @@
+/* board-kanban.css: the Kanban view of the board drawer (P16-B25). Everything is scoped under .kb. */
+.kb {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.kb-cols {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  gap: 8px;
+  padding: 8px 10px;
+  overflow-x: auto;
+  align-items: stretch;
+}
+
+.kb .kb-col {
+  flex: 0 0 232px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: var(--panel2);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.kb .kb-col.closed {
+  flex: 0 0 42px;
+}
+
+.kb .kb-col.extra {
+  border-style: dashed;
+}
+
+.kb .kb-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  cursor: pointer;
+  user-select: none;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.kb .kb-head:hover {
+  background: var(--accentSoft);
+  border-radius: 8px 8px 0 0;
+}
+
+.kb .kb-head:focus-visible,
+.kb .kb-card:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+.kb .kb-col.closed .kb-head {
+  flex-direction: column;
+  height: 100%;
+  padding: 8px 0;
+  border-radius: 8px;
+}
+
+.kb .kb-col.closed .kb-name {
+  writing-mode: vertical-rl;
+}
+
+.kb .kb-col.closed .kb-list {
+  display: none;
+}
+
+.kb .kb-name {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.kb .kb-col.closed .kb-name {
+  flex: 0 1 auto;
+}
+
+.kb .kb-count {
+  font-weight: 500;
+  font-size: 11px;
+  padding: 0 7px;
+  border-radius: 9px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  color: var(--muted);
+}
+
+.kb .kb-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 4px 6px 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 40px;
+}
+
+.kb .kb-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 6px 8px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.kb .kb-card:hover {
+  border-color: var(--accent);
+}
+
+.kb .kb-card.selected {
+  border-color: #FFB020;
+  box-shadow: 0 0 0 2px rgba(255, 176, 32, .35);
+}
+
+.kb .bd-line {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.kb .bd-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+}
+
+.kb .bd-link {
+  flex-shrink: 0;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.kb .kb-status {
+  flex-shrink: 0;
+  font-size: 10.5px;
+  line-height: 1;
+  padding: 3px 7px;
+  border-radius: 9px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+}
+
+.kb .kb-status.st-in-progress {
+  color: #E7B24A;
+  border-color: #E7B24A;
+}
+
+.kb .kb-status.st-done {
+  color: #5CC98C;
+  border-color: #5CC98C;
+}
+
+.kb .kb-id {
+  color: var(--muted);
+  font: 11px ui-monospace, monospace;
+}
+
+.kb .kb-ct {
+  margin: 3px 0 2px;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+.kb .bd-sub {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+  flex-wrap: wrap;
+}
+
+.kb .bd-due {
+  padding: 0 6px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+}
+
+.kb .bd-due.over {
+  color: #fff;
+  background: #D0473B;
+  border-color: #D0473B;
+}
+
+.kb .kb-card.moved {
+  border-style: dashed;
+  border-color: var(--accent);
+}
+
+.kb .kb-card[draggable="true"] {
+  cursor: grab;
+}
+
+.kb .kb-card.dragging {
+  opacity: .4;
+}
+
+/* group editing (B32b): "+ Group", delete an empty group, drag a head to reorder */
+.kb .kb-add {
+  flex: 0 0 auto;
+  align-self: flex-start;
+  border: 1px dashed var(--line);
+  background: transparent;
+  color: var(--muted);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.kb .kb-add:hover {
+  color: var(--ink);
+  background: var(--accentSoft);
+}
+
+.kb .kb-col.kb-new {
+  flex: 0 0 200px;
+  padding: 8px;
+  align-self: flex-start;
+  min-height: 0;
+}
+
+.kb .kb-new input {
+  width: 100%;
+  box-sizing: border-box;
+  font: inherit;
+  font-size: 12px;
+  padding: 4px 6px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--panel);
+  color: var(--ink);
+}
+
+.kb .kb-new input[aria-invalid="true"] {
+  border-color: #D0473B;
+}
+
+.kb .kb-err {
+  margin-top: 4px;
+  font-size: 11px;
+  color: #D0473B;
+}
+
+.kb .kb-x {
+  margin-left: auto;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.kb .kb-x:hover {
+  color: #D0473B;
+}
+
+.kb .kb-head[draggable="true"] {
+  cursor: grab;
+}
+
+.kb .kb-col.dragging {
+  opacity: .5;
+}
+
+.kb .kb-col.mark-l {
+  box-shadow: -3px 0 0 var(--accent);
+}
+
+.kb .kb-col.mark-r {
+  box-shadow: 3px 0 0 var(--accent);
+}
+
+.kb .kb-col.drop-over {
+  outline: 2px dashed var(--accent);
+  outline-offset: -2px;
+}
+
+/* pending-commands bar under the columns (B32a) */
+.kb .kb-pending {
+  flex-shrink: 0;
+  max-height: 38%;
+  overflow: auto;
+  padding: 6px 10px;
+  border-top: 1px solid var(--line);
+  background: var(--accentSoft);
+  font-size: 12px;
+}
+
+.kb .kb-pending[hidden] {
+  display: none;
+}
+
+.kb .kb-pending .row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.kb .kb-pending button {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--ink);
+  border-radius: 6px;
+  padding: 2px 9px;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.kb .kb-pending pre {
+  margin: 6px 0 0;
+  font: 11.5px/1.5 ui-monospace, monospace;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.kb .kb-blocked {
+  padding: 0 6px;
+  border-radius: 8px;
+  border: 1px solid #D0473B;
+  color: #D0473B;
+  font-weight: 600;
+}

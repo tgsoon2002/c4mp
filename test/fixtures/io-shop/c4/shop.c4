@@ -1,0 +1,182 @@
+model {
+  shop = system 'Shop' {
+    web = container 'Shop web' {
+      technology 'React'
+      login = screen 'Login' {
+        header = region 'Header' {
+          logo = control 'Logo'
+        }
+        form = region 'Sign-in form' {
+          email = control 'Email input'
+          password = control 'Password input'
+          submit = control 'Sign in button' {
+            -> shop.web.home 'Sign in'
+            loading = state 'Loading'
+          }
+        }
+        footer = region 'Footer' {
+          footer_nav = control 'Footer links'
+        }
+        err = state 'Error: wrong password'
+      }
+      home = screen 'Home' {
+        header = region 'Header' {
+          logo = control 'Logo'
+          search = control 'Search box'
+        }
+        hero = region 'Hero banner' {
+          shop_now = control 'Shop now button' {
+            -> shop.web.products 'Shop now'
+          }
+        }
+        featured = region 'Featured products' {
+          cards = control 'Product cards'
+        }
+        footer = region 'Footer' {
+          footer_nav = control 'Footer links'
+        }
+        loading = state 'Loading'
+      }
+      products = screen 'Products' {
+        header = region 'Header' {
+          logo = control 'Logo'
+          search = control 'Search box'
+        }
+        filters = region 'Filters' {
+          category = control 'Category list'
+          price = control 'Price slider'
+        }
+        results = region 'Results' {
+          grid = control 'Product grid'
+          add = control 'Add to cart button' {
+            -> shop.web.cart 'Add to cart'
+          }
+          pager = control 'Pager'
+        }
+        footer = region 'Footer' {
+          footer_nav = control 'Footer links'
+        }
+        empty = state 'Empty: no products match'
+        loading = state 'Loading'
+        err = state 'Error: catalog is down'
+      }
+      cart = screen 'Cart' {
+        header = region 'Header' {
+          logo = control 'Logo'
+          search = control 'Search box'
+        }
+        items = region 'Items' {
+          item_list = control 'Item list'
+          qty = control 'Quantity stepper'
+          remove = control 'Remove button'
+        }
+        summary = region 'Summary' {
+          total = control 'Total'
+          checkout_btn = control 'Checkout button' {
+            disabled = state 'Disabled while the cart is empty'
+          }
+          keep = control 'Keep shopping link' {
+            -> shop.web.products 'Keep shopping'
+          }
+        }
+        footer = region 'Footer' {
+          footer_nav = control 'Footer links'
+        }
+        empty = state 'Empty: cart is empty'
+        loading = state 'Loading'
+      }
+    }
+    cli = container 'Shop CLI' {
+      technology 'commander'
+      import = command 'import' {
+        options = options 'Options' {
+          file = flag '--file' {
+            metadata {
+              type 'path'
+            }
+          }
+          dry_run = flag '--dry-run' {
+            metadata {
+              type 'switch'
+            }
+          }
+        }
+      }
+      report = command 'report' {
+        options = options 'Options' {
+          file = flag '--file' {
+            metadata {
+              type 'path'
+            }
+          }
+          dry_run = flag '--dry-run' {
+            metadata {
+              type 'switch'
+            }
+          }
+        }
+      }
+    }
+    api = container 'Shop API' {
+      technology 'REST'
+      get_products = route 'GET /products' {
+        category = param 'category' {
+          metadata {
+            type 'string'
+          }
+        }
+        limit = param 'limit' {
+          metadata {
+            type 'int'
+          }
+        }
+        body = body 'Body' {
+          sku = param 'sku' {
+            metadata {
+              type 'string'
+            }
+          }
+          price = param 'price' {
+            metadata {
+              type 'decimal'
+            }
+          }
+        }
+      }
+      post_orders = route 'POST /orders' {
+        idempotency_key = param 'idempotency_key' {
+          metadata {
+            type 'string'
+          }
+        }
+        body = body 'Body' {
+          sku = param 'sku' {
+            metadata {
+              type 'string'
+            }
+          }
+          qty = param 'qty' {
+            metadata {
+              type 'int'
+            }
+          }
+        }
+      }
+    }
+    mcp = container 'Shop MCP' {
+      technology 'MCP'
+      find_product = tool 'find_product' {
+        query = param 'query' {
+          metadata {
+            type 'string'
+          }
+        }
+        limit = param 'limit' {
+          metadata {
+            type 'int'
+          }
+        }
+      }
+    }
+  }
+}

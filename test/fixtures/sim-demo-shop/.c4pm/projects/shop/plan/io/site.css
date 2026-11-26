@@ -1,0 +1,36 @@
+/* The one stylesheet of the Shop wireframes: layout only (sizes and positions), shared by every screen. */
+.page    { display: flex; flex-direction: column; height: 100%; }
+.row     { display: flex; align-items: center; }
+.col     { display: flex; flex-direction: column; }
+.grow    { flex: 1; }
+.main    { display: flex; flex: 1; gap: 24px; padding: 24px; }
+.center  { display: flex; flex: 1; align-items: center; justify-content: center; }
+.header  { height: 64px; gap: 16px; padding: 0 24px; }
+.footer  { height: 72px; padding: 0 24px; }
+.logo    { width: 120px; height: 32px; }
+.search  { width: 480px; height: 36px; }
+.links   { width: 600px; height: 24px; }
+.region  { padding: 40px 16px 16px; gap: 12px; }
+.card    { width: 440px; }
+.side    { width: 280px; }
+.wide    { flex: 1; }
+.field   { width: 100%; height: 40px; }
+.btn     { width: 180px; height: 44px; }
+.btn-w   { width: 100%; height: 44px; }
+.link    { width: 200px; height: 24px; }
+.list    { width: 100%; height: 220px; }
+.slider  { width: 100%; height: 32px; }
+.hero    { height: 300px; padding: 0 64px; }
+.featured { height: 260px; padding: 24px; }
+.cards   { width: 100%; height: 200px; }
+.grid    { width: 100%; flex: 1; }
+.pager   { width: 320px; height: 32px; align-self: center; }
+.photo   { width: 520px; height: 100%; }
+.price   { width: 160px; height: 40px; }
+.reviews { height: 180px; }
+.revlist { width: 100%; height: 100%; }
+.items   { width: 100%; flex: 1; }
+.stepper { width: 140px; height: 36px; }
+.total   { width: 100%; height: 48px; }
+.orderno { width: 280px; height: 48px; }
+.buy     { gap: 16px; padding-left: 32px; align-items: flex-start; }

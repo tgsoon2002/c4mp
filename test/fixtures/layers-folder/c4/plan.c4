@@ -1,0 +1,30 @@
+specification {
+  element system
+  element container
+  element layer
+  element component
+}
+
+model {
+  shop = system 'Shop' {
+    api = container 'Api' {
+      logic = layer 'Logic' {
+        orders = component 'Orders' {
+          metadata { status 'done' }
+        }
+      }
+      data = layer 'Data' {
+        billing = component 'Billing' {
+          metadata { status 'done' }
+        }
+      }
+    }
+    web = container 'Web' {
+      pages = component 'Pages' {
+        metadata { status 'done' }
+      }
+    }
+  }
+
+  shop.api.logic.orders -> shop.api.data.billing 'bills'
+}

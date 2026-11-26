@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 64 64" role="img" aria-label="C4MP icon">
+  <!-- Logo 12 simplified for 32 px: no middle outline, thicker lines. -->
+  <rect x="1" y="1" width="62" height="62" rx="15" fill="#1F6F5C"/>
+  <g fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M40 10 L12 44 H40 Z"/>
+    <path d="M40 10 V56 M40 44 H52"/>
+  </g>
+  <path d="M40 33 L31 44 H40 Z" fill="#C9621F"/>
+</svg>

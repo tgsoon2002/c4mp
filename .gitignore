@@ -1,0 +1,8 @@
+node_modules/
+dist/
+coverage/
+*.log
+.DS_Store
+out/
+!test/fixtures/**/node_modules/
+!test/fixtures/**/dist/

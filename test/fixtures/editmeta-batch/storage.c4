@@ -1,0 +1,453 @@
+// Storage items of C4PM's own plan: the files C4PM writes and reads as its own data. One store per place (or kind of
+// file), one record per file or file pattern, fields = the top-level keys of the TypeScript type that defines the
+// content (src/types.ts unless named), one level of nesting for the important objects. Format: the record's
+// technology line (json, text, html, css, c4); the store's technology starts with 'fs' so the view says
+// folder / file / field. No reader reads JSON or text files yet, so every store gets one missing-store finding;
+// status 'planned' on the stores keeps it at info (apply.md, questions.md). uids: run `c4pm plan ids --yes` after.
+// A field whose name is a body keyword (title, description, technology, metadata, link) gets the id <name>_key; its title is the real key.
+model {
+  extend c4pm.c4pm {
+
+    // ---------------------------------------------------------------- 1. project config
+    store_config = store 'Project config' {
+      technology 'fs (JSON, text)'
+      description 'The anchor folder <anchor>/.c4pm: the project settings and the git ignore list. Committed.'
+      metadata {
+        status 'planned'
+        uid '25445dda-fbb3-41aa-9c3b-4f699b4950a4'
+      }
+      config_json = record '.c4pm/config.json' {
+        technology 'json'
+        description 'Project settings (C4pmConfig, src/types.ts). Written by c4pm init (DEFAULT_CONFIG) and plan remove of a scanned box (adds an ignore folder); read by loadConfig on every command. Precedence: CLI > env C4PM_* > this file > legacy .c4pmrc.json > defaults.'
+        languages = field 'languages' { metadata { type 'string[]' uid 'cfd14420-be37-4968-bfe9-142334196dd0' } }
+        ignore = field 'ignore' { metadata { type 'string[]' uid 'd4a37192-853b-4a24-8069-59f08816ea08' } }
+        store = field 'store' { metadata { type 'string' nullable 'true' uid '9504a36b-2ac9-4e6c-b1be-098ecd52dbbf' } }
+        sprint = field 'sprint' { metadata { type 'string' nullable 'true' uid 'b3f88689-d997-4cdc-9560-89d4bd9428a8' } }
+        failOn = field 'failOn' { metadata { type 'FailOn' values 'critical,warning,none' uid 'ce5e9e7c-e8fd-40e0-9f94-95e0f6b143c5' } }
+        architectureDir = field 'architectureDir' { metadata { type 'string' nullable 'true' uid '65c76d82-7239-42d7-9c54-9a4d87d28a4b' } }
+        viewOnCommit = field 'viewOnCommit' { metadata { type 'boolean' uid '040c7e6b-d8e2-450a-94c4-d0ac42c771fa' } }
+        fileOnlyExtensions = field 'fileOnlyExtensions' { metadata { type 'string[]' nullable 'true' uid 'a340ce6e-9b5a-44da-82fb-dc99de847608' } }
+        tests = field 'tests' {
+          description 'Test files and test runs (TestsConfig).'
+          metadata { type 'TestsConfig' nullable 'true' uid 'b85fc2d8-e00c-4cc7-b595-f5e5396d40ad' }
+          globs = field 'globs' { metadata { type 'string[]' nullable 'true' uid 'ec7d2de6-2511-42fb-9408-8915b2152042' } }
+          ignoreReach = field 'ignoreReach' { metadata { type 'string[]' nullable 'true' uid 'd75940f0-86d5-4127-95a6-80e99849b6e7' } }
+          command = field 'command' { metadata { type 'string' nullable 'true' uid 'ad8c8872-6aa4-46bb-ab4e-f28e66c55173' } }
+          noTests = field 'noTests' { metadata { type 'boolean' nullable 'true' uid 'b1fff82b-dde5-44a7-b1e5-9b4d24995661' } }
+        }
+        metadata {
+          uid 'cbfe0b2b-8b64-41d4-be9d-1a51356b56c5'
+        }
+      }
+      legacy_rc = record '.c4pmrc.json' {
+        technology 'json'
+        description 'Legacy config file at the scan target (same keys as config.json). Written by c4pm config init; read by loadConfig as the lowest file layer.'
+        metadata {
+          uid '3144a69b-ed4f-4343-a879-488572083937'
+        }
+      }
+      internal_gitignore = record '.c4pm/.gitignore' {
+        technology 'text'
+        description 'Keeps the regenerable data out of git: projects/*/data/ and projects/*/history/ (INTERNAL_GITIGNORE). Written once, never overwritten, before any automatic write under .c4pm (ensureInternalDir).'
+        metadata {
+          uid '10e3158c-3a4f-4a29-97ea-acd56512e9f0'
+        }
+      }
+    }
+
+    // ---------------------------------------------------------------- 2. plan
+    store_plan = store 'Plan' {
+      technology 'fs (c4, HTML, CSS)'
+      description 'The plan folder .c4pm/projects/<id>/plan (or config architectureDir): the .c4 plan files and the IO wireframes. Committed; written only through the safe-edit gate.'
+      metadata {
+        status 'planned'
+        uid 'cbf8e53a-6f8f-4e16-8849-46c181b8bad3'
+      }
+      c4_files = record '*.c4' {
+        technology 'c4'
+        description 'Plan text files. Read by findPlanFiles + parsePlan into one Plan (files, elements, relations, issues); written by the plan commands (commitPlanEdit, writeAtomic), plan generate and apply-layout.'
+        elements = field 'elements' {
+          description 'Every element, by fqn (PlanElement).'
+          metadata { type 'PlanElement[]' uid 'af2fe394-a678-4fa5-9d45-e2fc78839758' }
+          id = field 'id' { metadata { type 'string' pk 'true' uid '1fe6e33f-09ae-4bfe-b6ff-064267ba2fb9' } }
+          kind = field 'kind' { metadata { type 'string' uid '048b2a8a-5272-4883-839c-3ce70f952979' } }
+          title_key = field 'title' { metadata { type 'string' uid '263fc29d-e65a-4753-9b33-0c7480b86e53' } }
+          description_key = field 'description' { metadata { type 'string' nullable 'true' uid 'd501d6a2-82c9-4638-96fb-eb5db3093bef' } }
+          technology_key = field 'technology' { metadata { type 'string' nullable 'true' uid '45a47b21-518a-4630-bd6c-2130256822dc' } }
+          links = field 'links' { metadata { type 'PlanLink[]' uid '6e8168bc-87a4-4306-a02b-b88acb223025' } }
+          metadata_key = field 'metadata' { metadata { type 'Record<string, string>' uid '6db5f87e-b843-4992-803a-8c74f0accdb3' } }
+          parent = field 'parent' { metadata { type 'string' nullable 'true' uid '6eb89239-7f60-42da-8abe-121e92f64650' } }
+          tests = field 'tests' { metadata { type 'PlanTest[]' nullable 'true' uid '987a749a-cd18-4b93-981f-126d423227f7' } }
+        }
+        relations = field 'relations' {
+          description 'Arrows between elements, in file order (PlanRelation).'
+          metadata { type 'PlanRelation[]' uid 'f0666611-d5e3-4bb7-a707-02fbf89c4e9e' }
+          from = field 'from' { metadata { type 'string' uid '29346981-e85f-4cd9-8bb3-fbbfb12dde10' } }
+          to = field 'to' { metadata { type 'string' uid 'f7b1b902-b44b-4e9f-881f-fe7ed0d2f9c6' } }
+          label = field 'label' { metadata { type 'string' nullable 'true' uid 'c8ebea83-4426-4649-a3d4-312fee7d387a' } }
+        }
+        metadata {
+          uid '25e228d4-931e-455e-9689-7391472177ed'
+        }
+      }
+      wireframe = record 'io/<screen fqn>.html' {
+        technology 'html'
+        description 'Wireframe of one screen, classes only. Read by loadWireframes (inlines io/ stylesheets, max size WIREFRAME_MAX_BYTES); started by plan wireframe, moved on a screen rename.'
+        metadata {
+          uid '01630b31-e372-4dd1-9c43-c5756d455cf0'
+        }
+      }
+      site_css = record 'io/site.css' {
+        technology 'css'
+        description 'Shared layout of the wireframes, written by hand; inlined into each wireframe that links it.'
+        metadata {
+          uid '8fa50055-81a7-4bf2-8c28-65c9462885a7'
+        }
+      }
+    }
+
+    // ---------------------------------------------------------------- 3. board
+    store_board = store 'Board' {
+      technology 'fs (JSON)'
+      description 'The work items of the project: .c4pm/projects/<id>/board. Committed.'
+      metadata {
+        status 'planned'
+        uid '96b22696-cbb9-437c-ab41-9a7d0858880d'
+      }
+      board_json = record 'board/board.json' {
+        technology 'json'
+        description 'All boards and their b-items (BoardFile). Read by loadBoard / loadBoardForEdit (parseBoard); written by the board commands (applyBoardWrite, writeAtomic, re-parsed and rolled back on error).'
+        schemaVersion = field 'schemaVersion' { metadata { type '1' uid 'aaa6a5d9-4bd0-493c-ba2d-42b02a0d9e36' } }
+        boards = field 'boards' {
+          description 'One board each (Board); its b-items are its children.'
+          metadata { type 'Board[]' uid '8c013166-a29b-40d8-be63-9247b997eb1a' }
+          id = field 'id' { metadata { type 'string' pk 'true' uid '67dc33c7-e8f4-4260-a65b-a00190eb4692' } }
+          name = field 'name' { metadata { type 'string' uid 'd0880745-dfbd-40ec-a112-0889857d495b' } }
+          archived = field 'archived' { metadata { type 'boolean' nullable 'true' uid '966d4a39-06a8-4579-8559-2f94ad257aef' } }
+          groups = field 'groups' { metadata { type 'BoardGroup[]' nullable 'true' uid '86e84846-dbea-4122-a363-fcfce46a0105' } }
+          items = field 'items' { metadata { type 'BoardItem[]' uid '68fc5647-7083-4eb3-872d-515627b64127' } }
+        }
+        metadata {
+          uid '179ee09c-6a45-4713-a53b-6e2c3fa57f55'
+        }
+      }
+    }
+
+    // ---------------------------------------------------------------- 4. history
+    store_history = store 'History' {
+      technology 'fs (JSON)'
+      description 'Snapshots of past commits: <store>/<repoId>/history, store = --store > config store > .c4pm/projects (legacy ~/.c4pm/store without an anchor). Not committed (.c4pm/.gitignore).'
+      metadata {
+        status 'planned'
+        uid 'db82336b-e9a8-41fd-a250-a9fb2baa7808'
+      }
+      manifest = record 'manifest.json' {
+        technology 'json'
+        description 'Index of the stored snapshots (Manifest). Read by loadManifest (a corrupt one throws); written by saveToHistory under manifest.lock.'
+        repoId = field 'repoId' { metadata { type 'string' uid '74a782a9-d7c6-4b21-a3c6-4260b866b1f7' } }
+        repoName = field 'repoName' { metadata { type 'string' uid 'f4ae9db0-c821-4673-9e09-c20c3a51d5b6' } }
+        entries = field 'entries' {
+          description 'One per snapshot, sorted by depth, time, id (HistoryEntry).'
+          metadata { type 'HistoryEntry[]' uid '4831760a-ab03-4e9d-b1e0-0fdf7da3b50d' }
+          id = field 'id' { metadata { type 'string' pk 'true' uid '50fa2148-a22e-4a60-a1d4-c07866f35fdc' } }
+          file = field 'file' { metadata { type 'string' uid 'e5bd255d-c410-4f6c-b607-27470b4c9831' } }
+          createdAt = field 'createdAt' { metadata { type 'string' uid 'b90bc271-5a2c-435c-8243-abf4af681ea6' } }
+          commit = field 'commit' { metadata { type 'string' nullable 'true' uid 'eec97c97-9d61-489f-ab59-f0de492316b4' } }
+          commitDate = field 'commitDate' { metadata { type 'string' nullable 'true' uid 'f4525d9a-c6e8-4b2a-b47b-3595794a3fa2' } }
+          branch = field 'branch' { metadata { type 'string' nullable 'true' uid '1817cf48-4698-4ea1-94b8-9456f6f0dd4b' } }
+          depth = field 'depth' { metadata { type 'number' nullable 'true' uid 'a34298df-9519-44b7-97e7-40c00ed8879f' } }
+          stats = field 'stats' { metadata { type 'SnapshotStats' uid '57215306-d315-4b72-9dd2-cb8ca90c8faa' } }
+        }
+        metadata {
+          uid 'f7d8ec55-d85a-42b1-87d0-f0181ec59923'
+        }
+      }
+      snapshot_file = record '<compactDate>--<commit7|nogit>.json' {
+        technology 'json'
+        description 'One stored snapshot of the code (Snapshot, calls never written). Written by saveToHistory (c4pm history, snapshot --save, the hooks); read by loadFromHistory (diff, view --from, merge drift).'
+        schemaVersion = field 'schemaVersion' { metadata { type '2' uid '1eb71ba1-b6bf-4509-93a8-5b87239edd95' } }
+        meta = field 'meta' {
+          description 'Where and when the scan ran (SnapshotMeta).'
+          metadata { type 'SnapshotMeta' uid '161ef4d6-c106-41dd-a9cd-c9e8ce27bd1c' }
+          tool = field 'tool' { metadata { type 'string' uid '35718476-a7be-43a8-b65c-0ce9def2c8d3' } }
+          repoPath = field 'repoPath' { metadata { type 'string' uid '3e24f069-a1a8-433b-8839-dde1e62c2d02' } }
+          repoName = field 'repoName' { metadata { type 'string' uid 'd1a32259-c6b9-4fa8-bb6f-e89a51849025' } }
+          createdAt = field 'createdAt' { metadata { type 'string' uid '0dea956f-6b1d-406f-ada7-0dacee6f66d3' } }
+          git = field 'git' { metadata { type 'GitInfo' nullable 'true' uid '5db08bba-7a60-422c-b526-6efc732284b8' } }
+        }
+        system = field 'system' { metadata { type '{ id: string; name: string }' uid '37679763-774d-46fa-95f7-4dafa36fe208' } }
+        containers = field 'containers' { metadata { type 'Container[]' uid '9e37e39d-6db8-4ef8-af8a-167e0e89d49e' } }
+        components = field 'components' { metadata { type 'Component[]' uid '565a4b0f-43b2-4b19-ac01-e5aaf01b6478' } }
+        files = field 'files' { metadata { type 'SnapshotFile[]' uid 'bd074b8c-1340-4705-89fb-7029faf2165b' } }
+        componentEdges = field 'componentEdges' { metadata { type 'ComponentEdge[]' uid '731f78b4-acf6-409c-9761-b3ca762beee2' } }
+        fileEdges = field 'fileEdges' { metadata { type 'FileEdge[]' uid 'a1084209-a6dc-4284-9397-cc94615ed5aa' } }
+        externals = field 'externals' { metadata { type 'ExternalUse[]' uid '9ef6752e-0397-4be3-800d-88c51fcf7778' } }
+        stats = field 'stats' { metadata { type 'SnapshotStats' uid '33829753-d9b1-4337-a5f7-408576b6282f' } }
+        metadata {
+          uid '6e5a37cd-4877-4bfc-8ff1-6d18cf90984a'
+        }
+      }
+    }
+
+    // ---------------------------------------------------------------- 5. data dir
+    store_data = store 'Scan data' {
+      technology 'fs (JSON)'
+      description 'The latest scan written by c4pm snapshot: .c4pm/projects/<id>/data (or --out). Not committed (.c4pm/.gitignore). No c4pm command reads these four files back, except diff given two snapshot.json paths.'
+      metadata {
+        status 'planned'
+        uid 'b7ebb4f4-5b3c-4bbb-ac4e-46683111b3b0'
+      }
+      outline_json = record 'outline.json' {
+        technology 'json'
+        description 'The outline of every scanned file: one FileOutline per file (runSnapshot, pipeline.ts).'
+        file = field 'file' { metadata { type 'string' pk 'true' uid '279228df-5ac2-43d8-a9cb-6834d9a1c8f4' } }
+        lineCount = field 'lineCount' { metadata { type 'number' uid '38b6a2f3-a868-4654-a71b-45032b447c04' } }
+        parseError = field 'parseError' { metadata { type 'boolean' uid '9279a718-68c9-4e52-bd86-c2394f7df5cc' } }
+        elements = field 'elements' { metadata { type 'CodeElement[]' uid 'ab98e67b-2309-4f0a-8671-b335057462ff' } }
+        fileOnly = field 'fileOnly' { metadata { type 'true' nullable 'true' uid '979ea6f4-4e53-474a-b7b8-58ab73c5235d' } }
+        testBlocks = field 'testBlocks' { metadata { type 'TestBlock[]' nullable 'true' uid 'a5b3667e-5b82-4106-b441-f93b51ed25b3' } }
+        metadata {
+          uid '2d16d86e-dec6-4981-9ec9-bea56fb70849'
+        }
+      }
+      imports_json = record 'imports.json' {
+        technology 'json'
+        description 'The imports of every scanned file: one FileImports per file (reason and targets are never stored).'
+        file = field 'file' { metadata { type 'string' pk 'true' uid 'b5f7ca30-53b0-4567-b135-20dfa82cfea3' } }
+        imports = field 'imports' {
+          metadata { type 'ImportRecord[]' uid 'bc7a1440-dffb-4723-b1e1-0fa2642019e8' }
+          spec = field 'spec' { metadata { type 'string' uid '2846d4c3-0cc4-4865-9a11-e8e05a32a996' } }
+          kind = field 'kind' { metadata { type 'ImportKind' values 'import,export-from,require,dynamic' uid 'd750a2c1-549d-4b0a-8689-0350a66fc3ba' } }
+          line = field 'line' { metadata { type 'number' uid '38da261e-f7a0-42d1-bf3d-c6cc2404a8b8' } }
+          status = field 'status' { metadata { type 'ImportStatus' values 'internal,external,asset,unresolved' uid '96110d9c-a7a2-45b2-a901-7207e06c2b46' } }
+          target = field 'target' { metadata { type 'string' nullable 'true' uid '66e387d6-ea9a-43c6-91b4-ac18ccdae2ef' } }
+          pkg = field 'pkg' { metadata { type 'string' nullable 'true' uid '55be60e7-7e90-421f-a5a8-a8353a7a44b3' } }
+        }
+        metadata {
+          uid '3f543dff-e82b-4f47-9fe7-fad7f50cc543'
+        }
+      }
+      components_json = record 'components.json' {
+        technology 'json'
+        description 'The scanned containers, components and component edges.'
+        containers = field 'containers' { metadata { type 'Container[]' uid '303bc3db-b6ac-488c-9df0-826fb126a410' } }
+        components = field 'components' { metadata { type 'Component[]' uid 'f5956297-7c40-4357-9db9-bee643ede61e' } }
+        componentEdges = field 'componentEdges' { metadata { type 'ComponentEdge[]' uid 'ae214a51-631f-402e-969b-f9585a86fc0f' } }
+        metadata {
+          uid 'f6b153f6-5e7b-48ed-9f86-4264c7a6fa2e'
+        }
+      }
+      snapshot_json = record 'snapshot.json' {
+        technology 'json'
+        description 'The whole scan (Snapshot without calls), same shape as a history snapshot file; c4pm diff <a> <b> reads two of them.'
+        schemaVersion = field 'schemaVersion' { metadata { type '2' uid 'c322fb04-cc37-4083-adda-07b0f8e236b1' } }
+        meta = field 'meta' { metadata { type 'SnapshotMeta' uid 'c63341ad-8565-4551-b516-d9f741da21bd' } }
+        system = field 'system' { metadata { type '{ id: string; name: string }' uid '16ad163c-237e-45a7-8752-df2c2e004eba' } }
+        containers = field 'containers' { metadata { type 'Container[]' uid 'b247fc1b-b074-4d19-8f1d-e5424b103fcc' } }
+        components = field 'components' { metadata { type 'Component[]' uid '522df94d-f4bf-4df5-bf2e-f56b533509e7' } }
+        files = field 'files' { metadata { type 'SnapshotFile[]' uid 'ef0e524a-655e-4553-9701-be4f2548744f' } }
+        componentEdges = field 'componentEdges' { metadata { type 'ComponentEdge[]' uid '866ede14-243e-4f61-be38-a0cb5819cc4d' } }
+        fileEdges = field 'fileEdges' { metadata { type 'FileEdge[]' uid '3f252e6a-5723-42f8-aefc-fd854697e306' } }
+        externals = field 'externals' { metadata { type 'ExternalUse[]' uid '1a3baf3a-fc9a-42a3-8ab2-04bb31e0de1a' } }
+        stats = field 'stats' { metadata { type 'SnapshotStats' uid '81376e7b-32bf-47b5-9553-bc35f6d2545b' } }
+        metadata {
+          uid 'fde197fe-467a-47aa-bc2b-8917ef3b464e'
+        }
+      }
+    }
+
+    // ---------------------------------------------------------------- 6. page output
+    store_page = store 'Page output' {
+      technology 'fs (HTML)'
+      description 'The export folder <anchor>/C4PM/<id>: the map page. Not committed (C4PM/.gitignore holds *).'
+      metadata {
+        status 'planned'
+        uid '2beabd8a-b946-487e-b391-b4c531f8d55e'
+      }
+      view_html = record 'c4pmView.html' {
+        technology 'html'
+        description 'The map page, one self-contained file; its data is the ViewModel JSON put in place of /*C4PM_DATA*/null. Written by writeProjectView (c4pm view, the hooks when viewOnCommit); read by the browser.'
+        schemaVersion = field 'schemaVersion' { metadata { type '1' uid '04597ef4-73af-4bcb-83bd-4416d1f19f39' } }
+        title_key = field 'title' { metadata { type 'string' uid '6d3361c5-3185-41da-904f-7cef154d3fe0' } }
+        subtitle = field 'subtitle' { metadata { type 'string' uid 'b135bb31-9713-410a-bb1b-57b9559e0886' } }
+        summary = field 'summary' { metadata { type 'string' uid 'f50db485-a6fc-4a97-80ed-8f7dcd08019b' } }
+        repoPath = field 'repoPath' { metadata { type 'string' uid 'ffea78c5-3c42-4660-852c-d5a380961471' } }
+        root = field 'root' { metadata { type 'ViewNode' uid '807b1ba0-78ab-4019-9216-37ad22f7b996' } }
+        edges = field 'edges' { metadata { type 'ViewEdge[]' uid 'ea1b63d1-aa73-46c2-9a7f-3019f98f58d8' } }
+        drift = field 'drift' { metadata { type '{ from; summary; removed[] }' nullable 'true' uid '9a9e4a61-175a-4352-82b5-ce107326fbd5' } }
+        planFindings = field 'planFindings' { metadata { type 'ViewFinding[]' uid '9f11bf2c-5c7e-41a6-bc8c-ca3bb6e7f6e3' } }
+        files = field 'files' { metadata { type 'ViewFile[]' uid '80ef1b6d-dec0-4800-91af-3ed4da4473c7' } }
+        relations = field 'relations' { metadata { type 'ViewRelation[]' nullable 'true' uid 'cd9a4f51-2a5d-4454-a179-2c8e6c255e76' } }
+        nav = field 'nav' { metadata { type 'NavModel' nullable 'true' uid '32fd297c-b16a-4176-9cce-81b00fc85ad5' } }
+        navView = field 'navView' { metadata { type '{ root: ViewNode; edges: ViewEdge[] }' nullable 'true' uid 'bcdcc5c4-dade-4557-8968-ce02c4bada75' } }
+        storageView = field 'storageView' { metadata { type '{ root: ViewNode; edges: ViewEdge[] }' nullable 'true' uid 'f988632f-cc3d-4d0c-8ffd-3a8c86ca71df' } }
+        kindWords = field 'kindWords' { metadata { type 'KindWords' nullable 'true' uid '6504b0ad-80e9-46f1-81a1-b0b121e4738c' } }
+        wireframeRules = field 'wireframeRules' { metadata { type 'WireframeRules' nullable 'true' uid 'fe8fdbdc-67ec-480f-bab1-20bcdbbbb5ba' } }
+        board = field 'board' { metadata { type 'ViewBoard' nullable 'true' uid '6ae85bd3-af9b-4e18-b2d6-66b3fa11cf38' } }
+        tests = field 'tests' { metadata { type 'ViewTestTable' nullable 'true' uid '9abc2947-0232-4b07-b952-1dbccaa96a1a' } }
+        metadata {
+          uid '2c73a17c-f23e-4bcb-a85c-b4868be063bd'
+        }
+      }
+      export_gitignore = record 'C4PM/.gitignore' {
+        technology 'text'
+        description 'One line * so the export folder ignores itself; written once by ensureExportDir, never overwritten (delete it to share the page).'
+        metadata {
+          uid '67d7c158-39aa-4568-8b5e-b92ad1856956'
+        }
+      }
+    }
+
+    // ---------------------------------------------------------------- 7. locks and logs
+    store_locks = store 'Locks and logs' {
+      technology 'fs (text)'
+      description 'Small text files that keep two processes apart and tell what the git hooks did: in the data dir and the history dir. Not committed.'
+      metadata {
+        status 'planned'
+        uid 'adb87216-f95d-4810-ad14-71883d03659a'
+      }
+      hook_lock = record 'data/hook.lock' {
+        technology 'text'
+        description 'One git hook per project at a time (withFileLock, wait 10 min, then skipped: busy). Stale when the pid is dead or older than 30 min.'
+        pid = field 'pid' { metadata { type 'number' uid '0fcb0983-7cd4-45f9-b431-589c4b4db999' } }
+        time = field 'time' { metadata { type 'number (ms)' uid '5a9b9322-0818-41a1-9087-144f1d14560b' } }
+        metadata {
+          uid '6c93120d-b3c1-4a01-b9d9-1bc5d91d54a4'
+        }
+      }
+      manifest_lock = record 'history/manifest.lock' {
+        technology 'text'
+        description 'One manifest update at a time (saveToHistory, wait 60 s). Same <pid> <time ms> content as hook.lock.'
+        pid = field 'pid' { metadata { type 'number' uid '7b366303-4042-4a9d-bbef-97a35a929bb7' } }
+        time = field 'time' { metadata { type 'number (ms)' uid '5cd07ee9-a67f-426e-8c65-30c714216cb7' } }
+        metadata {
+          uid 'a9af4233-c3e1-4c88-824c-2834a82968ae'
+        }
+      }
+      last_hook = record 'data/last-hook.txt' {
+        technology 'text'
+        description 'One line per hook run, newest last, last 20 kept (appendHookLine, writeAtomic). Columns joined by | .'
+        start = field 'start' { metadata { type 'ISO time' uid '86408e05-626a-4e42-ba2f-7a2192132943' } }
+        kind = field 'kind' { metadata { type 'string' values 'post-commit,post-merge' uid '44ddc9a8-668a-47a3-ac44-892213d65eec' } }
+        head = field 'head' { metadata { type 'sha7' uid '48b696a0-5f46-48f0-9cc9-e3717a6e8c5d' } }
+        refs = field 'refs' { metadata { type 'string' uid 'd865b257-9ad4-4a1b-a29c-50412f63f097' } }
+        drift = field 'drift' { metadata { type 'string' uid '1e50acf5-6d12-468e-94f8-829509307832' } }
+        page = field 'page' { metadata { type 'string' values 'written,off,-' uid '6695bc35-46cd-4cd3-be3d-aa289d6a0ffb' } }
+        seconds = field 'seconds' { metadata { type 'number' uid '9e45d458-cf97-4819-ba7e-0a70c47e4761' } }
+        memory = field 'memory' { metadata { type 'number (MB)' uid 'ef76818b-e6b6-461c-a9bd-9a43d8ed9105' } }
+        result = field 'result' { metadata { type 'string' uid 'caecf3f8-159e-420c-bd12-c5b23ccda890' } }
+        metadata {
+          uid 'dbc60f25-d0a9-4334-abde-4e97f2d33255'
+        }
+      }
+      last_drift = record 'data/last-drift.txt' {
+        technology 'text'
+        description 'The warning and critical changes ORIG_HEAD -> HEAD of the last merge (formatText of a SnapshotDiff), written by the post-merge hook (writeMergeDiff) because git drops hook output.'
+        metadata {
+          uid 'ef68436e-eac9-4a3b-bafd-60d30c1cb983'
+        }
+      }
+    }
+
+    // ---------------------------------------------------------------- 8. viewer settings (optional, questions.md Q2)
+    store_browser = store 'Viewer settings' {
+      technology 'localStorage'
+      description 'What the map page keeps per browser (localStorage); never written to the plan or the repo.'
+      metadata {
+        status 'planned'
+        uid '966fa0e3-c9b4-4646-b433-ca6223949c08'
+      }
+      settings_key = record 'c4pm.settings' {
+        technology 'json'
+        description 'The settings popup (viewer/settings.js DEF).'
+        theme = field 'theme' { metadata { values 'system,light,dark' uid '237007b6-d9b9-4778-8e2c-c2498f3d6538' } }
+        search = field 'search' { metadata { values 'names,content' uid '3788dd2b-e82c-4118-9e20-184a21e5f4a7' } }
+        help = field 'help' { metadata { values 'show,hide' uid '76133bdd-ad78-4e76-95e3-9306b4674c91' } }
+        openIn = field 'openIn' { metadata { values 'window,here' uid '4b09b790-6ab8-41d8-8adb-4f826f20c20a' } }
+        lightImpl = field 'lightImpl' { metadata { values 'on,off' uid '6517ebac-2d64-4cd7-b492-5e9a8148e4f8' } }
+        link_key = field 'link' { metadata { values 'on,off' uid 'c9b546a4-efbf-4c30-bade-de1ae1806e21' } }
+        metadata {
+          uid '23209c9a-a472-4a4a-b671-8cfbd269f5a7'
+        }
+      }
+      board_keys = record 'c4pm.board*' {
+        technology 'text'
+        description 'The board panel state: c4pm.boardView, c4pm.boardId, c4pm.boardH (drawer height), c4pm.boardTlGroup (timeline lanes).'
+        metadata {
+          uid '6f1a5d01-3d58-44d5-9fc7-bfbca392c07e'
+        }
+      }
+    }
+    store_sim = store 'Simulations' {
+      technology 'fs (JSON)'
+      description 'One file per s-item: .c4pm/projects/<id>/sim/s-<N>.json. Committed. Written only by the sim commands or by hand.'
+      metadata {
+        uid '03e959a2-20ff-4578-a9a8-6175c367fd56'
+        status 'planned'
+      }
+      s_item = record 'sim/s-<N>.json' {
+        technology 'json'
+        metadata {
+          uid 'd951f8ab-8949-4af1-b00b-1e3216b2e77c'
+          status 'planned'
+        }
+        schemaVersion = field 'schemaVersion' {
+          metadata {
+            uid '3ff5a0f7-0861-4e3a-8106-e7925d4d6bfe'
+            status 'planned'
+            type '1'
+          }
+        }
+        id = field 'id' {
+          metadata {
+            uid 'd57aa250-322a-4a49-a282-c3701261eb7a'
+            status 'planned'
+            type 'string'
+          }
+        }
+        kind = field 'kind' {
+          metadata {
+            uid '9bd11ab9-9fc3-4833-98ee-9e446417d129'
+            status 'planned'
+            type 'flow-or-journey'
+          }
+        }
+        person = field 'person' {
+          metadata {
+            uid '36af3b55-287c-4a75-889b-c3bb12f194ef'
+            status 'planned'
+            type 'string'
+          }
+        }
+        steps = field 'steps' {
+          metadata {
+            uid '5416c362-aa2f-457f-adac-e55845e8681d'
+            status 'planned'
+            type 'SimStep-list'
+          }
+        }
+        stages = field 'stages' {
+          metadata {
+            uid '50c471fd-de3e-4eab-88ff-22d9ca18adba'
+            status 'planned'
+            type 'SimStage-list'
+          }
+        }
+        title_field = field 'title' {
+          metadata {
+            uid '319607be-cfb8-4cab-8c4e-d70dddad4432'
+            status 'planned'
+            type 'string'
+          }
+        }
+        description_field = field 'description' {
+          metadata {
+            uid '8cfc6d2e-42a2-4e3f-bbf2-d15897404b2a'
+            status 'planned'
+            type 'string'
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,1316 @@
+[
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/findings/ack.ts#AckResult",
+  "message": "no component claims src/findings/ack.ts#AckResult and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/findings/ack.ts#ackTest",
+  "message": "no component claims src/findings/ack.ts#ackTest and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/findings/ack.ts#applyAcks",
+  "message": "no component claims src/findings/ack.ts#applyAcks and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/findings/group.ts#fileOfId",
+  "message": "no component claims src/findings/group.ts#fileOfId and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/findings/group.ts#groupFindings",
+  "message": "no component claims src/findings/group.ts#groupFindings and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/findings/group.ts#rowOf",
+  "message": "no component claims src/findings/group.ts#rowOf and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/findings/group.ts#ungrouped",
+  "message": "no component claims src/findings/group.ts#ungrouped and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/findings/present.ts#hiddenGroups",
+  "message": "no component claims src/findings/present.ts#hiddenGroups and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/findings/present.ts#hiddenSummary",
+  "message": "no component claims src/findings/present.ts#hiddenSummary and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/findings/present.ts#present",
+  "message": "no component claims src/findings/present.ts#present and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/findings/types.ts#AckEntry",
+  "message": "no component claims src/findings/types.ts#AckEntry and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/findings/types.ts#FindingRow",
+  "message": "no component claims src/findings/types.ts#FindingRow and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/findings/types.ts#HiddenGroup",
+  "message": "no component claims src/findings/types.ts#HiddenGroup and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/findings/types.ts#Presented",
+  "message": "no component claims src/findings/types.ts#Presented and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/findings/types.ts#PresentOptions",
+  "message": "no component claims src/findings/types.ts#PresentOptions and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle-ast.ts#Binding",
+  "message": "no component claims src/schema/drizzle-ast.ts#Binding and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle-ast.ts#callArgs",
+  "message": "no component claims src/schema/drizzle-ast.ts#callArgs and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle-ast.ts#calleeName",
+  "message": "no component claims src/schema/drizzle-ast.ts#calleeName and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle-ast.ts#ChainMethod",
+  "message": "no component claims src/schema/drizzle-ast.ts#ChainMethod and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle-ast.ts#Node",
+  "message": "no component claims src/schema/drizzle-ast.ts#Node and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle-ast.ts#objectPairs",
+  "message": "no component claims src/schema/drizzle-ast.ts#objectPairs and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle-ast.ts#paramKey",
+  "message": "no component claims src/schema/drizzle-ast.ts#paramKey and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle-ast.ts#propertyKey",
+  "message": "no component claims src/schema/drizzle-ast.ts#propertyKey and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle-ast.ts#sqlNameOf",
+  "message": "no component claims src/schema/drizzle-ast.ts#sqlNameOf and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle-ast.ts#stringValue",
+  "message": "no component claims src/schema/drizzle-ast.ts#stringValue and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle-ast.ts#TableCtx",
+  "message": "no component claims src/schema/drizzle-ast.ts#TableCtx and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle-ast.ts#unwrapChain",
+  "message": "no component claims src/schema/drizzle-ast.ts#unwrapChain and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle-columns.ts#applyMethod",
+  "message": "no component claims src/schema/drizzle-columns.ts#applyMethod and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle-columns.ts#customType",
+  "message": "no component claims src/schema/drizzle-columns.ts#customType and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle-columns.ts#defaultText",
+  "message": "no component claims src/schema/drizzle-columns.ts#defaultText and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle-columns.ts#numericType",
+  "message": "no component claims src/schema/drizzle-columns.ts#numericType and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle-columns.ts#PendingRef",
+  "message": "no component claims src/schema/drizzle-columns.ts#PendingRef and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle-columns.ts#readBuilder",
+  "message": "no component claims src/schema/drizzle-columns.ts#readBuilder and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle-columns.ts#readColumns",
+  "message": "no component claims src/schema/drizzle-columns.ts#readColumns and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle-columns.ts#readEnum",
+  "message": "no component claims src/schema/drizzle-columns.ts#readEnum and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle-columns.ts#readField",
+  "message": "no component claims src/schema/drizzle-columns.ts#readField and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle-columns.ts#readReference",
+  "message": "no component claims src/schema/drizzle-columns.ts#readReference and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle-columns.ts#timestampType",
+  "message": "no component claims src/schema/drizzle-columns.ts#timestampType and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle-eval.ts#deref",
+  "message": "no component claims src/schema/drizzle-eval.ts#deref and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle-eval.ts#evalList",
+  "message": "no component claims src/schema/drizzle-eval.ts#evalList and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle-eval.ts#evalStr",
+  "message": "no component claims src/schema/drizzle-eval.ts#evalStr and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle-eval.ts#sqlJoin",
+  "message": "no component claims src/schema/drizzle-eval.ts#sqlJoin and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle-eval.ts#sqlPiece",
+  "message": "no component claims src/schema/drizzle-eval.ts#sqlPiece and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle-eval.ts#sqlTemplate",
+  "message": "no component claims src/schema/drizzle-eval.ts#sqlTemplate and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle-eval.ts#sqlText",
+  "message": "no component claims src/schema/drizzle-eval.ts#sqlText and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle-extras.ts#entries",
+  "message": "no component claims src/schema/drizzle-extras.ts#entries and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle-extras.ts#indexColumn",
+  "message": "no component claims src/schema/drizzle-extras.ts#indexColumn and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle-extras.ts#readEntry",
+  "message": "no component claims src/schema/drizzle-extras.ts#readEntry and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle-extras.ts#readExtras",
+  "message": "no component claims src/schema/drizzle-extras.ts#readExtras and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle-helpers.ts#bindCall",
+  "message": "no component claims src/schema/drizzle-helpers.ts#bindCall and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle-helpers.ts#findHelper",
+  "message": "no component claims src/schema/drizzle-helpers.ts#findHelper and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle-helpers.ts#Helper",
+  "message": "no component claims src/schema/drizzle-helpers.ts#Helper and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle-helpers.ts#parameters",
+  "message": "no component claims src/schema/drizzle-helpers.ts#parameters and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle-helpers.ts#returnedExpression",
+  "message": "no component claims src/schema/drizzle-helpers.ts#returnedExpression and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle-helpers.ts#unparen",
+  "message": "no component claims src/schema/drizzle-helpers.ts#unparen and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle-source.ts#FileInfo",
+  "message": "no component claims src/schema/drizzle-source.ts#FileInfo and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle-source.ts#loadFile",
+  "message": "no component claims src/schema/drizzle-source.ts#loadFile and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle-source.ts#namedImports",
+  "message": "no component claims src/schema/drizzle-source.ts#namedImports and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle-source.ts#newSourceIndex",
+  "message": "no component claims src/schema/drizzle-source.ts#newSourceIndex and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle-source.ts#readConsts",
+  "message": "no component claims src/schema/drizzle-source.ts#readConsts and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle-source.ts#readFunctions",
+  "message": "no component claims src/schema/drizzle-source.ts#readFunctions and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle-source.ts#readImports",
+  "message": "no component claims src/schema/drizzle-source.ts#readImports and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle-source.ts#RelImport",
+  "message": "no component claims src/schema/drizzle-source.ts#RelImport and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle-source.ts#resolveRelative",
+  "message": "no component claims src/schema/drizzle-source.ts#resolveRelative and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle-source.ts#SourceIndex",
+  "message": "no component claims src/schema/drizzle-source.ts#SourceIndex and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle-source.ts#topDeclarators",
+  "message": "no component claims src/schema/drizzle-source.ts#topDeclarators and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle.ts#readDrizzleSchema",
+  "message": "no component claims src/schema/drizzle.ts#readDrizzleSchema and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle.ts#readTable",
+  "message": "no component claims src/schema/drizzle.ts#readTable and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle.ts#resolveRefs",
+  "message": "no component claims src/schema/drizzle.ts#resolveRefs and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzle.ts#tableDeclarations",
+  "message": "no component claims src/schema/drizzle.ts#tableDeclarations and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/drizzleReader.ts#drizzleReader.detect",
+  "message": "no component claims src/schema/drizzleReader.ts#drizzleReader.detect and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/planStore.ts#readPlanStore",
+  "message": "no component claims src/schema/planStore.ts#readPlanStore and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/planStore.ts#storeDescriptionOf",
+  "message": "no component claims src/schema/planStore.ts#storeDescriptionOf and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/sqlTokens.ts#isWordChar",
+  "message": "no component claims src/schema/sqlTokens.ts#isWordChar and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/sqlTokens.ts#isWordStart",
+  "message": "no component claims src/schema/sqlTokens.ts#isWordStart and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/sqlTokens.ts#splitStatements",
+  "message": "no component claims src/schema/sqlTokens.ts#splitStatements and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/sqlTokens.ts#Statement",
+  "message": "no component claims src/schema/sqlTokens.ts#Statement and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/sqlTokens.ts#Tok",
+  "message": "no component claims src/schema/sqlTokens.ts#Tok and nothing calls it"
+ },
+ {
+  "severity": "critical",
+  "rule": "unassigned-code",
+  "id": "src/schema/sqlTokens.ts#tokenize",
+  "message": "no component claims src/schema/sqlTokens.ts#tokenize and nothing calls it"
+ },
+ {
+  "severity": "info",
+  "rule": "planned-but-built",
+  "id": "c4pm.c4pm.boards",
+  "message": "Boards is planned but code exists: src/board/; update the status?"
+ },
+ {
+  "severity": "info",
+  "rule": "planned-but-built",
+  "id": "c4pm.c4pm.plan_commands",
+  "message": "Plan editing commands is planned but code exists: src/cli/; update the status?"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/assets.ts#embeddedAssetDir",
+  "message": "src/assets.ts#embeddedAssetDir is unclaimed but used by c4pm.c4pm.cli, c4pm.c4pm.view_model; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/assets.ts#findAssetDir",
+  "message": "src/assets.ts#findAssetDir is unclaimed but used by c4pm.c4pm.cli, c4pm.c4pm.view_model; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/ignoreMatch.ts#createIgnoreMatcher",
+  "message": "src/ignoreMatch.ts#createIgnoreMatcher is unclaimed but used by c4pm.c4pm.grouper, c4pm.c4pm.importer, c4pm.c4pm.plan_files, c4pm.c4pm.scan_pipeline, c4pm.c4pm.settings; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/ignoreMatch.ts#globToRegExp",
+  "message": "src/ignoreMatch.ts#globToRegExp is unclaimed but used by c4pm.c4pm.grouper, c4pm.c4pm.importer, c4pm.c4pm.plan_files, c4pm.c4pm.scan_pipeline, c4pm.c4pm.settings; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/ignoreMatch.ts#IgnoreMatcher",
+  "message": "src/ignoreMatch.ts#IgnoreMatcher is unclaimed but used by c4pm.c4pm.grouper, c4pm.c4pm.importer, c4pm.c4pm.plan_files, c4pm.c4pm.scan_pipeline, c4pm.c4pm.settings; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/ignoreMatch.ts#languageDefaultIgnores",
+  "message": "src/ignoreMatch.ts#languageDefaultIgnores is unclaimed but used by c4pm.c4pm.grouper, c4pm.c4pm.importer, c4pm.c4pm.plan_files, c4pm.c4pm.scan_pipeline, c4pm.c4pm.settings; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/ignoreMatch.ts#languageIgnorePatterns",
+  "message": "src/ignoreMatch.ts#languageIgnorePatterns is unclaimed but used by c4pm.c4pm.grouper, c4pm.c4pm.importer, c4pm.c4pm.plan_files, c4pm.c4pm.scan_pipeline, c4pm.c4pm.settings; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/ignoreMatch.ts#normalizePattern",
+  "message": "src/ignoreMatch.ts#normalizePattern is unclaimed but used by c4pm.c4pm.grouper, c4pm.c4pm.importer, c4pm.c4pm.plan_files, c4pm.c4pm.scan_pipeline, c4pm.c4pm.settings; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/ignoreMatch.ts#withLanguageIgnores",
+  "message": "src/ignoreMatch.ts#withLanguageIgnores is unclaimed but used by c4pm.c4pm.grouper, c4pm.c4pm.importer, c4pm.c4pm.plan_files, c4pm.c4pm.scan_pipeline, c4pm.c4pm.settings; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/parseCache.ts#clearParseCache",
+  "message": "src/parseCache.ts#clearParseCache is unclaimed but used by c4pm.c4pm.scan_pipeline; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/parseCache.ts#Entry",
+  "message": "src/parseCache.ts#Entry is unclaimed but used by c4pm.c4pm.scan_pipeline; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/parseCache.ts#extractParsed",
+  "message": "src/parseCache.ts#extractParsed is unclaimed but used by c4pm.c4pm.scan_pipeline; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/parseCache.ts#getCachedParse",
+  "message": "src/parseCache.ts#getCachedParse is unclaimed but used by c4pm.c4pm.scan_pipeline; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/parseCache.ts#keyOf",
+  "message": "src/parseCache.ts#keyOf is unclaimed but used by c4pm.c4pm.scan_pipeline; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/parseCache.ts#parseCacheStats",
+  "message": "src/parseCache.ts#parseCacheStats is unclaimed but used by c4pm.c4pm.scan_pipeline; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/parseCache.ts#ParsedFile",
+  "message": "src/parseCache.ts#ParsedFile is unclaimed but used by c4pm.c4pm.scan_pipeline; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/parseCache.ts#resetParseCacheStats",
+  "message": "src/parseCache.ts#resetParseCacheStats is unclaimed but used by c4pm.c4pm.scan_pipeline; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/parseCache.ts#storeParse",
+  "message": "src/parseCache.ts#storeParse is unclaimed but used by c4pm.c4pm.scan_pipeline; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/render/graph.ts#Graph",
+  "message": "src/render/graph.ts#Graph is unclaimed but used by c4pm.c4pm.boards, c4pm.c4pm.plan_commands, c4pm.c4pm.query; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/render/graph.ts#GraphEdge",
+  "message": "src/render/graph.ts#GraphEdge is unclaimed but used by c4pm.c4pm.boards, c4pm.c4pm.plan_commands, c4pm.c4pm.query; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/render/graph.ts#GraphNode",
+  "message": "src/render/graph.ts#GraphNode is unclaimed but used by c4pm.c4pm.boards, c4pm.c4pm.plan_commands, c4pm.c4pm.query; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/render/mermaid.ts#esc",
+  "message": "src/render/mermaid.ts#esc is unclaimed but used by c4pm.c4pm.plan_commands, c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/render/mermaid.ts#MermaidOptions",
+  "message": "src/render/mermaid.ts#MermaidOptions is unclaimed but used by c4pm.c4pm.plan_commands, c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/render/mermaid.ts#renderMermaid",
+  "message": "src/render/mermaid.ts#renderMermaid is unclaimed but used by c4pm.c4pm.plan_commands, c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/matchRecords.ts#localId",
+  "message": "src/schema/matchRecords.ts#localId is unclaimed but used by c4pm.c4pm.query, c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/matchRecords.ts#matchRecords",
+  "message": "src/schema/matchRecords.ts#matchRecords is unclaimed but used by c4pm.c4pm.query, c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/matchRecords.ts#RecordMatch",
+  "message": "src/schema/matchRecords.ts#RecordMatch is unclaimed but used by c4pm.c4pm.query, c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/matchRecords.ts#RecordMatching",
+  "message": "src/schema/matchRecords.ts#RecordMatching is unclaimed but used by c4pm.c4pm.query, c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/matchRecords.ts#recordsOfStore",
+  "message": "src/schema/matchRecords.ts#recordsOfStore is unclaimed but used by c4pm.c4pm.query, c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/reader.ts#ReaderFamily",
+  "message": "src/schema/reader.ts#ReaderFamily is unclaimed but used by c4pm.c4pm.query; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/reader.ts#ReaderLimits",
+  "message": "src/schema/reader.ts#ReaderLimits is unclaimed but used by c4pm.c4pm.query; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/reader.ts#StorageReader",
+  "message": "src/schema/reader.ts#StorageReader is unclaimed but used by c4pm.c4pm.query; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/reader.ts#StoreDescription",
+  "message": "src/schema/reader.ts#StoreDescription is unclaimed but used by c4pm.c4pm.query; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/reader.ts#StoreReadResult",
+  "message": "src/schema/reader.ts#StoreReadResult is unclaimed but used by c4pm.c4pm.query; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/readers.ts#buildReaderRegistry",
+  "message": "src/schema/readers.ts#buildReaderRegistry is unclaimed but used by c4pm.c4pm.query; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/readers.ts#detectAll",
+  "message": "src/schema/readers.ts#detectAll is unclaimed but used by c4pm.c4pm.query; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/readers.ts#mergeModels",
+  "message": "src/schema/readers.ts#mergeModels is unclaimed but used by c4pm.c4pm.query; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/readers.ts#readerExtensions",
+  "message": "src/schema/readers.ts#readerExtensions is unclaimed but used by c4pm.c4pm.query; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/readers.ts#ReaderRegistry",
+  "message": "src/schema/readers.ts#ReaderRegistry is unclaimed but used by c4pm.c4pm.query; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/readers.ts#readStore",
+  "message": "src/schema/readers.ts#readStore is unclaimed but used by c4pm.c4pm.query; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/readers.ts#underSource",
+  "message": "src/schema/readers.ts#underSource is unclaimed but used by c4pm.c4pm.query; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/sqlMigrations.ts#addCheck",
+  "message": "src/schema/sqlMigrations.ts#addCheck is unclaimed but used by c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/sqlMigrations.ts#addCon",
+  "message": "src/schema/sqlMigrations.ts#addCon is unclaimed but used by c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/sqlMigrations.ts#addFk",
+  "message": "src/schema/sqlMigrations.ts#addFk is unclaimed but used by c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/sqlMigrations.ts#addUnique",
+  "message": "src/schema/sqlMigrations.ts#addUnique is unclaimed but used by c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/sqlMigrations.ts#alterTable",
+  "message": "src/schema/sqlMigrations.ts#alterTable is unclaimed but used by c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/sqlMigrations.ts#alterType",
+  "message": "src/schema/sqlMigrations.ts#alterType is unclaimed but used by c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/sqlMigrations.ts#apply",
+  "message": "src/schema/sqlMigrations.ts#apply is unclaimed but used by c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/sqlMigrations.ts#applySqlFiles",
+  "message": "src/schema/sqlMigrations.ts#applySqlFiles is unclaimed but used by c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/sqlMigrations.ts#baseOf",
+  "message": "src/schema/sqlMigrations.ts#baseOf is unclaimed but used by c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/sqlMigrations.ts#closeParen",
+  "message": "src/schema/sqlMigrations.ts#closeParen is unclaimed but used by c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/sqlMigrations.ts#cmpNum",
+  "message": "src/schema/sqlMigrations.ts#cmpNum is unclaimed but used by c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/sqlMigrations.ts#colList",
+  "message": "src/schema/sqlMigrations.ts#colList is unclaimed but used by c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/sqlMigrations.ts#Con",
+  "message": "src/schema/sqlMigrations.ts#Con is unclaimed but used by c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/sqlMigrations.ts#createIndex",
+  "message": "src/schema/sqlMigrations.ts#createIndex is unclaimed but used by c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/sqlMigrations.ts#createTable",
+  "message": "src/schema/sqlMigrations.ts#createTable is unclaimed but used by c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/sqlMigrations.ts#createType",
+  "message": "src/schema/sqlMigrations.ts#createType is unclaimed but used by c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/sqlMigrations.ts#Ctx",
+  "message": "src/schema/sqlMigrations.ts#Ctx is unclaimed but used by c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/sqlMigrations.ts#detectSqlFiles",
+  "message": "src/schema/sqlMigrations.ts#detectSqlFiles is unclaimed but used by c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/sqlMigrations.ts#dropColumn",
+  "message": "src/schema/sqlMigrations.ts#dropColumn is unclaimed but used by c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/sqlMigrations.ts#dropCon",
+  "message": "src/schema/sqlMigrations.ts#dropCon is unclaimed but used by c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/sqlMigrations.ts#dropIndex",
+  "message": "src/schema/sqlMigrations.ts#dropIndex is unclaimed but used by c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/sqlMigrations.ts#dropTable",
+  "message": "src/schema/sqlMigrations.ts#dropTable is unclaimed but used by c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/sqlMigrations.ts#exprEnd",
+  "message": "src/schema/sqlMigrations.ts#exprEnd is unclaimed but used by c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/sqlMigrations.ts#fieldOf",
+  "message": "src/schema/sqlMigrations.ts#fieldOf is unclaimed but used by c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/sqlMigrations.ts#findTable",
+  "message": "src/schema/sqlMigrations.ts#findTable is unclaimed but used by c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/sqlMigrations.ts#finish",
+  "message": "src/schema/sqlMigrations.ts#finish is unclaimed but used by c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/sqlMigrations.ts#head",
+  "message": "src/schema/sqlMigrations.ts#head is unclaimed but used by c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/sqlMigrations.ts#ident",
+  "message": "src/schema/sqlMigrations.ts#ident is unclaimed but used by c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/sqlMigrations.ts#indexItems",
+  "message": "src/schema/sqlMigrations.ts#indexItems is unclaimed but used by c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/sqlMigrations.ts#isIdent",
+  "message": "src/schema/sqlMigrations.ts#isIdent is unclaimed but used by c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/sqlMigrations.ts#isP",
+  "message": "src/schema/sqlMigrations.ts#isP is unclaimed but used by c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/sqlMigrations.ts#isSql",
+  "message": "src/schema/sqlMigrations.ts#isSql is unclaimed but used by c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/sqlMigrations.ts#isTableConstraint",
+  "message": "src/schema/sqlMigrations.ts#isTableConstraint is unclaimed but used by c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/sqlMigrations.ts#isW",
+  "message": "src/schema/sqlMigrations.ts#isW is unclaimed but used by c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/sqlMigrations.ts#orderKey",
+  "message": "src/schema/sqlMigrations.ts#orderKey is unclaimed but used by c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/sqlMigrations.ts#OrderKey",
+  "message": "src/schema/sqlMigrations.ts#OrderKey is unclaimed but used by c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/sqlMigrations.ts#parseColumn",
+  "message": "src/schema/sqlMigrations.ts#parseColumn is unclaimed but used by c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/sqlMigrations.ts#parseRef",
+  "message": "src/schema/sqlMigrations.ts#parseRef is unclaimed but used by c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/sqlMigrations.ts#putField",
+  "message": "src/schema/sqlMigrations.ts#putField is unclaimed but used by c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/sqlMigrations.ts#qname",
+  "message": "src/schema/sqlMigrations.ts#qname is unclaimed but used by c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/sqlMigrations.ts#readSqlSchema",
+  "message": "src/schema/sqlMigrations.ts#readSqlSchema is unclaimed but used by c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/sqlMigrations.ts#Ref",
+  "message": "src/schema/sqlMigrations.ts#Ref is unclaimed but used by c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/sqlMigrations.ts#renameColumn",
+  "message": "src/schema/sqlMigrations.ts#renameColumn is unclaimed but used by c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/sqlMigrations.ts#setPk",
+  "message": "src/schema/sqlMigrations.ts#setPk is unclaimed but used by c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/sqlMigrations.ts#sortMigrationFiles",
+  "message": "src/schema/sqlMigrations.ts#sortMigrationFiles is unclaimed but used by c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/sqlMigrations.ts#splitTop",
+  "message": "src/schema/sqlMigrations.ts#splitTop is unclaimed but used by c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/sqlMigrations.ts#src",
+  "message": "src/schema/sqlMigrations.ts#src is unclaimed but used by c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/sqlMigrations.ts#State",
+  "message": "src/schema/sqlMigrations.ts#State is unclaimed but used by c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/sqlMigrations.ts#tableConstraint",
+  "message": "src/schema/sqlMigrations.ts#tableConstraint is unclaimed but used by c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/sqlMigrations.ts#Tbl",
+  "message": "src/schema/sqlMigrations.ts#Tbl is unclaimed but used by c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/sqlMigrations.ts#tKey",
+  "message": "src/schema/sqlMigrations.ts#tKey is unclaimed but used by c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/sqlMigrations.ts#unsup",
+  "message": "src/schema/sqlMigrations.ts#unsup is unclaimed but used by c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/storeScan.ts#commonSource",
+  "message": "src/schema/storeScan.ts#commonSource is unclaimed but used by c4pm.c4pm.cli, c4pm.c4pm.plan_commands, c4pm.c4pm.query, c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/storeScan.ts#listStoreFiles",
+  "message": "src/schema/storeScan.ts#listStoreFiles is unclaimed but used by c4pm.c4pm.cli, c4pm.c4pm.plan_commands, c4pm.c4pm.query, c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/storeScan.ts#normalizeSource",
+  "message": "src/schema/storeScan.ts#normalizeSource is unclaimed but used by c4pm.c4pm.cli, c4pm.c4pm.plan_commands, c4pm.c4pm.query, c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/storeScan.ts#PlanStoreRead",
+  "message": "src/schema/storeScan.ts#PlanStoreRead is unclaimed but used by c4pm.c4pm.cli, c4pm.c4pm.plan_commands, c4pm.c4pm.query, c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/storeScan.ts#readPlanStores",
+  "message": "src/schema/storeScan.ts#readPlanStores is unclaimed but used by c4pm.c4pm.cli, c4pm.c4pm.plan_commands, c4pm.c4pm.query, c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/storeScan.ts#scanStoreHits",
+  "message": "src/schema/storeScan.ts#scanStoreHits is unclaimed but used by c4pm.c4pm.cli, c4pm.c4pm.plan_commands, c4pm.c4pm.query, c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/storeScan.ts#storeCovers",
+  "message": "src/schema/storeScan.ts#storeCovers is unclaimed but used by c4pm.c4pm.cli, c4pm.c4pm.plan_commands, c4pm.c4pm.query, c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/storeScan.ts#StoreHit",
+  "message": "src/schema/storeScan.ts#StoreHit is unclaimed but used by c4pm.c4pm.cli, c4pm.c4pm.plan_commands, c4pm.c4pm.query, c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/types.ts#Check",
+  "message": "src/schema/types.ts#Check is unclaimed but used by c4pm.c4pm.plan_files, c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/types.ts#Field",
+  "message": "src/schema/types.ts#Field is unclaimed but used by c4pm.c4pm.plan_files, c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/types.ts#FieldRef",
+  "message": "src/schema/types.ts#FieldRef is unclaimed but used by c4pm.c4pm.plan_files, c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/types.ts#Index",
+  "message": "src/schema/types.ts#Index is unclaimed but used by c4pm.c4pm.plan_files, c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/types.ts#RecordType",
+  "message": "src/schema/types.ts#RecordType is unclaimed but used by c4pm.c4pm.plan_files, c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/types.ts#SchemaModel",
+  "message": "src/schema/types.ts#SchemaModel is unclaimed but used by c4pm.c4pm.plan_files, c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/schema/types.ts#UnsupportedFile",
+  "message": "src/schema/types.ts#UnsupportedFile is unclaimed but used by c4pm.c4pm.plan_files, c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/selfInstall.ts#binaryName",
+  "message": "src/selfInstall.ts#binaryName is unclaimed but used by c4pm.c4pm.plan_commands, c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/selfInstall.ts#blockRange",
+  "message": "src/selfInstall.ts#blockRange is unclaimed but used by c4pm.c4pm.plan_commands, c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/selfInstall.ts#consent",
+  "message": "src/selfInstall.ts#consent is unclaimed but used by c4pm.c4pm.plan_commands, c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/selfInstall.ts#defaultInstallDir",
+  "message": "src/selfInstall.ts#defaultInstallDir is unclaimed but used by c4pm.c4pm.plan_commands, c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/selfInstall.ts#dirOnPath",
+  "message": "src/selfInstall.ts#dirOnPath is unclaimed but used by c4pm.c4pm.plan_commands, c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/selfInstall.ts#hasPowershell",
+  "message": "src/selfInstall.ts#hasPowershell is unclaimed but used by c4pm.c4pm.plan_commands, c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/selfInstall.ts#InstallEnv",
+  "message": "src/selfInstall.ts#InstallEnv is unclaimed but used by c4pm.c4pm.plan_commands, c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/selfInstall.ts#InstallFs",
+  "message": "src/selfInstall.ts#InstallFs is unclaimed but used by c4pm.c4pm.plan_commands, c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/selfInstall.ts#InstallOptions",
+  "message": "src/selfInstall.ts#InstallOptions is unclaimed but used by c4pm.c4pm.plan_commands, c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/selfInstall.ts#isCompiledBinary",
+  "message": "src/selfInstall.ts#isCompiledBinary is unclaimed but used by c4pm.c4pm.plan_commands, c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/selfInstall.ts#isWin",
+  "message": "src/selfInstall.ts#isWin is unclaimed but used by c4pm.c4pm.plan_commands, c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/selfInstall.ts#pathBlock",
+  "message": "src/selfInstall.ts#pathBlock is unclaimed but used by c4pm.c4pm.plan_commands, c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/selfInstall.ts#pathLib",
+  "message": "src/selfInstall.ts#pathLib is unclaimed but used by c4pm.c4pm.plan_commands, c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/selfInstall.ts#ProfileJob",
+  "message": "src/selfInstall.ts#ProfileJob is unclaimed but used by c4pm.c4pm.plan_commands, c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/selfInstall.ts#psAddPath",
+  "message": "src/selfInstall.ts#psAddPath is unclaimed but used by c4pm.c4pm.plan_commands, c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/selfInstall.ts#psQuote",
+  "message": "src/selfInstall.ts#psQuote is unclaimed but used by c4pm.c4pm.plan_commands, c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/selfInstall.ts#psRemovePath",
+  "message": "src/selfInstall.ts#psRemovePath is unclaimed but used by c4pm.c4pm.plan_commands, c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/selfInstall.ts#removeBlock",
+  "message": "src/selfInstall.ts#removeBlock is unclaimed but used by c4pm.c4pm.plan_commands, c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/selfInstall.ts#resolveDir",
+  "message": "src/selfInstall.ts#resolveDir is unclaimed but used by c4pm.c4pm.plan_commands, c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/selfInstall.ts#runInstall",
+  "message": "src/selfInstall.ts#runInstall is unclaimed but used by c4pm.c4pm.plan_commands, c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/selfInstall.ts#runUninstall",
+  "message": "src/selfInstall.ts#runUninstall is unclaimed but used by c4pm.c4pm.plan_commands, c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/selfInstall.ts#shellProfiles",
+  "message": "src/selfInstall.ts#shellProfiles is unclaimed but used by c4pm.c4pm.plan_commands, c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/selfInstall.ts#upsertBlock",
+  "message": "src/selfInstall.ts#upsertBlock is unclaimed but used by c4pm.c4pm.plan_commands, c4pm.c4pm.tests; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/tags.ts#isValidTag",
+  "message": "src/tags.ts#isValidTag is unclaimed but used by c4pm.c4pm.boards, c4pm.c4pm.plan_files; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/tags.ts#splitTags",
+  "message": "src/tags.ts#splitTags is unclaimed but used by c4pm.c4pm.boards, c4pm.c4pm.plan_files; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/tags.ts#splitTagsRaw",
+  "message": "src/tags.ts#splitTagsRaw is unclaimed but used by c4pm.c4pm.boards, c4pm.c4pm.plan_files; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/util/text.ts#cmp",
+  "message": "src/util/text.ts#cmp is unclaimed but used by c4pm.c4pm.plan_files, c4pm.c4pm.query; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "shared-auto",
+  "id": "src/util/text.ts#splitLines",
+  "message": "src/util/text.ts#splitLines is unclaimed but used by c4pm.c4pm.plan_files, c4pm.c4pm.query; treated as shared code"
+ },
+ {
+  "severity": "info",
+  "rule": "board-doc-missing",
+  "id": "b1",
+  "message": "b1: docs[0] path 'Document/Roadmap/PHASE_8_TASKS.md=Phase 8 task breakdown (older)' does not exist in the repo"
+ },
+ {
+  "severity": "info",
+  "rule": "board-doc-missing",
+  "id": "b119",
+  "message": "b119: docs[0] path 'Document/Roadmap/ROADMAP.md=Roadmap: hardening' does not exist in the repo"
+ }
+]

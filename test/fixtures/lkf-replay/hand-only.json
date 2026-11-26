@@ -1,0 +1,42 @@
+{
+  "_about": [
+    "PLAN_MOVE.md 7.3: the edits of LK-F (commit 46a2c31) that plan move does not make, undone in after/ before the replay compare.",
+    "Each entry: in the trimmed, blank-free lines of after/<file>, the run `after` is replaced by `replay`.",
+    "before/ = git show 46a2c31^ (plan files + io/), after/ = git show 46a2c31 (only the files LK-F changed: c4pm.c4, io.c4)."
+  ],
+  "edits": [
+    {
+      "why": "LK-F dropped the comment line above call_graph; plan move leaves comments above a block where they are (Q2)",
+      "file": "c4pm.c4",
+      "after": [
+        "}",
+        "// Relations: the main flow only (the generated draft listed every import edge)"
+      ],
+      "replay": [
+        "// Planned parts (the ROADMAP lists these as not built yet)",
+        "}",
+        "// Relations: the main flow only (the generated draft listed every import edge)"
+      ]
+    },
+    {
+      "why": "L6: LK-F flipped view_model -> viewer by hand",
+      "file": "c4pm.c4",
+      "after": [
+        "c4pm.c4pm.entry.viewer -> c4pm.c4pm.engines.view_model 'reads the map model'"
+      ],
+      "replay": [
+        "c4pm.c4pm.engines.view_model -> c4pm.c4pm.entry.viewer 'inlines the files'"
+      ]
+    },
+    {
+      "why": "io.c4:889: LK-F copied the new plan add --help text into the cmd_plan add description",
+      "file": "io.c4",
+      "after": [
+        "description 'Add an element to the plan. Kind is system, container, layer, component, person, external, screen, region, control, state, command, options, flag, arg, route, body, param, tool, store, record, field, planned-fn, planned-class or planned-type; context <name> --as system, person or external adds a top-level element. Allowed parents: system -> none (top level); container -> system or external; layer -> container; component -> container or layer; person -> none (top level); external -> none (top level); screen -> container; region -> screen; control -> screen or region; state -> screen, region or control; command -> container or command; options -> command; flag -> command or options; arg -> command; route -> container; body -> route; param -> route, body or tool; tool -> container; store -> container; record -> store; field -> record or field; planned-fn -> component; planned-class -> component; planned-type -> component. Written into the parent\\'s .c4 file (a top-level element into the model block); dry run unless --yes'"
+      ],
+      "replay": [
+        "description 'Add an element to the plan. Kind is system, container, component, person, external, screen, region, control, state, command, options, flag, arg, route, body, param, tool, store, record, field, planned-fn, planned-class or planned-type; context <name> --as system, person or external adds a top-level element. Allowed parents: system -> none (top level); container -> system or external; component -> container; person -> none (top level); external -> none (top level); screen -> container; region -> screen; control -> screen or region; state -> screen, region or control; command -> container or command; options -> command; flag -> command or options; arg -> command; route -> container; body -> route; param -> route, body or tool; tool -> container; store -> container; record -> store; field -> record or field; planned-fn -> component; planned-class -> component; planned-type -> component. Written into the parent\\'s .c4 file (a top-level element into the model block); dry run unless --yes'"
+      ]
+    }
+  ]
+}

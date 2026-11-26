@@ -28,4 +28,11 @@ jobs:
       - run: npm run build
       # ubuntu-latest has Google Chrome (/usr/bin/google-chrome, found by scripts/find-browser.js), so the real-browser tests run there;
       # on a runner without a Chrome-like browser they skip by themselves.
+      # macOS: the hosted runner is too slow for the real-browser tests' fixed waits (a different few fail on each run), so the
+      # browsers are moved aside there and those tests skip; ubuntu-latest still runs every one of them.
+      - if: runner.os == 'macOS'
+        run: |
+          for app in "Google Chrome" "Google Chrome for Testing" "Chromium" "Microsoft Edge" "Brave Browser"; do
+            if [ -d "/Applications/$app.app" ]; then sudo mv "/Applications/$app.app" "$RUNNER_TEMP/"; fi
+          done
       - run: npm test -- --maxWorkers=2
